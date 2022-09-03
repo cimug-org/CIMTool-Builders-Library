@@ -11,14 +11,11 @@ Please feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool
 ## Background
 **CIMTool** supports a variety of different types of builders that generate artifacts based on a profile. Examples of builders include those that generate XSD schemas, JPA Java source code, RDBMS DDL scripts, RDFS profiles, and RTF Word docs among others.
 
-Internally, **CIMTool** supports a category of builders based on XSLT transforms. In the below screenshot of CIMTool’s “Profile Summary” tab the builders that are selected are those that generate target files using XSLT transforms. Starting with the CIMTool.1.10.0.RC1 release, the ability to import custom user-defined XSLT transforms and have them automatically added to the list of builders was introduced. This new feature opens up a wide range of possibilities to end users to be able to more easily extend the builder capabilities beyond that shipped with the product. No longer does one need to know Eclipse plugin development. The screenshots below illustrate how to access these new screens (click on the images to present a larger view).
-
-
+Internally, **CIMTool** supports a category of builders based on XSLT transforms. In the below screenshot of CIMTool’s “Profile Summary” tab the builders that are selected are those that generate target files using XSLT transforms.
 
 [![image](/images/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/images/cimtool-profile-summary-tab.png)
 
-
-Launch paths to the new UI screens (click on the images to present a larger view):
+Starting with the CIMTool.1.10.0.RC1 release, the ability to import custom user-defined XSLT transforms and have them automatically added to the list of builders was introduced. This new feature opens up a wide range of possibilities to end users to be able to more easily extend the builder capabilities beyond that shipped with the product. No longer does one need to know Eclipse plugin development. The screenshots below illustrate how to access these new screens (click on the images to present a larger view).
 
 From the Select Import Wizards Screen... | ...Launch the Import XSLT Builder Screen
 ---------|---------

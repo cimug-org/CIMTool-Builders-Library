@@ -17,19 +17,25 @@ Further, a subcategory of builders supported by **CIMTool** are those that are b
 
 Starting with the **CIMTool.1.10.0.RC1** release, the ability to import and configure custom user-defined XSLT transforms and have them automatically added to the list of builders was introduced. This new feature opened up a wide range of possibilities for end users to more easily extend the builder capabilities beyond that shipped with the product. No longer does one need to know Eclipse plugin development.
 
-CIMTool's internal XSLT processor was originally the [Apache Xalan](https://xalan.apache.org/) project that shipped as part of the Java JDK/JRE.  Xalan, however, is a W3C [XSLT 1.0](https://www.w3.org/TR/xslt-10/) compliant XSLT processor.  To support the much richer feature set defined in the [XSLT 2.0 specification](https://www.w3.org/TR/xslt-20/) and  [XSLT 3.0 specification](https://www.w3.org/TR/xslt-30/) the XSLT engine has been replaced by [Saxon HE 10.8](https://saxonica.com/html/documentation10/about/index.html).
+CIMTool's internal XSLT processor was originally the [Apache Xalan](https://xalan.apache.org/) project that shipped as part of the Java JDK/JRE.  Xalan, however, is a W3C [XSLT 1.0](https://www.w3.org/TR/xslt-10/) compliant XSLT processor.  To support the much richer feature sets defined in the [XSLT 2.0](https://www.w3.org/TR/xslt-20/) and [XSLT 3.0](https://www.w3.org/TR/xslt-30/) specifications the XSLT processing engine was replaced by  [Saxon HE 10.8](https://saxonica.com/html/documentation10/about/index.html) in the **CIMTool.1.10.0** production release.
 
 The screenshots below illustrate how to access these new screens (click on the images to present a larger view):
 
-From the Select Import Wizards Screen... | ...Launch the Import XSLT Builder Screen
+From the Select Import Wizards Screen... | ...Launch the "Import XSLT Transform Builder" Screen
 ---------|---------
 [![image](https://user-images.githubusercontent.com/63370413/186978949-cf9cdbfe-e1e4-43ae-b8b6-91e212426a98.png)](https://user-images.githubusercontent.com/63370413/186978949-cf9cdbfe-e1e4-43ae-b8b6-91e212426a98.png) | [![image](https://user-images.githubusercontent.com/63370413/186978126-ec4fca57-53a1-4e16-a998-d3519371ebcc.png)](https://user-images.githubusercontent.com/63370413/186978126-ec4fca57-53a1-4e16-a998-d3519371ebcc.png)
 
-From the Profile Summary Tab... | ...Launch the Manage XSLT Transform Builders Screen
+From the Profile Summary Tab... | ...Launch the "Manage XSLT Transform Builders" Screen
 ---------|---------
 [![image](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png)](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png) |[![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
 
 ## Third-Party tools and application to create, test and run a new XSLT builder
+
+Vendor / Product | Description
+---------|---------
+<nobr>*Altova XMLSpy 2022 Enterprise Edition*</nobr></br><nobr>*Altova XMLSpy 2022 Professional Edition</br>(Commercial products)*</nobr> | **XMLSpy** provides a rich XSLT Editor, Profiler, and Debugger. </br></br>For detailed information Visit [XSLT Processing](https://www.altova.com/manual/XMLSpy/spyenterprise/xsxslt_processing.html) using Altova's XMLSpy 2022 Enterprise Edition or [Processing with XSLT and XQuery](https://www.altova.com/manual/XMLSpy/spyprofessional/xsxml_processing.html) using Altova's XMLSpy 2022 Professional Edition</br></br>([see XMLSpy's edition comparison chart](https://www.altova.com/xmlspy-xml-editor/editions))
+<nobr>*Oxygen XML Editor</br>(Commercial product)*</nobr></br><nobr> | **XMLSpy** provides a rich XSLT Editor, Debugger and Profiler. Visit the [Altova XMLSpy 2022 Enterprise Edition XSLT](https://www.altova.com/manual/XMLSpy/spyenterprise/xsxslt_processing.html) page for full details.
+<nobr>*EditiX XSLT Editor 2022</br>(Commercial product)*<nobr> | XSLT 1.0 / 2.0 / 3.0 editor</br>Debugger with breakpoints (current, next elements, next breakpoint)</br>Debugger with XPath context and XSLT location</br>Syntax colors for XSLT elements and output elements</br>XML Data source preview</br>XML Output preview</br></br>See the [XSLT Editor](https://www.editix.com/features/xslt_editor.html) page for full details.</br></br>![image](https://www.editix.com/features/images/xsltEditor.png)
 
 This enhancement allows for the use of tools such as Altova’s XMLSpy to create and test XSLT 1.0 transforms and then import and manage them in CIMTool.
 

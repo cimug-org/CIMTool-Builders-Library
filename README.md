@@ -11,7 +11,7 @@ Please feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool
 ## Background
 **CIMTool** supports a variety of different types of builders that generate artifacts based on a profile. Examples of builders include those that generate XSD schemas, JPA Java source code, RDBMS DDL scripts, RDFS profiles, and RTF Word docs among others.
 
-Internally, **CIMTool** supports a category of builders based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms:
+Further, a subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms:
 
 [![image](/images/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/images/cimtool-profile-summary-tab.png)
 

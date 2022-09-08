@@ -16,7 +16,7 @@ This builder is XSLT 1.0 compliant.
 
 ## Author
 
-Todd Viegut on behalf of UCAIug.
+Todd Viegut [@tviegut] on behalf of UCAIug.
 
 ## Submission Date
 

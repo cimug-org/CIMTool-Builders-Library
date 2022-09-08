@@ -34,4 +34,4 @@ The recommended best practice is to rename the builder file (from ```xsd-part100
 
 ## License
 
-This builder is released under the [Apache 2.0](../LICENSE) license and was developed under sponsorship of the UCAIug.
+This builder is released under the [Apache 2.0](../../LICENSE) license and was developed under sponsorship of the UCAIug.

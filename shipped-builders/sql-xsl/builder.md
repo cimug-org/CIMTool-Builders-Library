@@ -4,7 +4,7 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-The **sql.xsl** builder generates an ANSI SQL compliant database script that conforms to a subset of the ANSI supported database types:
+The **sql.xsl** builder generates an ANSI SQL compliant database script that currently conforms to a following subset of ANSI defined database types:
 
 ```
 {

@@ -4,11 +4,11 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-Per the wikipedia entry for [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language)):
+The **scala.xsl** builder generates a [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language)) source file that defines a vocabulary corresponding to the profile.
 
->*Scala is a strong statically typed general-purpose programming language which supports both object-oriented programming and functional programming. Designed to be concise,[9] many of Scala's design decisions are aimed to address criticisms of Java.</br>Scala source code can be compiled to Java bytecode and run on a Java virtual machine (JVM). Scala can also be compiled to JavaScript to run in a browser, or directly to a native executable. On the JVM Scala provides language interoperability with Java so that libraries written in either language may be referenced directly in Scala or Java code. Like Java, Scala is object-oriented, and uses a syntax termed curly-brace which is similar to the language C.*
+Per the wikipedia entry for Scala:
 
-The **scala.xsl** builder generates a Scala source file that defines a vocabulary corresponding to the profile.
+>*Scala is a strong statically typed general-purpose programming language which supports both object-oriented programming and functional programming. Designed to be concise, many of Scala's design decisions are aimed to address criticisms of Java.</br>Scala source code can be compiled to Java bytecode and run on a Java virtual machine (JVM). Scala can also be compiled to JavaScript to run in a browser, or directly to a native executable. On the JVM Scala provides language interoperability with Java so that libraries written in either language may be referenced directly in Scala or Java code. Like Java, Scala is object-oriented, and uses a syntax termed curly-brace which is similar to the language C.*
 
 A sample extract of a generated Scala source file is illustrated next:
 

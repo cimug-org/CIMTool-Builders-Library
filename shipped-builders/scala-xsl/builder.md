@@ -4,7 +4,7 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-The **scala.xsl** builder generates a [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language)) source file that defines a vocabulary corresponding to the profile.
+The **[scala.xsl](scala.xsl)** builder generates a [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language)) source file that defines a vocabulary corresponding to the profile.
 
 Per the wikipedia entry for Scala:
 

@@ -4,7 +4,7 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-The **html.xsl** builder generates a standalone HTML document containing the complete documentation for all classes, attributes and associations defined for a profile.  
+The **[html.xsl](html.xsl)** builder generates a standalone HTML document containing the complete documentation for all classes, attributes and associations defined for a profile.  
 
 ![image](sample-html.png)
 

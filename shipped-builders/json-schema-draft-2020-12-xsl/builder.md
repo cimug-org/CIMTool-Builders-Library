@@ -4,9 +4,9 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-The **[json-schema-draft-2020-12.xsl](json-schema-draft-2020-12.xsl)** builder generates a [draft-2020-12 JSON schema](https://json-schema.org/draft/2020-12/release-notes.html) compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping).
+The **[json-schema-draft-2020-12.xsl](json-schema-draft-2020-12.xsl)** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is [draft-2020-12](https://json-schema.org/draft/2020-12/release-notes.html).
 
-Next is a sample generated draft-07 JSON schema:
+The following is an example of a generated JSON schema:
 
 ```JSON
 {

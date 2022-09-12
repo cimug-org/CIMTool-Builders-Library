@@ -1,10 +1,10 @@
-# json-schema-draft-07.xsl
+# json-schema-draft-2020-12.xsl
 
 This builder currently ships with CIMTool.
 
 ## Builder Description
 
-The **[json-schema-draft-07.xsl](json-schema-draft-07.xsl)** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is [draft-07](https://json-schema.org/draft-07/json-schema-release-notes.html).
+The **[json-schema-draft-2020-12.xsl](json-schema-draft-2020-12.xsl)** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is [draft-2020-12](https://json-schema.org/draft/2020-12/release-notes.html).
 
 The following is an example of a generated JSON schema:
 
@@ -12,7 +12,7 @@ The following is an example of a generated JSON schema:
 {
      "$comment": "Copyright 2022 UCAIug SPDX-License-Identifier: Apache-2.0",
      "$id": "http://ucaiug.org/2022/GetUsagePointGroups.schema.json",
-     "$schema": "http://json-schema.org/draft-07/schema#",
+     "$schema": "https://json-schema.org/draft/2020-12/schema",
      "title": "GetUsagePointGroups",
      "description": "",
      "namespace": "http://ucaiug.org/2022/GetUsagePointGroups#",
@@ -22,23 +22,23 @@ The following is an example of a generated JSON schema:
          "DemandResponseProgram": {
              "type": "array",
              "items": {
-                 "$ref": "#/definitions/DemandResponseProgram"
+                 "$ref": "#/$defs/DemandResponseProgram"
              }
          },
          "UsagePoint": {
              "type": "array",
              "items": {
-                 "$ref": "#/definitions/UsagePoint"
+                 "$ref": "#/$defs/UsagePoint"
              }
          },
          "UsagePointGroup": {
              "type": "array",
              "items": {
-                 "$ref": "#/definitions/UsagePointGroup"
+                 "$ref": "#/$defs/UsagePointGroup"
              }
          }
      },
-     "definitions": {
+     "$defs": {
           "DemandResponseProgram": {
               "title": "DemandResponseProgram",
               "description": "Demand response program.",
@@ -61,7 +61,7 @@ The following is an example of a generated JSON schema:
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names",
                       "type": "array",
                       "items": {
-                          "$ref": "#/definitions/Name"
+                          "$ref": "#/$defs/Name"
                       }
                   }
               }
@@ -81,7 +81,7 @@ The following is an example of a generated JSON schema:
                   "NameType": {
                       "description": "Type of this name.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#Name.NameType",
-                      "$ref": "#/definitions/NameType"
+                      "$ref": "#/$defs/NameType"
                   }
               },
               "required": [
@@ -108,7 +108,7 @@ The following is an example of a generated JSON schema:
                   "NameTypeAuthority": {
                       "description": "Authority responsible for managing names of this type.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#NameType.NameTypeAuthority",
-                      "$ref": "#/definitions/NameTypeAuthority"
+                      "$ref": "#/$defs/NameTypeAuthority"
                   }
               },
               "required": [
@@ -154,7 +154,7 @@ The following is an example of a generated JSON schema:
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names",
                       "type": "array",
                       "items": {
-                          "$ref": "#/definitions/Name"
+                          "$ref": "#/$defs/Name"
                       }
                   }
               }
@@ -176,7 +176,7 @@ The following is an example of a generated JSON schema:
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names",
                       "type": "array",
                       "items": {
-                          "$ref": "#/definitions/Name"
+                          "$ref": "#/$defs/Name"
                       }
                   }
               }
@@ -198,15 +198,15 @@ Todd Viegut [@tviegut] on behalf of UCAIug.
 
 ## Submission Date
 
-21-Apr-2020
+20-Jun-2022
 
 ## Builder NTE Configuration
 
 Given this builder ships with CIMTool the below screenshot highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
 
-The recommended best practice is to rename the builder file  (from ```json-schema-draft-07.xsl``` to ```custom-json-schema-draft-07.xsl``` for example) before importing. On import this will be interpreted as a new builder and you will be allowed to enter values in the Type and Extension fields.
+The recommended best practice is to rename the builder file  (from ```json-schema-draft-2020-12.xsl``` to ```custom-json-schema-draft-2020-12.xsl``` for example) before importing. On import this will be interpreted as a new builder and you will be allowed to enter values in the Type and Extension fields.
 
->*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from with the "Maintain XSLT Transform Builders" screen.*
+>*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from within the "Maintain XSLT Transform Builders" screen.*
 
 ![image](import-builder.png)
 

@@ -23,6 +23,7 @@
     xmlns="http://langdale.com.au/2009/Indent">
 
     <xsl:output indent="yes" method="xml" encoding="utf-8" />
+    <xsl:param name="copyright-single-line" />
     <xsl:param name="version" />
     <xsl:param name="baseURI" />
     <xsl:param name="envelope">Profile</xsl:param>
@@ -478,6 +479,9 @@
         <!-- the top level template -->
         <document>
             <list begin="{{" indent="     " delim="," end="}}">
+                <xsl:if test="$copyright-single-line and $copyright-single-line != ''">
+        					<item>"$comment": "<xsl:value-of select="$copyright-single-line" disable-output-escaping="yes"/>"</item>
+                </xsl:if>
                 <item>"$id": "<xsl:value-of select="substring-before($baseURI, $envelope)" /><xsl:value-of select="$envelope" />.schema.json"</item>
                 <item>"$schema": "<xsl:value-of select="$schema_draft_version" />"</item>
                 <item>"title": "<xsl:value-of select="$envelope" />"</item>

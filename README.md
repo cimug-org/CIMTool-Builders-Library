@@ -37,7 +37,7 @@ Feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool-XSLT-B
 
 Further, a subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms (click the image to enlarge):
 
-[![image](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/images/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/images/cimtool-profile-summary-tab.png)
+[![image](readme-icons/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/readme-icons/cimtool-profile-summary-tab.png)
 
 Starting with the **CIMTool.1.10.0.RC1** release, the ability to import and configure custom user-defined XSLT transforms and have them automatically added to the list of builders was introduced. This new feature opened up a wide range of possibilities for end users to more easily extend the builder capabilities beyond that shipped with the product. No longer do you need to know Eclipse plugin development.
 
@@ -52,6 +52,92 @@ From the "Import" wizards screen... | ...Launch the "Import XSLT Transform Build
 From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builders" screen
 ---------|---------
 [![image](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png)](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png) |[![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
+
+## How XSLT Builders Work
+
+As a working example, the screenshot below illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  ```GetUsagePointGroups.owl``` file bordered in blue. An ```.owl``` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
+
+What is not commonly known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT-based builders that ship with it. This internal representation is an XML format that is structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal XML representation is actually available to view and is exposed via the XML builder as bordered in red in the screenshot.
+
+Further, a subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms (click the image to enlarge):
+
+[![image](readme-icons/GetUsagePointGroups-profile.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/readme-icons/GetUsagePointGroups-profile.png)
+
+The internal XML representation corresponding to the profile for this working example appears next. To highlight a couple of noteworthy items from the example.  First, observe that the ```<Root>``` XML elements correspond to all classes declared as **concrete** in a profile i.e. those in the screenshot bordered in green and represented in **CIMTool** by the ![image](readme-icons/rootelement.png) icon.
+
+```XML
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://ucaiug.org/2022/GetUsagePointGroups#" baseURI="http://ucaiug.org/2022/GetUsagePointGroups#" name="GetUsagePointGroups">
+    <Root name="DemandResponseProgram" baseClass="http://iec.ch/TC57/CIM-generic#DemandResponseProgram" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Demand response program.</Comment>
+        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="0" maxOccurs="1">
+            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="type" baseProperty="http://iec.ch/TC57/CIM-generic#DemandResponseProgram.type" minOccurs="0" maxOccurs="1">
+            <Comment>Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program). Note that possible types change a lot and it would be impossible to enumerate them all.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All names of this identified object.</Comment>
+        </Instance>
+    </Root>
+    <ComplexType name="Name" baseClass="http://iec.ch/TC57/CIM-generic#Name" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>The Name class provides the means to define any number of human readable  names for an object. A name is &lt;b&gt;not&lt;/b&gt; to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#Name.name" minOccurs="1" maxOccurs="1">
+            <Comment>Any free text that name the object.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#NameType" type="NameType" name="NameType" baseProperty="http://iec.ch/TC57/CIM-generic#Name.NameType" minOccurs="0" maxOccurs="1">
+            <Comment>Type of this name.</Comment>
+        </Instance>
+    </ComplexType>
+    <ComplexType name="NameType" baseClass="http://iec.ch/TC57/CIM-generic#NameType" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Type of name. Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:</Comment>
+        <Comment>The localName is a human readable name of the object. It is a free text name local to a node in a naming hierarchy similar to a file directory structure. A power system related naming hierarchy may be: Substation, VoltageLevel, Equipment etc. Children of the same parent in such a hierarchy have names that typically are unique among them.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="description" baseProperty="http://iec.ch/TC57/CIM-generic#NameType.description" minOccurs="0" maxOccurs="1">
+            <Comment>Description of the name type.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#NameType.name" minOccurs="1" maxOccurs="1">
+            <Comment>Name of the name type.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#NameTypeAuthority" type="NameTypeAuthority" name="NameTypeAuthority" baseProperty="http://iec.ch/TC57/CIM-generic#NameType.NameTypeAuthority" minOccurs="0" maxOccurs="1">
+            <Comment>Authority responsible for managing names of this type.</Comment>
+        </Instance>
+    </ComplexType>
+    <ComplexType name="NameTypeAuthority" baseClass="http://iec.ch/TC57/CIM-generic#NameTypeAuthority" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="description" baseProperty="http://iec.ch/TC57/CIM-generic#NameTypeAuthority.description" minOccurs="0" maxOccurs="1">
+            <Comment>Description of the name type authority.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#NameTypeAuthority.name" minOccurs="1" maxOccurs="1">
+            <Comment>Name of the name type authority.</Comment>
+        </Simple>
+    </ComplexType>
+    <Root name="UsagePoint" baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Logical or physical point in the network to which readings or events may be attributed. Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.</Comment>
+        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="0" maxOccurs="1">
+            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All names of this identified object.</Comment>
+        </Instance>
+    </Root>
+    <Root name="UsagePointGroup" baseClass="http://iec.ch/TC57/CIM-generic#UsagePointGroup" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points. Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.</Comment>
+        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="0" maxOccurs="1">
+            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All names of this identified object.</Comment>
+        </Instance>
+    </Root>
+</Catalog>
+
+```
 
 ## Commercial and Open Source XSLT Editors/Debuggers
 

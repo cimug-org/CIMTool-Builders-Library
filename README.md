@@ -59,7 +59,7 @@ As a working example, the screenshot below (click the image to enlarge) illustra
 
 What is not well known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT-based builders. This internal representation is an XML format that is structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal representation is exposed and available for viewing using the XML builder bordered in red in the screenshot.
 
-[![image](readme-icons/GetUsagePointGroups-profile.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/readme-icons/GetUsagePointGroups-profile.png)
+[![image](readme-icons/GetUsagePointGroups-profile.png)](readme-icons/GetUsagePointGroups-profile.png)
 
 The internal XML representation corresponding to this example profile appears next. A couple of noteworthy observations:
 

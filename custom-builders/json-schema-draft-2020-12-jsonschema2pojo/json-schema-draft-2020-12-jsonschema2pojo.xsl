@@ -314,13 +314,12 @@
             <xsl:when test="a:SuperType">
                 <xsl:variable name="supertype_name" select="a:SuperType/@name" />
                 <xsl:for-each select="/*/node()[@name = $supertype_name]">
-                	<!--
+                  <!--
                 		IMPORTANT:  When generating Java classes using jsonschema2pojo this XSLT generates a "special" JSON schema that
                 		is represented a bit differently than the standard JSON schema used to validate payloads. Specifically, by
-                		commenting out the call below we ensure that we do not generate properties that exist in "parent classes" are
-                		not generated in the "subclass". In this way jsonschema2pojo will generate classes in Java that will properly
-                		contain the attributes. This is needed because JSON schema does not support inheritance like the XSD schema
-                		specification does.
+                		commenting out the call below we ensure that we do not duplicate generating attributes from the parent classes
+                    into the subclass as well. In this way jsonschema2pojo will generate Java classes that will properly contain
+                    attributes as part of the class that owns them.
                 	-->
                     <!-- <xsl:call-template name="generate_properties" /> -->
                 </xsl:for-each>

@@ -23,26 +23,6 @@
     xmlns="http://langdale.com.au/2009/Indent">
 
     <xsl:output indent="yes" method="xml" encoding="utf-8" />
-    <!-- This "classes-map" variable is essentially simulating a "map" store in XSL v1.0.
-		 In this example the key used is the CIM class name with the list of interfaces to be added to the
-		 jsonschema2pojo "javaInterfaces" : [""] array for the complex type classes. Given the need to support
-		 generics in the interfaces it is easier to hardcode a specified list here. Note that if more than one
-		 interface is to be implemented by a CIM class then the "entry" in the map should be a comma separate list
-		 of interfaces. -->
-    <xsl:variable name="classes-map"><xsl:value-of select="'|IdentifiedObject:org.ucaiug.common.IdentifiedObjectTypeIF&lt;NameType&gt;|Name:org.ucaiug.common.NameTypeIF&lt;NameTypeType&gt;|NameType:org.ucaiug.common.NameTypeTypeIF&lt;NameTypeAuthorityType&gt;|NameTypeAuthority:org.ucaiug.common.NameTypeAuthorityTypeIF|BaseVoltage:org.ucaiug.common.BaseVoltageTypeIF|'" /></xsl:variable>
-    <xsl:template name="interfaces">
-	   <!-- The 'name' param corresponds to the 'name' attribute in a CompareItem element and indicates the class name to look for in the formatted string... -->
-	   <xsl:param name="class-name"/>
-	   <xsl:variable name="class-key" select="concat('|', $class-name, ':')"/>
-	   <xsl:choose>
-	       <xsl:when test="string-length(substring-after($classes-map, $class-key)) > 0">
-	           <xsl:value-of select="substring-before(substring-after($classes-map, $class-key), '|')"/>
-	       </xsl:when>
-	       <xsl:otherwise>
-	           <xsl:text></xsl:text>
-	       </xsl:otherwise>
-	   </xsl:choose>
-    </xsl:template>
     <xsl:param name="version" />
     <xsl:param name="baseURI" />
     <xsl:param name="envelope">Profile</xsl:param>
@@ -84,14 +64,14 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:choose>
-			<xsl:when test="@package">
-				<xsl:value-of select="concat($package_prefix, '.', translate(@package, $uc, $lc), '.', $class_name)"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="concat($package_prefix, '.', $class_name)"/>
-			</xsl:otherwise>
-		</xsl:choose>
+    	<xsl:choose>
+    		<xsl:when test="@package">
+    			<xsl:value-of select="concat($package_prefix, '.', translate(@package, $uc, $lc), '.', $class_name)"/>
+    		</xsl:when>
+    		<xsl:otherwise>
+    			<xsl:value-of select="concat($package_prefix, '.', $class_name)"/>
+    		</xsl:otherwise>
+    	</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="java_superclass">
@@ -136,22 +116,22 @@
 	<xsl:template name="java_type_anonymous">
 		<xsl:param name="package">
 			<xsl:call-template name="retrieve_package">
-				<xsl:with-param name="node" select="current()"/>
-			</xsl:call-template>
+        		<xsl:with-param name="node" select="current()"/>
+    		</xsl:call-template>
 		</xsl:param>
 		<xsl:variable name="class_name">
 			<xsl:call-template name="capitalize">
-				<xsl:with-param name="text" select="@name"/>
-			</xsl:call-template>
+	            <xsl:with-param name="text" select="@name"/>
+	        </xsl:call-template>
 		</xsl:variable>
-		<xsl:choose>
-			<xsl:when test="$package">
-				<xsl:value-of select="concat($package_prefix, '.', translate($package, $uc, $lc), '.', $class_name)"/>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:value-of select="concat($package_prefix, '.', $class_name)"/>
-			</xsl:otherwise>
-		</xsl:choose>
+    	<xsl:choose>
+    		<xsl:when test="$package">
+    			<xsl:value-of select="concat($package_prefix, '.', translate($package, $uc, $lc), '.', $class_name)"/>
+    		</xsl:when>
+    		<xsl:otherwise>
+    			<xsl:value-of select="concat($package_prefix, '.', $class_name)"/>
+    		</xsl:otherwise>
+    	</xsl:choose>
 	</xsl:template>
 
 	<xsl:template name="capitalize">
@@ -334,13 +314,12 @@
             <xsl:when test="a:SuperType">
                 <xsl:variable name="supertype_name" select="a:SuperType/@name" />
                 <xsl:for-each select="/*/node()[@name = $supertype_name]">
-                	<!--
+                  <!--
                 		IMPORTANT:  When generating Java classes using jsonschema2pojo this XSLT generates a "special" JSON schema that
                 		is represented a bit differently than the standard JSON schema used to validate payloads. Specifically, by
-                		commenting out the call below we ensure that we do not generate properties that exist in "parent classes" are
-                		not generated in the "subclass". In this way jsonschema2pojo will generate classes in Java that will properly
-                		contain the attributes. This is needed because JSON schema does not support inheritance like the XSD schema
-                		specification does.
+                		commenting out the call below we ensure that we do not duplicate generating attributes from the parent classes
+                    into the subclass as well. In this way jsonschema2pojo will generate Java classes that will properly contain
+                    attributes as part of the class that owns them.
                 	-->
                     <!-- <xsl:call-template name="generate_properties" /> -->
                 </xsl:for-each>
@@ -495,16 +474,16 @@
 	<!-- IMPORTANT:  This use of the XSL 1.0 key is needed to ensure we create only a single unique *Ref class for each class type.  -->
 	<xsl:key name="references" match="a:Reference" use="@type"/>
 
-	<xsl:template match="a:Catalog">
-		<!-- the top level template -->
-		<document>
-			<list begin="{{" indent="     " delim="," end="}}">
-				<item>"$id": "<xsl:value-of select="substring-before($baseURI, $envelope)" /><xsl:value-of select="$envelope" />.schema.json"</item>
-				<item>"$schema": "<xsl:value-of select="$schema_draft_version" />"</item>
-				<item>"title": "<xsl:value-of select="$envelope" />"</item>
-				<item>"description": "<xsl:call-template name="annotate"/>"</item>
-				<item>"namespace": "<xsl:value-of select="$baseURI" />"</item>
-				<item>"type": "object"</item>
+    <xsl:template match="a:Catalog">
+        <!-- the top level template -->
+        <document>
+            <list begin="{{" indent="     " delim="," end="}}">
+                <item>"$id": "<xsl:value-of select="substring-before($baseURI, $envelope)" /><xsl:value-of select="$envelope" />.schema.json"</item>
+                <item>"$schema": "<xsl:value-of select="$schema_draft_version" />"</item>
+                <item>"title": "<xsl:value-of select="$envelope" />"</item>
+                <item>"description": "<xsl:call-template name="annotate"/>"</item>
+                <item>"namespace": "<xsl:value-of select="$baseURI" />"</item>
+                <item>"type": "object"</item>
 				<xsl:if test="$generate_jsonschema2pojo_annotations = 'true'">
 					<xsl:choose>
 						<xsl:when test="self::a:Reference">
@@ -515,18 +494,18 @@
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:if>
-				<item>"additionalProperties": false</item>
+                <item>"additionalProperties": false</item>
 
-				<!-- Now compute the number of required properties and if > 0 we add a "required" JSON element... -->
-				<xsl:variable name="properties" select="a:Root"/>
-				<xsl:variable name="required_properties_count" select="count($properties[@minOccurs &gt;= 0]/@minOccurs)"/>
+                <!-- Now compute the number of required properties and if > 0 we add a "required" JSON element... -->
+                <xsl:variable name="properties" select="a:Root"/>
+                <xsl:variable name="required_properties_count" select="count($properties[@minOccurs &gt;= 0]/@minOccurs)"/>
 
-				<!-- IF the message declares root elements we add a properties section to include them -->
-				<xsl:if test="a:Root">
-					<list begin="&quot;properties&quot;: {{" indent="    " delim="," end="}}">
+                <!-- IF the message declares root elements we add a properties section to include them -->
+                <xsl:if test="a:Root">
+                    <list begin="&quot;properties&quot;: {{" indent="    " delim="," end="}}">
 						<!-- We cycle through all classes -->
 						<!-- We temporarily are excluding SimpleType(s) while using the "reduced" Domain types
-							 and when we reintroduce them we should change the for-each to include them.
+						     and when we reintroduce them we should change the for-each to include them.
 						<xsl:for-each select="a:ComplexType|a:CompoundType|a:EnumeratedType|a:SimpleType"> -->
 						<list begin="&quot;{$envelope}&quot;: {{" indent="     " end="}}">
 							<item>"$ref": "#/definitions/<xsl:value-of select="$envelope" />"</item>
@@ -537,21 +516,21 @@
 							</list>
 						</xsl:for-each>
 					</list>
-					<!-- Determine if a JSON "required" element is needed in the schema;
-					 otherwise just terminate with a closing bracket -->
-					<xsl:if test="count(a:Root[@minOccurs >= 1]) > 0">
-					<!--  Now generate the "required" JSON element based on minOccurs >=1  -->
-					<list begin="&quot;required&quot;: [" indent="    " delim="," end="]">
-						<!-- First, we cycle through "Enumerated" attributes -->
-						<xsl:for-each select="a:Root[@minOccurs >= 1]">
-							<item>"<xsl:value-of select="@name" />"</item>
-						</xsl:for-each>
-					</list>
-					</xsl:if>
-				</xsl:if>
+                    <!-- Determine if a JSON "required" element is needed in the schema;
+                         otherwise just terminate with a closing bracket -->
+                    <xsl:if test="count(a:Root[@minOccurs >= 1]) > 0">
+                        <!--  Now generate the "required" JSON element based on minOccurs >=1  -->
+                        <list begin="&quot;required&quot;: [" indent="    " delim="," end="]">
+                            <!-- First, we cycle through "Enumerated" attributes -->
+                            <xsl:for-each select="a:Root[@minOccurs >= 1]">
+                                <item>"<xsl:value-of select="@name" />"</item>
+                            </xsl:for-each>
+                        </list>
+                    </xsl:if>
+                </xsl:if>
 
-				<list begin="&quot;definitions&quot;: {{" indent="     " delim="," end="}}">
-					<!--  generates the top-level root payload properties definitions -->
+                <list begin="&quot;definitions&quot;: {{" indent="     " delim="," end="}}">
+                	<!--  generates the top-level root payload properties definitions -->
 					<list begin="&quot;{$envelope}&quot;: {{" indent="    " delim="," end="}}">
 						<item>"title": "<xsl:value-of select="$envelope" />"</item>
 						<item>"description": "Base type..."</item>
@@ -563,15 +542,15 @@
 						</list>
 					</list>
 
-					<!-- <xsl:apply-templates select="a:Message" /> -->
-					<xsl:apply-templates mode="declare" />
-					<xsl:for-each select=".//a:Reference[generate-id() = generate-id(key('references',@type)[1])]">
-						<xsl:call-template name="generate_ref_class"/>
-					</xsl:for-each>
-				</list>
-			</list>
-		</document>
-	</xsl:template>
+                    <!-- <xsl:apply-templates select="a:Message" /> -->
+                    <xsl:apply-templates mode="declare" />
+                    <xsl:for-each select=".//a:Reference[generate-id() = generate-id(key('references',@type)[1])]">
+                        <xsl:call-template name="generate_ref_class"/>
+                    </xsl:for-each>
+                </list>
+            </list>
+        </document>
+    </xsl:template>
 
     <xsl:template match="a:Root">
         <!--  generates the top-level root payload properties definitions -->
@@ -773,14 +752,6 @@
                 </xsl:when>
 				<xsl:otherwise>
 					<item>"javaType": "<xsl:call-template name="java_type_standard"/>"</item>
-					<xsl:if test="contains($classes-map, concat('|', @name , ':'))">
-						<xsl:variable name="class-interfaces">
-							<xsl:call-template name="interfaces">
-								<xsl:with-param name="class-name" select="@name"/>
-							</xsl:call-template>
-						</xsl:variable>
-						<item>"javaInterfaces": ["<xsl:value-of select="$class-interfaces"/>"]</item>
-					</xsl:if>
 				</xsl:otherwise>
 			</xsl:choose>
 			<xsl:variable name="super" select="a:SuperType" />
@@ -1029,7 +1000,7 @@
 						</xsl:otherwise>
 					</xsl:choose>
 					<!--
-					<list begin="&quot;oneOf&quot;: [" indent="    " delim="," end="]">
+                    <list begin="&quot;oneOf&quot;: [" indent="    " delim="," end="]">
 						<xsl:for-each select="a:Complex|a:Enumerated|a:SimpleEnumerated|a:Simple|a:Domain|a:Instance|a:Reference|a:Choice">
 							<list begin="{{" indent="    " delim="," end="}}">
 								<xsl:choose>
@@ -1044,7 +1015,7 @@
 						</xsl:for-each>
 					</list>
 					-->
-				</xsl:otherwise>
+                </xsl:otherwise>
 			</xsl:choose>
 		</list>
 	</xsl:template>

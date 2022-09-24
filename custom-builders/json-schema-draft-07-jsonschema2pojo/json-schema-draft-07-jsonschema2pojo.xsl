@@ -490,7 +490,7 @@
 							<item>"javaType": "<xsl:call-template name="java_type_ref"><xsl:with-param name="type" select="@type"/></xsl:call-template>"</item>
 						</xsl:when>
 						<xsl:otherwise>
-							<item>"javaType": "<xsl:value-of select="concat($package_prefix, '.', 'Dependency')"/>"</item>
+							<item>"javaType": "<xsl:value-of select="concat($package_prefix, '.', 'JsonSchema2Pojo')"/>"</item>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:if>

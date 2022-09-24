@@ -55,15 +55,16 @@ From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builder
 
 ## How XSLT Builders Work
 
-As a working example, the screenshot below illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  ```GetUsagePointGroups.owl``` file bordered in blue. An ```.owl``` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
+As a working example, the screenshot below (click the image to enlarge) illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  ```GetUsagePointGroups.owl``` bordered in blue. An ```.owl``` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
 
-What is not commonly known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT-based builders that ship with it. This internal representation is an XML format that is structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal XML representation is actually available to view and is exposed via the XML builder as bordered in red in the screenshot.
-
-Further, a subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms (click the image to enlarge):
+What is not well known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT-based builders. This internal representation is an XML format that is structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal representation is exposed and available for viewing using the XML builder bordered in red in the screenshot.
 
 [![image](readme-icons/GetUsagePointGroups-profile.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/readme-icons/GetUsagePointGroups-profile.png)
 
-The internal XML representation corresponding to the profile for this working example appears next. To highlight a couple of noteworthy items from the example.  First, observe that the ```<Root>``` XML elements correspond to all classes declared as **concrete** in a profile i.e. those in the screenshot bordered in green and represented in **CIMTool** by the ![image](readme-icons/rootelement.png) icon.
+The internal XML representation corresponding to this example profile appears next. A couple of noteworthy observations:
+
+- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in a profile i.e. those in the screenshot bordered in green and represented in **CIMTool** by the ![image](readme-icons/rootelement.png) icon.
+- them
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>

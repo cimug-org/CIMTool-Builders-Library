@@ -231,11 +231,11 @@ Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool
 Once you've determined your builder is ready ensure the following items have been completed:
 1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of the builder that should be highlighted fit should be done here.
 2. Confirm that your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant to most builders.
-3. Confirm that the main **README.md** page has a new table row entry in the **Community Developed Builders** table.  
+3. Confirm that the main **README.md** page has a new table row entry in the **Community Developed Builders** table.  The description in the table is typically a simplified version of that which appears in the ```builders.md``` page.
 
 ### Step 5:  Pull Request
 
-When ready, commit your changes, push to the branch on GitHub, and create a [Pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) request so that your builder can be reviewed and approved for inclusion in the library.
+When ready, commit your changes, push to GitHub, and create a [Pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) request so that your commits can be reviewed and approved for inclusion in the library.
 
 ## Commercial and Open Source XSLT Editors/Debuggers
 

@@ -146,7 +146,7 @@ What is not well known is that **CIMTool** has an alternate internal representat
 ```
 <br/>
 
-The significance of this internal representation is that it serves as the input into the XSLT builder(s) enabled for a profile. Note that the XML builder itself is made available only so end users have the ability to view the internal representation. It does not need to be checked for XSLT builders to function.
+The significance of this internal representation is that it serves as the input into the XSLT builder(s) enabled for a profile. The XML builder itself is made available only so end users can view the internal representation. It does not need to be checked for XSLT builders to function.
 
 ## Creating and Submitting a Custom Builder
 

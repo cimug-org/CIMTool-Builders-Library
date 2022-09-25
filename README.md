@@ -63,8 +63,10 @@ What is not well known is that **CIMTool** has an alternate internal representat
 
 The internal XML representation corresponding to this example profile appears next. A couple of noteworthy observations:
 
-- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in a profile i.e. those in the screenshot bordered in green and represented in **CIMTool** by the ![image](readme-icons/rootelement.png) icon.
-- them
+- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in the profile i.e. those represented by the ![image](readme-icons/rootelement.png) icon and bordered in green.
+- the ```<ComplexType>``` XML elements correspond to all non-concrete classes declared in the profile i.e. those represented by the ![image](readme-icons/element.png) icon.
+- a class's attributes and associations are defined by the ```<Simple>``` or ```<Instance>``` XML elements respectively.
+- finally, minimum and maximum cardinality is declared via the ```minOccurs``` and ```maxOccurs``` attributes in each of the above XML elements.
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>

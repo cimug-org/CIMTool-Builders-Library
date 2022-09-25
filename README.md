@@ -152,18 +152,18 @@ The significance of this internal representation is that it serves as the input 
 
 The following approach is recommended for creating, testing and submitting a custom builder.
 
-#### Step 1:  Create a Branch
+### Step 1:  Create a Branch
 
 Create a branch to develop your custom builder in.  You can use your branch to safely experiment with and test your builder. A branch will isolate your development work from other branches in the repository. Note that you must first request to be added as collaborator in the repository.
 
 You can always create a branch in GitHub Desktop if you have read access to a repository, but you can only push the branch to GitHub if you have write access to the repository. Repository administrators can enable protections on a branch. Be sure to create your branch from main.
 
-#### Step 2:  Builder Setup Conventions
+### Step 2:  Builder Setup Conventions
 
 ###### Step 2:  Builder Setup Conventions
 
 
-#### Step 4:  Testing Your Builder
+### Step 4:  Testing Your Builder
 
 Contained in the ```/builder-submissions``` folder of this repository is a __CIMTool-Test-Project__ which contains a profile called __EndDeviceControlsTestProfile.owl__ along with it's corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file.
 

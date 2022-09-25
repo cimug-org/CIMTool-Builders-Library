@@ -236,7 +236,7 @@ Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool
 Once you've determined your builder is ready confirm the following items:
 
 1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of the builder that should be highlighted this should be done here.
-2. Your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant to most builders.
+2. Your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant for most builders.
 3. You have added a new row to the **Community Developed Builders** table in this README. The description in the row entry is typically a simplified version of the description in the builder's ```builders.md``` page.
 
 ### Step 5:  Pull Request

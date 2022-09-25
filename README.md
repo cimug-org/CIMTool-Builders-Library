@@ -224,10 +224,6 @@ Further, these elements may contain various types of child elements representing
 
 Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) as input to your XSLT during development. Doing so will help ensure each XML element is properly handled by your builder.
 
-### Step 4:  Pull Request
-
-Once completed and tested create a Pull request for branch so that your builder can be reviewed and approved for inclusion in the library.
-
 #### Commercial and Open Source XSLT Editors/Debuggers
 
 Third-party tooling can be used to create and test new XSLT transforms for use as builders. The table below provides a examples of both free and commercial products that can be used to develop **CIMTool** XSLT-based builders.
@@ -240,9 +236,9 @@ Third-party tooling can be used to create and test new XSLT transforms for use a
 ![image](https://sparxsystems.com/images/earose.png) | *Enterprise Architect<br/>(Commercial product)* | **Enterprise Architect** provides basic facilities for modeling and executing XSL Transforms that can be used to convert XML input documents into other types of documents. Stylesheets are the XSL components used to transform the content. Note that the XSL processor used in EA is built from the Apache Xalan Project so you will be limited to **XSLT 1.0** compliant transform builders.<br/><br/>Visit the Sparx EA [online user guide](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/xml_to_html_transformation.html) for information on how to [model](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/model_an_xsl_transformation.html), [execute](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/execute_an_xsl_transformation.html) and [debug](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/debug_an_xsl_transformation.html) XSL transforms from within EA.
 **[EditX]** | *EditiX XSLT Editor 2022<br/>(Commercial product)* | <ul><li>XSLT 1.0 / 2.0 / 3.0 editor<li>Debugger with breakpoints (current, next elements, next breakpoint)<li>Debugger with XPath context and XSLT location<li>Syntax colors for XSLT elements and output elements<li>XML Data source preview<li>XML Output preview</ul>Visit the [XSLT Editor](https://www.editix.com/features/xslt_editor.html) page for details.
 
-## Contributing a new XSLT builder to the library
+### Step 4:  Pull Request
 
-> NOTE:  We strongly recommend you do not import modified base XSLT transforms over the existing builders shipped with your local CIMTool installation. Doing so will regenerate  existing builder-generated artifacts that may be in your projects if the builder is selected for a profile.
+When ready, commit your changes, push to the branch on GitHub, and create a [Pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) request so that your builder can be reviewed and approved for inclusion in the library.
 
 ## License
 

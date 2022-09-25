@@ -154,7 +154,7 @@ The following approach is recommended for creating, testing and submitting a cus
 
 ### Step 1:  Create a Branch to Work In
 
-First request to be added as collaborator to the **CIMTool-XSLT-Builders** repository.  Create a branch off of ```main``` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
+First, request to be added as collaborator to the **CIMTool-XSLT-Builders** repository.  Create a branch off of ```main``` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
 
 We ask you to name your branch to match what your XSLT will be named (e.g. ```google-proto-buffers.xsl```).
 

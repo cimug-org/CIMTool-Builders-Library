@@ -224,6 +224,8 @@ Further, these elements may contain various types of child elements representing
 
 Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) as input to your XSLT during development. Doing so will help ensure each XML element is properly handled by your builder.
 
+> <br/>*NOTE:<br/>Internally, __CIMTool__ will pass along the following parameters into all XSLT builders: <ul><li>__baseURI__ - the baseURI is the namespace specified in the Namespace field on the Profile Summary Tab for a profile.<li>__envelope__ - the envelope is the value specified in the Name field on the Description Tab for the profile<li>__copyright__ - the text of a multi-line copyright if one is configured for the project.<li>__copyright-single-line__ - the text of a single-line copyright if one is configured for the project.</ul>Both the __copyright__ and __copyright-single-line__ parameters are passed to the builder leaving it to the builder to determine which to use. Most commonly it is the multiline __copyright__ that implementations utilize.<br/><br/>*
+
 #### Commercial and Open Source XSLT Editors/Debuggers
 
 Third-party tooling can be used to create and test new XSLT transforms for use as builders. The table below provides a examples of both free and commercial products that can be used to develop **CIMTool** XSLT-based builders.
@@ -236,7 +238,15 @@ Third-party tooling can be used to create and test new XSLT transforms for use a
 ![image](https://sparxsystems.com/images/earose.png) | *Enterprise Architect<br/>(Commercial product)* | **Enterprise Architect** provides basic facilities for modeling and executing XSL Transforms that can be used to convert XML input documents into other types of documents. Stylesheets are the XSL components used to transform the content. Note that the XSL processor used in EA is built from the Apache Xalan Project so you will be limited to **XSLT 1.0** compliant transform builders.<br/><br/>Visit the Sparx EA [online user guide](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/xml_to_html_transformation.html) for information on how to [model](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/model_an_xsl_transformation.html), [execute](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/execute_an_xsl_transformation.html) and [debug](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/debug_an_xsl_transformation.html) XSL transforms from within EA.
 **[EditX]** | *EditiX XSLT Editor 2022<br/>(Commercial product)* | <ul><li>XSLT 1.0 / 2.0 / 3.0 editor<li>Debugger with breakpoints (current, next elements, next breakpoint)<li>Debugger with XPath context and XSLT location<li>Syntax colors for XSLT elements and output elements<li>XML Data source preview<li>XML Output preview</ul>Visit the [XSLT Editor](https://www.editix.com/features/xslt_editor.html) page for details.
 
-### Step 4:  Pull Request
+### Step 4:  Final Checklist for Review
+
+Once you've determined your builder is ready ensure the following items have been completed:
+1. The description in your ```builder.md``` has been fully updated with the right level of details
+2. Have you included either the $ your ```.xsl``` file
+
+ final   ready, commit your changes, push to the branch on GitHub, and create a [Pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) request so that your builder can be reviewed and approved for inclusion in the library.
+
+### Step 5:  Pull Request
 
 When ready, commit your changes, push to the branch on GitHub, and create a [Pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) request so that your builder can be reviewed and approved for inclusion in the library.
 

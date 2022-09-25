@@ -184,17 +184,22 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<xsl:stylesheet exclude-result-prefixes="a" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl">
+<xsl:stylesheet exclude-result-prefixes="a"
+    version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:a="http://langdale.com.au/2005/Message#"
+    xmlns:sawsdl="http://www.w3.org/ns/sawsdl">
+
     <xsl:output xmlns:xalan="http://xml.apache.org/xslt" method="xml" omit-xml-declaration="no" indent="yes" xalan:indent-amount="4" />
     <xsl:param name="copyright" />
-	<xsl:param name="version"/>
-	<xsl:param name="baseURI"/>
-	<xsl:param name="envelope">Profile</xsl:param>
-    ...
-    ...
-    ...
+    <xsl:param name="version"/>
+  	<xsl:param name="baseURI"/>
+  	<xsl:param name="envelope">Profile</xsl:param>
+      ...
+      ...
+      ...
 </xsl:stylesheet>
-
 ```
 
 ### Step 3:  Developing Your Builder
@@ -224,7 +229,7 @@ Further, these elements may contain various types of child elements representing
 
 Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) as input to your XSLT during development. Doing so will help ensure each XML element is properly handled by your builder.
 
-> <br/>*NOTE:<br/>Internally, __CIMTool__ will pass along the following parameters into all XSLT builders: <ul><li>__baseURI__ - the baseURI is the namespace specified in the Namespace field on the Profile Summary Tab for a profile.<li>__envelope__ - the envelope is the value specified in the Name field on the Description Tab for the profile<li>__copyright__ - the text of a multi-line copyright if one is configured for the project.<li>__copyright-single-line__ - the text of a single-line copyright if one is configured for the project.</ul>Both the __copyright__ and __copyright-single-line__ parameters are passed to the builder leaving it to the builder to determine which to use. Most commonly it is the multiline __copyright__ that implementations utilize.<br/><br/>*
+> <br/>*NOTE:<br/>Internally, __CIMTool__ will pass along the following parameters into all XSLT builders: <ul><li>__baseURI__ - the baseURI is the namespace specified in the Namespace field on the Profile Summary tab for a profile.<li>__envelope__ - the envelope is the value specified in the Name field on the Description tab for the profile<li>__copyright__ - the text of a multi-line copyright if one is configured for the project.<li>__copyright-single-line__ - the text of a single-line copyright if one is configured for the project.</ul>Both the __copyright__ and __copyright-single-line__ parameters are passed to the builder leaving it to the builder to determine which to use. Most commonly it is the multiline __copyright__ that implementations utilize.<br/><br/>*
 
 ### Step 4:  Final Pre-Commit Checklist for Review
 

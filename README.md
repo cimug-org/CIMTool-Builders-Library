@@ -66,7 +66,9 @@ The internal XML representation corresponding to this example profile appears ne
 - the ```<Root>``` XML elements correspond to all classes declared as **concrete** in the profile i.e. those represented by the ![image](readme-icons/rootelement.png) icon and bordered in green.
 - the ```<ComplexType>``` XML elements correspond to all non-concrete classes declared in the profile i.e. those represented by the ![image](readme-icons/element.png) icon.
 - a class's attributes and associations are defined by the ```<Simple>``` or ```<Instance>``` XML elements respectively.
-- finally, minimum and maximum cardinality is declared via the ```minOccurs``` and ```maxOccurs``` attributes in each of the above XML elements.
+- for primitive typed attributes (e.g. string, float, etc.) an ```xstype``` XSD attribute is specified with a corresponding value from the set of W3C XSD [primitive datatypes](https://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/datatypes.html#built-in-primitive-datatypes).
+- the comments on class and attribute defined in the profile are included in the ```<Comment>``` XML elements.
+- minimum and maximum cardinality is declared via the ```minOccurs``` and ```maxOccurs``` attributes in each of the above XML elements.
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>

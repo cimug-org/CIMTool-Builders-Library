@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://ucaiug.org/2022/EndDeviceControls#" baseURI="http://ucaiug.org/2022/EndDeviceControls#" name="EndDeviceControls">
+    <ComplexType name="Asset" baseClass="http://iec.ch/TC57/CIM-generic#Asset" package="Assets" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Tangible resource of the utility, including power system equipment, various end devices, cabinets, buildings, etc. For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.</Comment>
+        <SuperType name="IdentifiedObject"/>
+    </ComplexType>
+    <ComplexType name="AssetContainer" baseClass="http://iec.ch/TC57/CIM-generic#AssetContainer" package="Assets" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.</Comment>
+        <SuperType name="Asset"/>
+    </ComplexType>
+    <CompoundType name="ControlledAppliance" baseClass="http://iec.ch/TC57/CIM-generic#ControlledAppliance" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Appliance controlled with a PAN device control.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="isElectricVehicle" baseProperty="http://iec.ch/TC57/CIM-generic#ControlledAppliance.isElectricVehicle" minOccurs="0" maxOccurs="1">
+            <Comment>True if the appliance is an electric vehicle.</Comment>
+        </Simple>
+    </CompoundType>
+    <CompoundType name="DateTimeInterval" baseClass="http://iec.ch/TC57/CIM-generic#DateTimeInterval" package="Domain" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Interval between two date and time points, where the interval includes the start time but excludes end time.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#dateTime" xstype="dateTime" name="end" baseProperty="http://iec.ch/TC57/CIM-generic#DateTimeInterval.end" minOccurs="0" maxOccurs="1">
+            <Comment>End date and time of this interval.  The end date and time where the interval is defined up to, but excluded.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#dateTime" xstype="dateTime" name="start" baseProperty="http://iec.ch/TC57/CIM-generic#DateTimeInterval.start" minOccurs="0" maxOccurs="1">
+            <Comment>Start date and time of this interval.  The start date and time is included in the defined interval.</Comment>
+        </Simple>
+    </CompoundType>
+    <ComplexType name="EndDevice" baseClass="http://iec.ch/TC57/CIM-generic#EndDevice" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Asset container that performs one or more end device functions. One type of end device is a meter which can perform metering, load management, connect/disconnect, accounting functions, etc. Some end devices, such as ones monitoring and controlling air conditioners, refrigerators, pool pumps may be connected to a meter. All end devices may have communication capability defined by the associated communication function(s). An end device may be owned by a consumer, a service provider, utility or otherwise.</Comment>
+        <Comment>There may be a related end device function that identifies a sensor or control point within a metering application or communications systems (e.g., water, gas, electricity).</Comment>
+        <Comment>Some devices may use an optical port that conforms to the ANSI C12.18 standard for communications.</Comment>
+        <SuperType name="AssetContainer"/>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="installCode" baseProperty="http://iec.ch/TC57/CIM-generic#EndDevice.installCode" minOccurs="0" maxOccurs="1">
+            <Comment>Installation code.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="isPan" baseProperty="http://iec.ch/TC57/CIM-generic#EndDevice.isPan" minOccurs="0" maxOccurs="1">
+            <Comment>If true, this is a premises area network (PAN) device.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All names of this identified object.</Comment>
+        </Instance>
+        <Complex baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" name="UsagePoint" baseProperty="http://iec.ch/TC57/CIM-generic#EndDevice.UsagePoint" minOccurs="1" maxOccurs="1">
+            <Comment>Usage point to which this end device belongs.</Comment>
+            <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="isSdp" baseProperty="http://iec.ch/TC57/CIM-generic#UsagePoint.isSdp" minOccurs="1" maxOccurs="1">
+                <Comment>If true, this usage point is a service delivery point, i.e., a usage point where the ownership of the service changes hands.</Comment>
+            </Simple>
+            <SimpleEnumerated baseClass="http://iec.ch/TC57/CIM-generic#PhaseCode" name="phaseCode" baseProperty="http://iec.ch/TC57/CIM-generic#UsagePoint.phaseCode" minOccurs="1" maxOccurs="1">
+                <Comment>Phase code. Number of wires and specific nominal phases can be deduced from enumeration literal values. For example, ABCN is three-phase, four-wire, s12n (splitSecondary12N) is single-phase, three-wire, and s1n and s2n are single-phase, two-wire.</Comment>
+                <EnumeratedValue name="A" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.A">
+                    <Comment>Phase A.</Comment>
+                </EnumeratedValue>
+                <EnumeratedValue name="AB" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.AB">
+                    <Comment>Phases A and B.</Comment>
+                </EnumeratedValue>
+                <EnumeratedValue name="ABC" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.ABC">
+                    <Comment>Phases A, B, and C.</Comment>
+                </EnumeratedValue>
+                <EnumeratedValue name="ABCN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.ABCN">
+                    <Comment>Phases A, B, C, and N.</Comment>
+                </EnumeratedValue>
+            </SimpleEnumerated>
+        </Complex>
+    </ComplexType>
+    <ComplexType name="EndDeviceAction" baseClass="http://iec.ch/TC57/CIM-generic#EndDeviceAction" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Action/command performed by an end device on a device other than the end device.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="command" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.command" minOccurs="0" maxOccurs="1">
+            <Comment>Command text.</Comment>
+        </Simple>
+    </ComplexType>
+    <Root name="EndDeviceControl" baseClass="http://iec.ch/TC57/CIM-generic#EndDeviceControl" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Instructs an end device (or an end device group) to perform a specified action.</Comment>
+        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
+        <SuperType name="IdentifiedObject"/>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#integer" xstype="integer" name="drProgramLevel" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.drProgramLevel" minOccurs="0" maxOccurs="1">
+            <Comment>Level of a demand response program request, where 0=emergency. Note: Attribute is not defined on DemandResponseProgram as it is not its inherent property (it serves to control it).</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="drProgramMandatory" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.drProgramMandatory" minOccurs="0" maxOccurs="1">
+            <Comment>Whether a demand response program request is mandatory. Note: Attribute is not defined on DemandResponseProgram as it is not its inherent property (it serves to control it).</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="issuerID" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.issuerID" minOccurs="0" maxOccurs="1">
+            <Comment>Unique identifier of the business entity originating an end device control.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#float" xstype="float" name="priceSignal" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.priceSignal" minOccurs="0" maxOccurs="1">
+            <Comment>(if applicable) Price signal used as parameter for this end device control.</Comment>
+        </Simple>
+        <Choice name="EndDeviceAction" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.EndDeviceAction" minOccurs="0" maxOccurs="1">
+            <Comment>End device action issued by this end device control.</Comment>
+            <Instance baseClass="http://iec.ch/TC57/CIM-generic#PanDemandResponse" type="PanDemandResponse" name="PanDemandResponse" minOccurs="1" maxOccurs="1"/>
+            <Instance baseClass="http://iec.ch/TC57/CIM-generic#PanDisplay" type="PanDisplay" name="PanDisplay" minOccurs="1" maxOccurs="1"/>
+            <Instance baseClass="http://iec.ch/TC57/CIM-generic#PanPricing" type="PanPricing" name="PanPricing" minOccurs="1" maxOccurs="1"/>
+        </Choice>
+        <Reference type="EndDeviceControlType" name="EndDeviceControlType" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.EndDeviceControlType" minOccurs="1" maxOccurs="1">
+            <Comment>Type of this end device control.</Comment>
+            <Stereotype>http://langdale.com.au/2005/UML#byreference</Stereotype>
+        </Reference>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#EndDevice" type="EndDevice" name="EndDevices" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.EndDevices" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All end devices receiving commands from this end device control.</Comment>
+        </Instance>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#EndDeviceTiming" type="EndDeviceTiming" name="primaryDeviceTiming" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.primaryDeviceTiming" minOccurs="0" maxOccurs="1">
+            <Comment>Timing for the control actions performed on the device identified in the end device control.</Comment>
+        </Instance>
+        <Complex baseClass="http://iec.ch/TC57/CIM-generic#DateTimeInterval" name="scheduledInterval" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.scheduledInterval" minOccurs="1" maxOccurs="1">
+            <Comment>(if control has scheduled duration) Date and time interval the control has been scheduled to execute within.</Comment>
+        </Complex>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" type="UsagePoint" name="UsagePoints" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControl.UsagePoints" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All usage points receiving commands from this end device control.</Comment>
+        </Instance>
+    </Root>
+    <Root name="EndDeviceControlType" baseClass="http://iec.ch/TC57/CIM-generic#EndDeviceControlType" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Detailed description for a control produced by an end device. Values in attributes allow for creation of recommended codes to be used for identifying end device controls as follows: &lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.</Comment>
+        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
+        <SuperType name="IdentifiedObject"/>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="type" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceControlType.type" minOccurs="0" maxOccurs="1">
+            <Comment>Type of physical device from which the control was created. A value of zero (0) can be used when the source is unknown.</Comment>
+        </Simple>
+    </Root>
+    <CompoundType name="EndDeviceTiming" baseClass="http://iec.ch/TC57/CIM-generic#EndDeviceTiming" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Timing for the control actions of end devices.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="durationIndefinite" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.durationIndefinite" minOccurs="0" maxOccurs="1">
+            <Comment>True if 'duration' is indefinite.</Comment>
+        </Simple>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#DateTimeInterval" type="DateTimeInterval" name="interval" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.interval" minOccurs="0" maxOccurs="1">
+            <Comment>Start and end time of an interval during which end device control actions are to be executed.</Comment>
+        </Instance>
+    </CompoundType>
+    <ComplexType name="IdentifiedObject" baseClass="http://iec.ch/TC57/CIM-generic#IdentifiedObject" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>This is a root class to provide common identification for all classes needing identification and naming attributes.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="1" maxOccurs="1">
+            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+        </Simple>
+    </ComplexType>
+    <ComplexType name="Name" baseClass="http://iec.ch/TC57/CIM-generic#Name" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>The Name class provides the means to define any number of human readable  names for an object. A name is &lt;b&gt;not&lt;/b&gt; to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#Name.name" minOccurs="0" maxOccurs="1">
+            <Comment>Any free text that name the object.</Comment>
+        </Simple>
+    </ComplexType>
+    <ComplexType name="Name2" baseClass="http://iec.ch/TC57/CIM-generic#Name" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>The Name class provides the means to define any number of human readable  names for an object. A name is &lt;b&gt;not&lt;/b&gt; to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.</Comment>
+        <Note/>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#Name.name" minOccurs="1" maxOccurs="1">
+            <Comment>Any free text that name the object.</Comment>
+        </Simple>
+    </ComplexType>
+    <ComplexType name="PanDemandResponse" baseClass="http://iec.ch/TC57/CIM-generic#PanDemandResponse" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>PAN control used to issue action/command to PAN devices during a demand response/load control event.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#dateTime" xstype="dateTime" name="cancelDateTime" baseProperty="http://iec.ch/TC57/CIM-generic#PanDemandResponse.cancelDateTime" minOccurs="0" maxOccurs="1">
+            <Comment>Timestamp when a canceling of the event is scheduled to start.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="command" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.command" minOccurs="0" maxOccurs="1">
+            <Comment>Command text.</Comment>
+        </Simple>
+        <Domain type="Temperature" dataType="http://iec.ch/TC57/CIM-generic#Temperature" xstype="float" name="coolingSetpoint" baseProperty="http://iec.ch/TC57/CIM-generic#PanDemandResponse.coolingSetpoint" minOccurs="0" maxOccurs="1">
+            <Comment>Requested cooling set point. Temperature set point is typically defined and calculated based on local temperature.</Comment>
+        </Domain>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="durationIndefinite" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.durationIndefinite" minOccurs="0" maxOccurs="1">
+            <Comment>True if the action of this control is indefinite.</Comment>
+        </Simple>
+        <Domain type="PerCent" dataType="http://iec.ch/TC57/CIM-generic#PerCent" xstype="float" name="dutyCycle" baseProperty="http://iec.ch/TC57/CIM-generic#PanDemandResponse.dutyCycle" minOccurs="0" maxOccurs="1">
+            <Comment>Maximum "on" state duty cycle as a percentage of time. For example, if the value is 80, the device would be in an "on" state for 80% of the time for the duration of the action.</Comment>
+        </Domain>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#ControlledAppliance" type="ControlledAppliance" name="appliance" baseProperty="http://iec.ch/TC57/CIM-generic#PanDemandResponse.appliance" minOccurs="0" maxOccurs="1">
+            <Comment>Appliance being controlled.</Comment>
+        </Instance>
+    </ComplexType>
+    <ComplexType name="PanDisplay" baseClass="http://iec.ch/TC57/CIM-generic#PanDisplay" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>PAN action/command used to issue the displaying of text messages on PAN devices.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="command" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.command" minOccurs="0" maxOccurs="1">
+            <Comment>Command text.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="confirmationRequired" baseProperty="http://iec.ch/TC57/CIM-generic#PanDisplay.confirmationRequired" minOccurs="0" maxOccurs="1">
+            <Comment>If true, the requesting entity (e.g. retail electric provider) requires confirmation of the successful display of the text message.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#dateTime" xstype="dateTime" name="startDateTime" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.startDateTime" minOccurs="0" maxOccurs="1">
+            <Comment>Start date and time for action of this control.</Comment>
+        </Simple>
+        <Enumerated baseClass="http://iec.ch/TC57/CIM-generic#TransmissionModeKind" type="TransmissionModeKind" name="transmissionMode" baseProperty="http://iec.ch/TC57/CIM-generic#PanDisplay.transmissionMode" minOccurs="0" maxOccurs="1">
+            <Comment>Transmission mode to be used for this PAN display control.</Comment>
+        </Enumerated>
+    </ComplexType>
+    <ComplexType name="PanPricing" baseClass="http://iec.ch/TC57/CIM-generic#PanPricing" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>PAN action/command used to issue pricing information to a PAN device.</Comment>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="command" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.command" minOccurs="0" maxOccurs="1">
+            <Comment>Command text.</Comment>
+        </Simple>
+        <Simple dataType="http://www.w3.org/2001/XMLSchema#dateTime" xstype="dateTime" name="startDateTime" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceAction.startDateTime" minOccurs="0" maxOccurs="1">
+            <Comment>Start date and time for action of this control.</Comment>
+        </Simple>
+    </ComplexType>
+    <EnumeratedType name="TransmissionModeKind" baseClass="http://iec.ch/TC57/CIM-generic#TransmissionModeKind" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Transmission mode for end device display controls, applicable to premises area network (PAN) devices.</Comment>
+        <EnumeratedValue name="anonymous" baseResource="http://iec.ch/TC57/CIM-generic#TransmissionModeKind.anonymous">
+            <Comment>Message transmission mode whereby messages or commands are broadcast to unspecified devices listening for such communications.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="both" baseResource="http://iec.ch/TC57/CIM-generic#TransmissionModeKind.both">
+            <Comment>Message transmission mode whereby messages or commands are sent by both 'normal' and 'anonymous' methods.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="normal" baseResource="http://iec.ch/TC57/CIM-generic#TransmissionModeKind.normal">
+            <Comment>Message transmission mode whereby messages or commands are sent to specific devices.</Comment>
+        </EnumeratedValue>
+    </EnumeratedType>
+    <ComplexType name="UsagePoint" baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" package="Metering" minOccurs="0" maxOccurs="unbounded">
+        <Comment>Logical or physical point in the network to which readings or events may be attributed. Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.</Comment>
+        <SuperType name="IdentifiedObject"/>
+        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name2" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
+            <Comment>All names of this identified object.</Comment>
+        </Instance>
+    </ComplexType>
+    <SimpleType dataType="http://iec.ch/TC57/CIM-generic#PerCent" name="PerCent" xstype="float">
+        <Comment>Percentage on a defined base.   For example, specify as 100 to indicate at the defined base.</Comment>
+    </SimpleType>
+    <SimpleType dataType="http://iec.ch/TC57/CIM-generic#Temperature" name="Temperature" xstype="float">
+        <Comment>Value of temperature in degrees Celsius.</Comment>
+    </SimpleType>
+</Catalog>

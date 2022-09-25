@@ -229,10 +229,9 @@ Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool
 ### Step 4:  Final Checklist for Review
 
 Once you've determined your builder is ready ensure the following items have been completed:
-1. The description in your ```builder.md``` has been fully updated with the right level of details
-2. Have you included either the $ your ```.xsl``` file
-
- final   ready, commit your changes, push to the branch on GitHub, and create a [Pull](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) request so that your builder can be reviewed and approved for inclusion in the library.
+1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of the builder that should be highlighted fit should be done here.
+2. Confirm that your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant to most builders.
+3. Confirm that the main **README.md** page has a new table row entry in the **Community Developed Builders** table.  
 
 ### Step 5:  Pull Request
 

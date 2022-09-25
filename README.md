@@ -194,8 +194,8 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
     <xsl:output xmlns:xalan="http://xml.apache.org/xslt" method="xml" omit-xml-declaration="no" indent="yes" xalan:indent-amount="4" />
     <xsl:param name="copyright" />
     <xsl:param name="version"/>
-  	<xsl:param name="baseURI"/>
-  	<xsl:param name="envelope">Profile</xsl:param>
+    <xsl:param name="baseURI"/>
+    <xsl:param name="envelope">Profile</xsl:param>
       ...
       ...
       ...

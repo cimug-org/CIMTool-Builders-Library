@@ -162,9 +162,9 @@ We ask you to name your branch to match what your XSLT will be named (e.g. ```go
 
 Once you have created and cloned your branch make a subfolder under ```custom-builders``` that matches the name of your builder minus the ```.xsl``` extension.
 
-Make a copy of the ```builder-submissions/builder-submission-template.md``` file in your new folder and rename it to ```builder.md```.  Update this file as outlined within the instructions contained in it.  Feel free to review other builders as examples.
+Make a copy of the```\builder-submissions\builder-submission-template.md``` file and place it in the newly created folder. Rename it to ```builder.md``` and update its contents as outlined in the instructions contained in it.  Feel free to review other builders as examples.
 
-If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your ```.xsl``` should match the folder name plus the ```.xsl``` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next:
+If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your ```.xsl``` should match the folder name plus the ```.xsl``` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next. This is the copyright associated with the XSLT builder and not that included in the generated output:
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -226,12 +226,13 @@ Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool
 
 > <br/>*NOTE:<br/>Internally, __CIMTool__ will pass along the following parameters into all XSLT builders: <ul><li>__baseURI__ - the baseURI is the namespace specified in the Namespace field on the Profile Summary Tab for a profile.<li>__envelope__ - the envelope is the value specified in the Name field on the Description Tab for the profile<li>__copyright__ - the text of a multi-line copyright if one is configured for the project.<li>__copyright-single-line__ - the text of a single-line copyright if one is configured for the project.</ul>Both the __copyright__ and __copyright-single-line__ parameters are passed to the builder leaving it to the builder to determine which to use. Most commonly it is the multiline __copyright__ that implementations utilize.<br/><br/>*
 
-### Step 4:  Final Checklist for Review
+### Step 4:  Final Pre-Commit Checklist for Review
 
-Once you've determined your builder is ready ensure the following items have been completed:
-1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of the builder that should be highlighted fit should be done here.
-2. Confirm that your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant to most builders.
-3. Confirm that the main **README.md** page has a new table row entry in the **Community Developed Builders** table.  The description in the table is typically a simplified version of that which appears in the ```builders.md``` page.
+Once you've determined your builder is ready confirm the following items:
+
+1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of the builder that should be highlighted this should be done here.
+2. Your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant to most builders.
+3. You have added a new row to the **Community Developed Builders** table in this README. The description in the row entry is typically a simplified version of the description in the builder's ```builders.md``` page.
 
 ### Step 5:  Pull Request
 

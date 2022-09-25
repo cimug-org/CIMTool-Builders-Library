@@ -63,7 +63,7 @@ What is not well known is that **CIMTool** has an alternate internal representat
 
 The internal XML representation corresponding to this example profile appears next. A couple of noteworthy observations:
 
-- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in a profile i.e. those in the screenshot bordered in green and represented in **CIMTool** by the ![image](readme-icons/rootelement-32.png) icon.
+- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in a profile i.e. those in the screenshot bordered in green and represented in **CIMTool** by the ![image](readme-icons/rootelement.png) icon.
 - them
 
 ```XML

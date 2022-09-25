@@ -152,22 +152,56 @@ The significance of this internal representation is that it serves as the input 
 
 The following approach is recommended for creating, testing and submitting a custom builder.
 
-### Step 1:  Create a Branch
+### Step 1:  Create a Branch to Work In
 
-Create a branch to develop your custom builder in.  You can use your branch to safely experiment with and test your builder. A branch will isolate your development work from other branches in the repository. Note that you must first request to be added as collaborator in the repository.
+First request to be added as collaborator to the **CIMTool-XSLT-Builders** repository.  Create a branch off of ```main``` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
 
-You can always create a branch in GitHub Desktop if you have read access to a repository, but you can only push the branch to GitHub if you have write access to the repository. Repository administrators can enable protections on a branch. Be sure to create your branch from main.
+We ask you to name your branch to match what your XSLT will be named (e.g. ```google-proto-buffers.xsl```).
 
 ### Step 2:  Builder Setup Conventions
 
-###### Step 2:  Builder Setup Conventions
+Once you have created and cloned your branch make a subfolder under ```custom-builders``` that matches the name of your builder minus the ```.xsl``` extension.
 
+Make a copy of the ```builder-submissions/builder-submission-template.md``` file in your new folder and rename it to ```builder.md```.  Update this file as outlined within the instructions contained in it.  Feel free to review other builders as examples.
 
-### Step 4:  Testing Your Builder
+If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your ```.xsl``` should match the folder name plus the ```.xsl``` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next:
 
-Contained in the ```/builder-submissions``` folder of this repository is a __CIMTool-Test-Project__ which contains a profile called __EndDeviceControlsTestProfile.owl__ along with it's corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file.
+```XML
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2022 UCAIug
 
-This test profile contains all possible top-level XML element that an XSLT transform builder must account for. This includes the following:
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+  https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<xsl:stylesheet exclude-result-prefixes="a" version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl">
+    <xsl:output xmlns:xalan="http://xml.apache.org/xslt" method="xml" omit-xml-declaration="no" indent="yes" xalan:indent-amount="4" />
+    <xsl:param name="copyright" />
+	<xsl:param name="version"/>
+	<xsl:param name="baseURI"/>
+	<xsl:param name="envelope">Profile</xsl:param>
+    ...
+    ...
+    ...
+</xsl:stylesheet>
+
+```
+
+### Step 3:  Developing Your Builder
+
+Provided in the ```/builder-submissions``` folder of this repository is a **CIMTool-Test-Project** which contains a profile called **EndDeviceControlsTestProfile.owl** along with it's corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file. This test profile contains all the possible XML elements that your XSLT transform builder will most likely need to account for.
+
+The top-level elements include the following:
 
 - **Root** elements - concrete types in the profile
 - **ComplexType** elements - non-concrete types in the profile (i.e. abstract types)
@@ -175,7 +209,7 @@ This test profile contains all possible top-level XML element that an XSLT trans
 - **EnumeratedType** elements - types in the profile that are CIM enumerations
 - **SimpleType** elements - types in the profile stereotyped as &lt;&lt;CIMDatatype&gt;&gt; in the CIM
 
-Further, top-level elements may contain various types of child elements representing the attributes or associations defined for a class:
+Further, these elements may contain various types of child elements representing the attributes or associations defined for a class:
 
 - **Simple** elements - represent attributes defined as primitive types in the CIM. These elements will contain an @xstype attribute to specify the primitive.
 - **Instance** elements - represent associations in the profile. These elements will contain a @type attribute to specify the type within the profile that the association references.
@@ -186,9 +220,15 @@ Further, top-level elements may contain various types of child elements represen
 - **EnumeratedValue** elements - this child element only appears within the **EnumeratedType** or **SimpleEnumerated** elements and represents an enumeration literal defined for the enumeration.
 - **Complex** elements - represent an association in a class who's referent type is a CIM class. However, this variant of **ComplexType** will not contain a @type attribute to specify the referent type. Rather the type is defined anonymously as an in-lined type definition. Again, see the [xsd.xsl](shipped-builders/xsd/xsd.xsl) and [json-schema-draft-2020-12-jsonschema2pojo.xsl](custom-builders/json-schema-draft-2020-12-jsonschema2pojo/json-schema-draft-2020-12-jsonschema2pojo.xsl) for examples of builders handling **Complex** elements.
 - **Choice** elements - represents a union property defined for a class which is an association that references a super class in the profile. In this context, the union property essentially offers a choice for what the referent type can be. Specifically, the options for the referent type are the subclasses of the union superclass defined in the profile.
-- **SuperType** elements - when this child XML element is present it indicates the parent type of the **Root** or **ComplexType** element that it is defined in.
+- **SuperType** elements - when this child XML element is present in a **Root** or **ComplexType** element it indicates the parent type of that type.
 
-## Commercial and Open Source XSLT Editors/Debuggers
+Minimally use the [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) as input to your XSLT during development. Doing so will help ensure each XML element is properly handled by your builder.
+
+### Step 4:  Pull Request
+
+Once completed and tested create a Pull request for branch so that your builder can be reviewed and approved for inclusion in the library.
+
+#### Commercial and Open Source XSLT Editors/Debuggers
 
 Third-party tooling can be used to create and test new XSLT transforms for use as builders. The table below provides a examples of both free and commercial products that can be used to develop **CIMTool** XSLT-based builders.
 

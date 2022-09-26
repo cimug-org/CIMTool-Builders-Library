@@ -1,4 +1,4 @@
-# CIMTool-XSLT-Builders
+# CIMTool-Builders-Library
 
 This is the official UCAIug repository for custom **CIMTool** XSLT transform builders and is provided as a public space to create, collaborate and contribute back builders for the benefit of the CIMTool community at large.  This library of builders can be used in **CIMTool** to generate various types of target artifacts from a CIMTool profile definition.  
 

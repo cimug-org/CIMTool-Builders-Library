@@ -250,7 +250,7 @@ For copyright support you must determine which of the two your builder will use.
 
 Once you've determined your builder is ready confirm the following items:
 
-1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of your builder that should be highlighted this should be done here. For example, if your builder warrants it, you may include images in your builder's folder and display to them in your description.  A great example of this is the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md) builder.
+1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of your builder that should be highlighted this should be done here. For example, if your builder warrants it, you may include images in your builder's folder and display them within the description section of your builder.md file.  A great example of this is the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md) builder.
 2. You've uploaded a DTE (Name/Type/Extension) Import wizard screenshot named ```import-builder.png``` (e.g. [import-builder.png](shipped-builders/xsd/import-builder.png)) file to your custom builder's folder. You can refer to existing builders as examples.
 3. Your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant for most builders.
 4. You have added a new row to the **Community Developed Builders** table in this README. The description in the row entry is typically a simplified version of the description in your builder's ```builders.md``` summarizing your builder.

@@ -204,7 +204,7 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
 
 ### Step 3:  Developing Your Builder
 
-Below is a comprehensive list of elements that may appear in an ```.xml``` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support such in-line type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
+Below is a comprehensive list of elements that may appear in the ```.xml``` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support such in-line type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
 
 The top-level elements that appear in an ```.xml``` profile indicate the various types defined and used in a profile and may include the following:
 
@@ -214,7 +214,7 @@ The top-level elements that appear in an ```.xml``` profile indicate the various
 - **EnumeratedType** elements - types in the profile that are CIM enumerations
 - **SimpleType** elements - types in the profile stereotyped as &lt;&lt;CIMDatatype&gt;&gt; in the CIM
 
-A top-level types further specifies child elements that indicate the attributes or associations defined for it. These elements may be from the set:
+A top-level type further specifies child elements that indicate the attributes or associations defined for it. These elements may be from the set:
 
 - **Simple** elements - represent attributes defined as primitive types in the CIM. These elements will contain an @xstype attribute to specify the primitive.
 - **Instance** elements - represent associations in the profile. These elements will contain a @type attribute to specify the type within the profile that the association references.

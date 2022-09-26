@@ -244,7 +244,7 @@ Finally, **CIMTool** internally passes along the following parameters into all X
 - **copyright** - the text of a multi-line copyright if one is configured for the project.
 - **copyright-single-line** - the text of a single-line copyright if one is configured for the project.
 
-For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how these four internally passed parameters are used. Currently only the JSON schema related builders utilize the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas.
+For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how these four internally passed parameters are used. Currently only the JSON schema related builders utilize the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas and therefore requies a single line copyright notice.
 
 ### Step 4:  Final Pre-Commit Checklist for Review
 

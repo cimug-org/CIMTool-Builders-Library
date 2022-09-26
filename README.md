@@ -162,7 +162,7 @@ We ask you to name your branch to match what your XSLT will be named (e.g. ```go
 
 Once you have created and cloned your branch make a subfolder under ```custom-builders``` that matches the name of your builder minus the ```.xsl``` extension.
 
-Make a copy of the```\builder-submissions\builder-submission-template.md``` file and place it in the newly created folder. Rename it to ```builder.md``` and update its contents as outlined in the instructions contained in it.  Feel free to review other builders as examples.
+Make a copy of the```\builder-submissions\builder-submission-template.md``` file and place it in your newly created folder. Rename it to ```builder.md``` and update its contents as outlined in the instructions contained in it.  Feel free to review other builders as examples.
 
 If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your ```.xsl``` should match the folder name plus the ```.xsl``` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next. This is the copyright associated with the XSLT builder and not that included in the generated output:
 

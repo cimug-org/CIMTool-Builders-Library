@@ -35,7 +35,7 @@ Feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool-XSLT-B
 ## Background
 **CIMTool** ships with a variety of different types of builders that generate artifacts based on a profile. Examples of existing builders include those that generate XSD schemas, JPA Java source code, RDBMS DDL scripts, RDFS profiles, and RTF Word docs among others.
 
-Further, a subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms (click the image to enlarge):
+A subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms (click the image to enlarge):
 
 [![image](readme-icons/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/readme-icons/cimtool-profile-summary-tab.png)
 
@@ -55,9 +55,9 @@ From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builder
 
 ## How XSLT Builders Work
 
-As a working example, the screenshot below (click the image to enlarge) illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  ```GetUsagePointGroups.owl``` bordered in blue. An ```.owl``` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
+As a working example, the screenshot below illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  ```GetUsagePointGroups.owl``` bordered in blue. An ```.owl``` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
 
-What is not well known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT-based builders. This internal representation is an XML format that is structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal representation is exposed and available for viewing using the XML builder bordered in red in the screenshot.
+What is not well known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT builders. This internal representation is an XML format structured so as to support straightforward and efficient XSLT transformations into any target output. This internal representation is exposed and available for viewing using the XML builder bordered in red in the screenshot.
 
 [![image](readme-icons/GetUsagePointGroups-profile.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-XSLT-Builders/main/readme-icons/GetUsagePointGroups-profile.png)
 
@@ -204,7 +204,9 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
 
 ### Step 3:  Developing Your Builder
 
-Provided in the ```/builder-submissions``` folder of this repository is a **CIMTool-Test-Project** which contains a profile called **EndDeviceControlsTestProfile.owl** along with it's corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file. This test profile contains all the possible XML elements that your builder may want to account for. Some builders handle all of them with others ignoring in-lined anonymous definitions altogether (i.e. the **SimpleEnumerated** and **Complex** elements described below). It is often highly dependent on the output that your builder is generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders support these elements since there are ways in those respective specifications for defining such in-line type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The use of anonymous in-lined type definitions in **CIMTool** profiles is not a common convention and when it is used it is in contexts where the desired target output for the profile is known to support them (e.g. XSD schemas). The recommendation is to handle them in your builder if your output type supports them.
+Provided in the ```/builder-submissions``` folder of this repository is a **CIMTool-Test-Project** which contains two profiles for testing.  The profile called **EndDeviceControlsTestProfilWithAnonymousTypes.owl** along with it's corresponding [EndDeviceControlsTestProfilWithAnonymousTypes.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfilWithAnonymousTypes.xml) file. This test profile contains all the possible XML elements that your builder may want to account for.
+
+Some builders handle all of them with others ignoring in-lined anonymous definitions altogether (i.e. the **SimpleEnumerated** and **Complex** elements described below). It is often highly dependent on the output that your builder is generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders support these elements since there are ways in those respective specifications for defining such in-line type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The use of anonymous in-lined type definitions in **CIMTool** profiles is not a common convention and when it is used it is in contexts where the desired target output for the profile is known to support them (e.g. XSD schemas). The recommendation is to handle them in your builder if your output type supports them.
 
 The list of top-level elements include the following:
 

@@ -23,6 +23,11 @@
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:label>command</rdfs:label>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd3">
+    <rdfs:label>isSdp</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X43Xf6b94d6Xa3X12cc7e610b9Xa3X-4a48">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
@@ -74,6 +79,10 @@
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#NameTypeAuthority.name"/>
     <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd4">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd5"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X49921e04Xa3X12e370befb6Xa3X-7f19">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.interval"/>
@@ -137,6 +146,11 @@
     <rdfs:label>appliance</rdfs:label>
     <owl:unionOf rdf:nodeID="Xd2Xdc36c0dXa3X12ffe2003eeXa3X-783d"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef8">
+    <rdfs:label>RandomisationKind</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#RandomisationKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2Xdc36c0dXa3X12ffe2003eeXa3X-7853">
     <rdf:first rdf:resource="#UsagePoint"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -146,6 +160,11 @@
     <rdfs:label>Names</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#Name"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd1">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePoint.isSdp"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X63Xb4ac2a4Xa3X1309890b5a9Xa3X-7ff3">
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
@@ -187,6 +206,16 @@
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#PanDemandResponse.appliance"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="Xd2Xdc36c0dXa3X12ffe2003eeXa3X-7841"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef9">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.randomisation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd2">
+    <owl:allValuesFrom rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd3"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePoint.isSdp"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="X63Xb4ac2a4Xa3X1309890b5a9Xa3X-7ff2">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceAction.command"/>
@@ -291,6 +320,11 @@
     <rdfs:subClassOf rdf:nodeID="X63Xb4ac2a4Xa3X1309890b5a9Xa3X-7ff2"/>
     <rdfs:subClassOf rdf:nodeID="Xd2Xdc36c0dXa3X12ffe2003eeXa3X-783b"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fcf">
+    <owl:allValuesFrom rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd0"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePoint.phaseCode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7f00">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
     <rdf:first rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7f01"/>
@@ -305,7 +339,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd8">
-    <owl:unionOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7efc"/>
+    <owl:unionOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd4"/>
     <rdfs:label>UsagePoint</rdfs:label>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePoint"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -370,6 +404,15 @@
     <rdfs:subClassOf rdf:nodeID="Xd2X49921e04Xa3X12e370befb6Xa3X-7f0b"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceAction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd5">
+    <rdfs:subClassOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fce"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fcf"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd1"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd2"/>
+    <rdfs:label>UsagePoint</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePoint"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2Xdc36c0dXa3X12ffe2003eeXa3X-7845">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceControl.EndDeviceControlType"/>
@@ -436,6 +479,11 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
     <rdfs:label>interval</rdfs:label>
     <owl:unionOf rdf:nodeID="Xd2X49921e04Xa3X12e370befb6Xa3X-7f15"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fce">
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePoint.phaseCode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2Xdc36c0dXa3X12ffe2003eeXa3X-783c">
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#TransmissionModeKind"/>
@@ -606,6 +654,11 @@
     <owl:unionOf rdf:nodeID="Xd2X1feb4dc0Xa3X12da4aa49dbXa3X-76c7"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7efa">
+    <owl:allValuesFrom rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7efb"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.randomisation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X25b8dd8aXa3X12d9fe61644Xa3X-7be2">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceControlType.type"/>
     <owl:allValuesFrom rdf:nodeID="Xd2X25b8dd8aXa3X12d9fe61644Xa3X-7be3"/>
@@ -688,6 +741,12 @@
     <rdfs:label>type</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7efb">
+    <owl:unionOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef7"/>
+    <rdfs:label>randomisation</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#RandomisationKind"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X49921e04Xa3X12e370befb6Xa3X-7f0c">
     <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
@@ -800,6 +859,12 @@
     <owl:unionOf rdf:nodeID="Xd2X1feb4dc0Xa3X12da4aa49dbXa3X-76bf"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7fd0">
+    <owl:unionOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef3"/>
+    <rdfs:label>phaseCode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#PhaseCode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X27f9990cXa3X1358bbe4d9dXa3X-7ffb">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDevice.isPan"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -834,6 +899,10 @@
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef7">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef8"/>
+  </rdf:Description>
   <rdf:Description rdf:nodeID="X43Xb96b582Xa3X12e14749ffbXa3X-7ffe">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceControl.issuerID"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
@@ -848,6 +917,14 @@
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#Name.name"/>
     <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</owl:minCardinality>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef3">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="#PhaseCode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#PhaseCode">
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#PhaseCode"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X1feb4dc0Xa3X12da4aa49dbXa3X-76c4">
     <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM-generic#Name.name"/>
@@ -900,6 +977,8 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
   </rdf:Description>
   <rdf:Description rdf:about="#EndDeviceTiming">
+    <rdfs:subClassOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7ef9"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7efa"/>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#EndDeviceTiming"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X49921e04Xa3X12e370befb6Xa3X-7f20"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -968,10 +1047,6 @@
   <rdf:Description rdf:nodeID="X43Xf4d02edXa3X12d7cd72f52Xa3X-75cd">
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
     <rdf:first rdf:nodeID="X43Xf4d02edXa3X12d7cd72f52Xa3X-75ce"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="Xd2X55a2d435Xa3X183702f7bb3Xa3X-7efc">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="#UsagePoint"/>
   </rdf:Description>
   <rdf:Description rdf:nodeID="Xd2X1feb4dc0Xa3X12da4aa49dbXa3X-76be">
     <rdfs:label>description</rdfs:label>

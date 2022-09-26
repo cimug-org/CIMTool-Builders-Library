@@ -37,9 +37,15 @@
         <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
             <Comment>All names of this identified object.</Comment>
         </Instance>
-        <Instance baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" type="UsagePoint" name="UsagePoint" baseProperty="http://iec.ch/TC57/CIM-generic#EndDevice.UsagePoint" minOccurs="1" maxOccurs="1">
+        <Complex baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" name="UsagePoint" baseProperty="http://iec.ch/TC57/CIM-generic#EndDevice.UsagePoint" minOccurs="1" maxOccurs="1">
             <Comment>Usage point to which this end device belongs.</Comment>
-        </Instance>
+            <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="isSdp" baseProperty="http://iec.ch/TC57/CIM-generic#UsagePoint.isSdp" minOccurs="1" maxOccurs="1">
+                <Comment>If true, this usage point is a service delivery point, i.e., a usage point where the ownership of the service changes hands.</Comment>
+            </Simple>
+            <Enumerated baseClass="http://iec.ch/TC57/CIM-generic#PhaseCode" type="PhaseCode" name="phaseCode" baseProperty="http://iec.ch/TC57/CIM-generic#UsagePoint.phaseCode" minOccurs="1" maxOccurs="1">
+                <Comment>Phase code. Number of wires and specific nominal phases can be deduced from enumeration literal values. For example, ABCN is three-phase, four-wire, s12n (splitSecondary12N) is single-phase, three-wire, and s1n and s2n are single-phase, two-wire.</Comment>
+            </Enumerated>
+        </Complex>
     </ComplexType>
     <ComplexType name="EndDeviceAction" baseClass="http://iec.ch/TC57/CIM-generic#EndDeviceAction" package="Metering" minOccurs="0" maxOccurs="unbounded">
         <Comment>Action/command performed by an end device on a device other than the end device.</Comment>
@@ -99,6 +105,24 @@
         <Simple dataType="http://www.w3.org/2001/XMLSchema#boolean" xstype="boolean" name="durationIndefinite" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.durationIndefinite" minOccurs="0" maxOccurs="1">
             <Comment>True if 'duration' is indefinite.</Comment>
         </Simple>
+        <SimpleEnumerated baseClass="http://iec.ch/TC57/CIM-generic#RandomisationKind" name="randomisation" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.randomisation" minOccurs="1" maxOccurs="1">
+            <Comment>Kind of randomisation to be applied to the end device control actions to be executed.</Comment>
+            <EnumeratedValue name="default" baseResource="http://iec.ch/TC57/CIM-generic#RandomisationKind.default">
+                <Comment>Randomisation of start and/or end times involving the operation of one or more devices is controlled by default settings for the device(s).</Comment>
+            </EnumeratedValue>
+            <EnumeratedValue name="end" baseResource="http://iec.ch/TC57/CIM-generic#RandomisationKind.end">
+                <Comment>End time of an event or control action affecting one or more devices is randomised to prevent simultaneous operation.</Comment>
+            </EnumeratedValue>
+            <EnumeratedValue name="none" baseResource="http://iec.ch/TC57/CIM-generic#RandomisationKind.none">
+                <Comment>Neither the start time nor the end time of an event or control action affecting one or more devices is randomised.</Comment>
+            </EnumeratedValue>
+            <EnumeratedValue name="start" baseResource="http://iec.ch/TC57/CIM-generic#RandomisationKind.start">
+                <Comment>Start time of an event or control action affecting one or more multiple devices is randomised.</Comment>
+            </EnumeratedValue>
+            <EnumeratedValue name="startAndEnd" baseResource="http://iec.ch/TC57/CIM-generic#RandomisationKind.startAndEnd">
+                <Comment>Both the start time and the end time of an event or control action affecting one or more devices are randomised to prevent simultaneous operation.</Comment>
+            </EnumeratedValue>
+        </SimpleEnumerated>
         <Instance baseClass="http://iec.ch/TC57/CIM-generic#DateTimeInterval" type="DateTimeInterval" name="interval" baseProperty="http://iec.ch/TC57/CIM-generic#EndDeviceTiming.interval" minOccurs="0" maxOccurs="1">
             <Comment>Start and end time of an interval during which end device control actions are to be executed.</Comment>
         </Instance>
@@ -168,6 +192,89 @@
             <Comment>Start date and time for action of this control.</Comment>
         </Simple>
     </ComplexType>
+    <EnumeratedType name="PhaseCode" baseClass="http://iec.ch/TC57/CIM-generic#PhaseCode" package="Core" minOccurs="0" maxOccurs="unbounded">
+        <Comment>An unordered enumeration of phase identifiers.  Allows designation of phases for both transmission and distribution equipment, circuits and loads.   The enumeration, by itself, does not describe how the phases are connected together or connected to ground.  Ground is not explicitly denoted as a phase.</Comment>
+        <Comment>Residential and small commercial loads are often served from single-phase, or split-phase, secondary circuits. For the example of s12N, phases 1 and 2 refer to hot wires that are 180 degrees out of phase, while N refers to the neutral wire. Through single-phase transformer connections, these secondary circuits may be served from one or two of the primary phases A, B, and C. For three-phase loads, use the A, B, C phase codes instead of s12N.</Comment>
+        <Comment>The integer values are from IEC 61968-9 to support revenue metering applications.</Comment>
+        <EnumeratedValue name="A" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.A">
+            <Comment>Phase A.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="AB" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.AB">
+            <Comment>Phases A and B.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="ABC" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.ABC">
+            <Comment>Phases A, B, and C.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="ABCN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.ABCN">
+            <Comment>Phases A, B, C, and N.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="ABN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.ABN">
+            <Comment>Phases A, B, and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="AC" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.AC">
+            <Comment>Phases A and C.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="ACN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.ACN">
+            <Comment>Phases A, C and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="AN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.AN">
+            <Comment>Phases A and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="B" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.B">
+            <Comment>Phase B.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="BC" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.BC">
+            <Comment>Phases B and C.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="BCN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.BCN">
+            <Comment>Phases B, C, and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="BN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.BN">
+            <Comment>Phases B and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="C" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.C">
+            <Comment>Phase C.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="CN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.CN">
+            <Comment>Phases C and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="N" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.N">
+            <Comment>Neutral phase.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="X" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.X">
+            <Comment>Unknown non-neutral phase.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="XN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.XN">
+            <Comment>Unknown non-neutral phase plus neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="XY" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.XY">
+            <Comment>Two unknown non-neutral phases.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="XYN" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.XYN">
+            <Comment>Two unknown non-neutral phases plus neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="none" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.none">
+            <Comment>No phases specified.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="s1" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.s1">
+            <Comment>Secondary phase 1.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="s12" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.s12">
+            <Comment>Secondary phase 1 and 2.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="s12N" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.s12N">
+            <Comment>Secondary phases 1, 2, and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="s1N" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.s1N">
+            <Comment>Secondary phase 1 and neutral.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="s2" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.s2">
+            <Comment>Secondary phase 2.</Comment>
+        </EnumeratedValue>
+        <EnumeratedValue name="s2N" baseResource="http://iec.ch/TC57/CIM-generic#PhaseCode.s2N">
+            <Comment>Secondary phase 2 and neutral.</Comment>
+        </EnumeratedValue>
+    </EnumeratedType>
     <EnumeratedType name="TransmissionModeKind" baseClass="http://iec.ch/TC57/CIM-generic#TransmissionModeKind" package="Metering" minOccurs="0" maxOccurs="unbounded">
         <Comment>Transmission mode for end device display controls, applicable to premises area network (PAN) devices.</Comment>
         <EnumeratedValue name="anonymous" baseResource="http://iec.ch/TC57/CIM-generic#TransmissionModeKind.anonymous">

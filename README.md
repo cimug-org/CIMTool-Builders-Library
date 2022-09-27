@@ -204,6 +204,8 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
 
 ### Step 3:  Developing Your Builder
 
+#### Overview of Internal Profile Representation
+
 Below is a comprehensive list of elements that may appear in the ```.xml``` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support such in-line type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
 
 The top-level elements that appear in an ```.xml``` profile indicate the various types defined and used in a profile and may include the following:
@@ -233,9 +235,13 @@ Finally, there are a couple of additional elements to highlight that are used fo
 - **EnumeratedValue** elements - this element only appears within the **EnumeratedType** or **SimpleEnumerated** elements and represents an enumeration literal defined for the enumeration.
 - **SuperType** elements - may be present in either a **Root** or **ComplexType** element to indicate the parent/super type of the class represented by the **Root** or **ComplexType**.
 
+#### Development and Testing
+
 Turning now to developing and testing your builder. Provided in the table at the end of this README is a list of tooling both free and commercial for developing and testing XSLT transforms.  This list is by no means comprehensive but is a good starting point. The intent is that one of these options (or a similar option) is used to create, edit and debug your XSLT builder using the ```.xml``` internal representations as input. Each of the individual toolsets outlined has its own instructions on how to run/debug XSLTs in their environments. You can utilize one of the existing stable builders in this library to experiment with in the environment. For an introductory tutorial on XSLT visit the [W3C XSLT tutorial](https://www.w3schools.com/xml/xsl_intro.asp).
 
 Also provided in the ```/builder-submissions``` folder in this repository is the **CIMTool-Test-Project**. This project contains two ```.owl``` profiles along with their respective ```.xml``` files. The **EndDeviceControlsTestProfilWithAnonymousTypes.owl** profile and its corresponding [EndDeviceControlsTestProfilWithAnonymousTypes.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.xml) contain all possible XML elements as just described while the **EndDeviceControlsTestProfile.owl** and its corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file are defined without anonymous type definitions. The project has been provided as a matter of convenience. You can use it to create your own profile definitions or utilize just the pre-generated ```.xml``` files for testing your builder depending on whether your builder's target output supports anonymous classes.
+
+#### Internal XSLT Parameters Passed By CIMTool
 
 Finally, **CIMTool** internally passes along the following parameters into all XSLT builders:
 
@@ -245,6 +251,28 @@ Finally, **CIMTool** internally passes along the following parameters into all X
 - **copyright-single-line** - the text of a single-line copyright if one is configured for the project.
 
 For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how these four internally passed parameters are used. Currently only the JSON schema related builders utilize the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas and therefore requies a single line copyright notice.
+
+#### DTE (Name/Type/Extension) Assignment
+
+All builders have what is referred to as a DTE (Name/Type/Extension) configuration entry assigned to them when imported into **CIMTool**. This information is used internally by **CIMTool** for different purposes.
+
+The **Name** component of a DTE is static and is auto-assigned during import and is based on the file name of the XSLT file minus the ```.xsl``` extension. You should stick to standard ascii alphanumeric characters and avoid any special characters in your XSLT file name.
+
+For the **Type** component assigned to the builder there are three variants of XSLT transforms that your builder can be categorized in. As to which variant your builder falls into is dependent upon the type of output it will be generating:
+- **XSD** - This type should only be used if your are generating an XSD based schema as your output. This is because specialized validation on XSDs are performed after they are generated by this category of builder.
+- **TEXT** - This type is typically assigned for builders that generating some type of code such as Java, C#, Python, etc.
+- **TRANSFORM** - This is the most generalized category. Examples of existing builders that fall into this category are the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl) which generates an MS Word document in the RTF (Rich Text Format).
+
+Finally, the **Extension** component of your assigned DTE is literally the extension that will be used for the file generated by your builder. It must be unique relative to other builders in the CIMTool-Builders-Library repository. Example extensions and the corresponding output files for a ficticious profile named SubstationEquipment:
+- **schema.json** - SubstationEquipment.schema.json
+- **xsd** - SubstationEquipment.xsd
+- **simplified-doc.rtf** - SubstationEquipment.simplified-doc.rtf
+
+Please note that you can experiment with your builder and test it by assigning a type of **TEXT** during import and review what **CIMTool** generates.  If there are issues delete the builder using the 'Maintain XSLT Builders' dialog (shown earlier) and reimport your builder as a **TRANSFORM** builder and recheck your output. This has been known to correct issues for certain builders that for example had their encoding set to ASCII for example:
+
+```XML
+<xsl:output indent="no" method="text" encoding="ASCII"/>
+```
 
 ### Step 4:  Final Pre-Commit Checklist for Review
 

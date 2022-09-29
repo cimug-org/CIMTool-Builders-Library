@@ -11,7 +11,7 @@ Feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool-Builde
 ## Current Library of Builders
 ![image](readme-icons/icons8-folder-tree-96.png)
 
-#### Builders Shipped with CIMtool:
+#### Builders Shipped with CIMTool:
 
 | XSLT Builder | Output Type | Description |
 |------------------|------------------|------------------|

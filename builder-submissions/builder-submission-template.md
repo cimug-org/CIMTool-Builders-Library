@@ -4,7 +4,7 @@ A custom builder created on behalf of UCAIug. This is a community provided build
 
 ## Builder Description
 
-{THE DETAILED DESCRIPTION OF YOUR BUILDER MUST APPEAR HERE.  UTILIZE LINKS TO ALLOW FOR USER NAVIGATION SUCH AS THAT SHOWN IN THE EXAMPLE DESCRITPION BELOW. NOTE THE USE OF RELATIVE URLS IN THE EXAMPLE WHEN REFERENCING OTHER CONTENT WITHIN THE REPOSITORY. IF YOUR CUSTOM BUILDER IS DERIVED FROM A PRE-EXISTING BUILDER IN THE LIBRARY NOTE THAT ACCORDINGLY.}
+{THE DETAILED DESCRIPTION OF YOUR BUILDER MUST APPEAR HERE.  UTILIZE LINKS TO ALLOW FOR USER NAVIGATION SUCH AS THAT SHOWN IN THE EXAMPLE DESCRIPTION BELOW. NOTE THE USE OF RELATIVE URLS IN THE EXAMPLE WHEN REFERENCING OTHER CONTENT WITHIN THE REPOSITORY. IF YOUR CUSTOM BUILDER IS DERIVED FROM A PRE-EXISTING BUILDER IN THE LIBRARY NOTE THAT ACCORDINGLY.}
 
 The **[json-schema-draft-07-jsonschema2pojo.xsl](json-schema-draft-07-jsonschema2pojo.xsl)** builder produces a specialized JSON schema to be used as input into the [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) open source [Maven](https://maven.apache.org/) or [Gradle](https://gradle.org/) build plugins to generate annotated Java classes (i.e. [POJOs](https://en.wikipedia.org/wiki/Plain_old_Java_object)) for data-binding with [Jackson 2.x](https://github.com/FasterXML/jackson) or [Gson](https://github.com/google/gson). This custom builder was derived from the [json-schema-draft-07.xsl](../../shipped-builders/json-schema-draft-07/builder.md) builder and is intended to serve as a companion builder to it.
 

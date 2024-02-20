@@ -210,7 +210,7 @@ Below is a comprehensive list of elements that may appear in the ```.xml``` inte
 
 The top-level elements that appear in an ```.xml``` profile indicate the various types defined and used in a profile and may include the following:
 
-- **Root** elements - concrete types in the profile
+- **Root** elements - all types declared as 'concrete' in the profile
 - **ComplexType** elements - non-concrete types in the profile (i.e. abstract types)
 - **CompoundType** elements - types in the profile stereotyped as &lt;&lt;Compound&gt;&gt; in the CIM
 - **EnumeratedType** elements - types in the profile that are CIM enumerations
@@ -246,6 +246,7 @@ Also provided in the ```/builder-submissions``` folder in this repository is the
 Finally, **CIMTool** internally passes along the following parameters into all XSLT builders:
 
 - **baseURI** - the baseURI is the namespace specified in the Namespace field on the Profile Summary tab for a profile.
+- **ontologyURI** - the ontologyURI is the namespace URI specified at the time a CIM schema is imported into a CIMTool project.  It is the URI that appears in the 'Namespace URI' field on properties dialog for the schema.
 - **envelope** - the envelope is the value specified in the Name field on the Description tab for the profile
 - **copyright** - the text of a multi-line copyright if one is configured for the project.
 - **copyright-single-line** - the text of a single-line copyright if one is configured for the project.

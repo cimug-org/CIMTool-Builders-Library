@@ -23,33 +23,33 @@
 	<xsl:param name="envelope">Profile</xsl:param>
 	<xsl:param name="schema_draft_version">https://json-schema.org/draft/2020-12/schema</xsl:param>
 	<!--  regex patterns for date/time <<Primitive>> types in the CIM model -->
-	<!--
+	<!-- 
     * DATE:
     *  Type used to express a local date in ISO 8601 standard extended date format.
     *  Date as: "yyyy-mm-dd"
     *  UTC timezone is specified as: "yyyy-mm-ddZ"
     *  Local timezone relative UTC as: "yyyy-mm-dd(+/-)hh:mm"
-    *
+    *  
     *  NOTE:  The REGEX pattern used for validation of this type utilizes the ISO 8601 extended date format.
      -->
 	<xsl:param name="date_pattern">^(([0-9]{4})-(((02)-(0[1-9]|[1][0-9]|2[0-9]))|((0[4689]|(11))-(0[1-9]|[1][0-9]|2[0-9]|(30)))|((0[13578]|(1[02]))-(0[1-9]|[1][0-9]|2[0-9]|(3[0-1])))))(Z|[+-](2[0-3]|[01][0-9])(:([0-5][0-9]))?)$</xsl:param>
-	<!--
+	<!-- 
     * DATETIME:
-    * Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601.
-    *
-    * UTC time zone is specified as: "yyyy-mm-ddThh:mm:ss.sssZ".
-    * A local timezone relative UTC is specified as: "yyyy-mm-ddThh:mm:ss.sss-hh:mm".
-    *
+    * Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601. 
+    * 
+    * UTC time zone is specified as: "yyyy-mm-ddThh:mm:ss.sssZ". 
+    * A local timezone relative UTC is specified as: "yyyy-mm-ddThh:mm:ss.sss-hh:mm". 
+    * 
     * Type used to express a UTC combined date and time in ISO 8601 standard extended date and time format.
-    * To express the time portion in UTC for a date time; a Z is added directly after the time without a space.
-    * Z is the zone designator for the zero UTC offset.
-    *
-    * "09:30 UTC" is therefore represented as:  09:30Z
+    * To express the time portion in UTC for a date time; a Z is added directly after the time without a space.  
+    * Z is the zone designator for the zero UTC offset. 
+    * 
+    * "09:30 UTC" is therefore represented as:  09:30Z 
     * "14:45:15 UTC" would be:  14:45:15Z
-    *
-    * Example of a valid combined date and time representation in UTC:
+    * 
+    * Example of a valid combined date and time representation in UTC:  
     * 2017-11-29T20:49:41Z
-    *
+    * 
     * NOTE:  The REGEX pattern used for validation of this type utilizes the ISO 8601 extended date and time format.
     *
     * The javaType to specify is tricky for the CIM primitive type called "DateTime".  Given that the
@@ -57,63 +57,63 @@
     * representations mentioned in the above comments we chose here to set the "javaType" to OffsetDateTime
      -->
 	<xsl:param name="datetime_pattern">^(([0-9]{4})-(((02)-(0[1-9]|[1][0-9]|2[0-9]))|((0[4689]|(11))-(0[1-9]|[1][0-9]|2[0-9]|(30)))|((0[13578]|(1[02]))-(0[1-9]|[1][0-9]|2[0-9]|(3[0-1])))))T((2[0-3]|[01][0-9])((:([0-5][0-9])((:([0-5][0-9])(([.][0-9]+)?)?)?)?)?)|(24)((:(00)((:(00)(([.][0]+)?)?)?)?)?))(Z|[+-](2[0-3]|[01][0-9])(:([0-5][0-9]))?)$</xsl:param>
-	<!--
+	<!-- 
     * TIME:
     * Type used to express either a local time (no timezone offset), UTC time zone, or local timezone relative UTC
     * in ISO 8601 standard extended time format.
-    *
-    * When no UTC relation information is given with a time representation, the time is assumed to be
-    * in local time. While it may be safe to assume local time when communicating in the same time zone,
-    * it is ambiguous when used in communicating across different time zones. Even within a single geographic
+    * 
+    * When no UTC relation information is given with a time representation, the time is assumed to be 
+    * in local time. While it may be safe to assume local time when communicating in the same time zone, 
+    * it is ambiguous when used in communicating across different time zones. Even within a single geographic 
     * time zone, some local times will be ambiguous if the region observes daylight saving time. It is usually
     * preferable to indicate a time zone (zone designator) using the ISO 8601 standard's notation.
-    *
+    * 
     * A local time (not timezone offset) is specified as: "hh:mm:ss.sss"
     * UTC time zone is specified as: "hh:mm:ss.sssZ"
     * A local timezone relative UTC is specified as: "hh:mm:ss.sss±hh:mm"
-    *
-    * Example of a valid time representation of 8:49:41pm:
-    * 20:49:41
+    * 
+    * Example of a valid time representation of 8:49:41pm: 
+    * 20:49:41 
     * 20:49:41Z
     * 14:49:41-06:00
-    *
-    * The following times all refer to the same moment:
+    * 
+    * The following times all refer to the same moment: 
     * 18:30Z
     * 22:30+04
-    * 11:30-07:00
+    * 11:30-07:00 
     * 15:00-03:30
-    *
-    * NOTE:  The REGEX pattern used for validation of this type utilizes the ISO 8601 extended time format.
+    * 
+    * NOTE:  The REGEX pattern used for validation of this type utilizes the ISO 8601 extended time format. 
     *
     *  The javaType to specify is tricky for the CIM primitive type called "Time".  Given that the
     *  documentation in the CIM model for the class indicate that it can represent any of the time
     *  representations mentioned in the above comments we chose here to set the "javaType" to OffsetTime
      -->
 	<xsl:param name="time_pattern">^((2[0-3]|[01][0-9])((:([0-5][0-9])((:([0-5][0-9])(([.][0-9]+)?)?)?)?)?)|(24)((:(00)((:(00)(([.][0]+)?)?)?)?)?))(Z|[+-](2[0-3]|[01][0-9])(:([0-5][0-9]))?)$</xsl:param>
-	<!--
+	<!-- 
     * DURATION:
-    * Duration as "PnYnMnDTnHnMnS" which conforms to ISO 8601, where nY expresses a number of years,
-    * nM a number of months, nD a number of days. The letter T separates the date expression from the
-    * time expression and, after it, nH identifies a number of hours, nM a number of minutes and nS
-    * a number of seconds. The number of seconds could be expressed as a decimal number, but all other
-    * numbers are integers.
+    * Duration as "PnYnMnDTnHnMnS" which conforms to ISO 8601, where nY expresses a number of years, 
+    * nM a number of months, nD a number of days. The letter T separates the date expression from the 
+    * time expression and, after it, nH identifies a number of hours, nM a number of minutes and nS 
+    * a number of seconds. The number of seconds could be expressed as a decimal number, but all other 
+    * numbers are integers. 
      -->
 	<xsl:param name="duration_pattern">^P(?!$)(([0-9]+Y)|([0-9]+[,\.][0-9]+Y$))?(([0-9]+M)|([0-9]+[,\.][0-9]+M$))?(([0-9]+W)|([0-9]+[,\.][0-9]+W$))?(([0-9]+D)|([0-9]+[,\.][0-9]+D$))?(T(?=[0-9])(([0-9]+H)|([0-9]+[,\.][0-9]+H$))?(([0-9]+M)|([0-9]+[,\.][0-9]+M$))?([0-9]+([,\.][0-9]+)?S)?)??$</xsl:param>
 	<!--
     * MONTHDAY:
     * MonthDay format, which conforms with XSD data type gMonthDay.
-    *
+    *  
     * Description:
-    * The value space of xsd:gMonthDay is the period of one calendar day recurring each calendar year
-    * (such as the third of April); its lexical space follows the ISO 8601 syntax for such periods
+    * The value space of xsd:gMonthDay is the period of one calendar day recurring each calendar year 
+    * (such as the third of April); its lexical space follows the ISO 8601 syntax for such periods 
     * with an optional time zone.
-    *
-    * When needed, days are reduced to fit in the length of the months, so - - 02-29 would occur on the
+    *  
+    * When needed, days are reduced to fit in the length of the months, so - - 02-29 would occur on the 
     * 28th of February of nonleap years.
-    *
+    *  
     * Restrictions:
     * The period (one year) and the duration (one day) are fixed, and no calendars other than Gregorian are supported.
-    *
+    *  
     * Example of valid values:
     *  - -05-01
     *  - -11-01Z
@@ -121,12 +121,12 @@
     *  - -11-01-04:00
     *  - -11-15
     *  - -02-29
-    *
-    * The following values are invalid:
+    *  
+    * The following values are invalid: 
     *  -01-30- (the format must be - -MM-DD)
     *  - -01-35 (the day part is out of range)
     *  - -1-5 (the leading zeros are missing)
-    *  or
+    *  or 
     *  01-15 (the leading - - are missing)
     -->
 	<xsl:param name="monthday_pattern">^(--(((02)-(0[1-9]|[1][0-9]|2[0-9]))|((0[4689]|(11))-(0[1-9]|[1][0-9]|2[0-9]|(30)))|((0[13578]|(1[02]))-(0[1-9]|[1][0-9]|2[0-9]|(3[0-1])))))$</xsl:param>
@@ -523,7 +523,7 @@
 		<document>
 			<list begin="{{" indent="     " delim="," end="}}">
 				<xsl:if test="$copyright-single-line and $copyright-single-line != ''">
-					<item>"$comment": "<xsl:value-of select="$copyright-single-line" disable-output-escaping="yes"/>"</item>
+					<item>"$comment": "<xsl:value-of select="$copyright-single-line" disable-output-escaping="yes"/>"</item>			
 				</xsl:if>
 				<item>"$id": "<xsl:value-of select="substring-before($baseURI, $envelope)"/><xsl:value-of select="$envelope"/>.schema.json"</item>
 				<item>"$schema": "<xsl:value-of select="$schema_draft_version"/>"</item>
@@ -541,7 +541,7 @@
 						<!-- We cycle through all "Root" classes -->
 						<xsl:apply-templates select="a:Root"/>
 					</list>
-					<!-- Determine if a JSON "required" element is needed in the schema;
+					<!-- Determine if a JSON "required" element is needed in the schema; 
                          otherwise just terminate with a closing bracket -->
 					<xsl:if test="count(a:Root[@minOccurs >= 1]) > 0">
 						<!--  Now generate the "required" JSON element based on minOccurs >=1  -->
@@ -606,7 +606,7 @@
 			<xsl:call-template name="type_definition"/>
 		</list>
 	</xsl:template>
-	<!--
+	<!-- 
 			IMPORTANT:  DO NOT REMOVE
 			This is temporarily commented out for the generation of "reduced" CIMDatatypes.  When we want the full CIMDatatype we uncomment it -->
 	<!--
@@ -620,7 +620,7 @@
             <xsl:call-template name="pattern">
                 <xsl:with-param name="xstype" select="@xstype"/>
             </xsl:call-template>
-        </xsl:param>
+        </xsl:param>            
         <list begin="&quot;{@name}&quot;: {{" indent="    " delim="," end="}}">
             <xsl:call-template name="type_definition_header">
                 <xsl:with-param name="type">object</xsl:with-param>
@@ -737,7 +737,7 @@
 				<!--  SimpleType(s) only contain a dataType attribute representing modelReference -->
 				<item>"modelReference": "<xsl:value-of select="@dataType"/>"</item>
 			</xsl:when>
-			<xsl:when test="self::a:EnumeratedType|self::a:ComplexType|self::a:Root">
+			<xsl:when test="self::a:EnumeratedType|self::a:CompoundType|self::a:ComplexType|self::a:Root">
 				<!--  ComplexType(s) and Root(s) only contain a baseClass attribute representing modelReference -->
 				<item>"modelReference": "<xsl:value-of select="@baseClass"/>"</item>
 			</xsl:when>

@@ -31,6 +31,7 @@ This **[rdfs-2020.xsl](rdfs-2020.xsl)** builder generates RDFS2020 compliant sch
    <rdf:Description rdf:about="#VsConverter">
       <cims:belongsToCategory rdf:resource="#Package_DC"/>
       <cims:stereotype rdf:resource="http://iec.ch/TC57/NonStandard/UML#concrete"/>
+      <!-- Description stereotype indicating that for RDF instance data an rdf:about rdf 'global 'identifier is used -->
       <cims:stereotype>Description</cims:stereotype>
       <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
       <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DC side of the voltage source converter (VSC).</rdfs:comment>

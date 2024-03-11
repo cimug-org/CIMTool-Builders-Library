@@ -1,5 +1,6 @@
-![image](readme-icons/image-header-1.png)
-# ![image](readme-icons/image-header-1.png) CIMTool-Builders-Library
+![image](readme-icons/image-header-1.png) 
+
+# CIMTool-Builders-Library
 
 This is the official UCAIug repository for custom **CIMTool** [XSLT](https://www.w3schools.com/xml/xsl_intro.asp) builders and is provided as a public space to create, collaborate and contribute back builders for the benefit of the CIMTool community at large.  This library of builders can be used in **CIMTool** to generate various types of target artifacts from a CIMTool profile definition.  
 

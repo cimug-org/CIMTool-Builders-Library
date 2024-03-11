@@ -6,7 +6,7 @@ Would you like a custom builder that generates C/C++ objects from your CIMTool p
 
 Included in this library is the base set of XSLT transforms that comes shipped with **CIMTool**. These have been included to serve as examples or starting points that can be either extended or used as working examples when creating new XSLT builders.
 
-Feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool-Builders-Library/discussions) around a new idea for a custom builder or to post a question on the discussions board. Please contribute new builders to this library using the submission process outlined later.
+Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builders-Library/discussions) around a new idea for a custom builder or to post a question on the discussions board. Please contribute new builders to this library using the submission process outlined later.
 
 ## Current Library of Builders
 ![image](readme-icons/icons8-folder-tree-96.png)
@@ -15,8 +15,11 @@ Feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool-Builde
 
 | XSLT Builder | Output Type | Description |
 |------------------|------------------|------------------|
-| [xsd.xsl](shipped-builders/xsd/builder.md) | XSD schema | The **xsd.xsl** builder generates an XSD schema that is compliant with the **IEC 62361-100:2016** (CIM Profiles to XML Schema Mapping) standard. Additionally, the schemas are compatible with the **IEC 61968-100:2013 [Ed 1.0]** (Implementation Profiles) standard used for enterprise integration.|
-| [xsd-part100-ed2.xsl](shipped-builders/xsd-part100-ed2/builder.md) | XSD schema | This builder is similar to the xsd.xsl builder above in that it also generates an XSD schema that is compliant with **IEC 62361-100:2016**.  However, these generated schemas are uniquely compatible with the new **IEC 61968-100:2022 [Ed 2.0]** published standard which is not backwards compatible with Edition 1.0. |
+| [xsd.xsl](shipped-builders/xsd/builder.md) | XSD schema | The **xsd.xsl** builder generates an XSD schema that is compliant with the [IEC 62361-100:2016](https://webstore.iec.ch/publication/25114) (CIM Profiles to XML Schema Mapping) standard. Additionally, these schemas are compatible with the [IEC 61968-100:2013](https://webstore.iec.ch/publication/6198) (Implementation Profiles) standard used for enterprise integration.|
+| [xsd-part100-ed2.xsl](shipped-builders/xsd-part100-ed2/builder.md) | XSD schema | This builder is similar to the xsd.xsl builder above in that it also generates an XSD schema that is compliant with **IEC 62361-100:2016**.  However, these generated schemas are uniquely compatible with the new [IEC 61968-100:2022](https://webstore.iec.ch/publication/67766) published standard which is not backwards compatible with [IEC 61968-100:2013](https://webstore.iec.ch/publication/6198). |
+| [legacy-rdfs.xsl](shipped-builders/legacy-rdfs/builder.md) | RDFS schema | The **legacy-rdfs.xsl** builder generates an early RDFS schema format used prior to that officially defined within the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215) published standard. |
+| [legacy-rdfs-augmented.xsl](shipped-builders/legacy-rdfs-augmented/builder.md) | RDFS schema | The **legacy-rdfs-augmented.xsl** builder generates RDFS schema in primary alignment with that defined within the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215) published standard. |
+| [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) | RDFS schema | This **rdfs-2020.xsl** builder generates RDFS2020 compliant schemas that reflect that latest de facto agreements on extensions post [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215). |
 | [jpa.xsl](shipped-builders/jpa/builder.md) | Java source file | The **jpa.xsl** builder generates a Java source file (```*.java```) containing JPA classes compatible with JPA 2.2 and earlier. The defined JPA classes can be utilized in Java applications for persisting profiles to a database. |
 | [scala.xsl](shipped-builders/scala/builder.md) | Scala source file | The **scala.xsl** builder produces a Scala source file (```*.scala```) that defines a vocabulary for a profile definition. These source files contain Scala classes/objects representative of those in the profile and may be used in applications implemented in the Scala programming language. |
 | [sql.xsl](shipped-builders/sql/builder.md) | SQL DDL file | The **sql.xsl** builder generates an ANSI SQL-compliant DDL (Data Definition Language) script (```*.sql```) that can be used to create the database tables and fields corresponding to the classes and attributes represented in a profile. |
@@ -37,7 +40,7 @@ Feel free to initiate a [discussion](https://github.com/CIMug-org/CIMTool-Builde
 
 A subcategory of builders supported by **CIMTool** are those that are based on XSLT transforms. In the below screenshot the builders that are selected are those that generate target files using XSLT transforms (click the image to enlarge):
 
-[![image](readme-icons/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-Builders-Library/main/readme-icons/cimtool-profile-summary-tab.png)
+[![image](readme-icons/cimtool-profile-summary-tab.png)](https://raw.githubusercontent.com/cimug-org/CIMTool-Builders-Library/main/readme-icons/cimtool-profile-summary-tab.png)
 
 Starting with the **CIMTool.1.10.0.RC1** release, the ability to import and configure custom user-defined XSLT transforms and have them automatically added to the list of builders was introduced. This new feature opened up a wide range of possibilities for end users to more easily extend the builder capabilities beyond that shipped with the product. No longer do you need to know Eclipse plugin development.
 
@@ -59,94 +62,276 @@ As a working example, the screenshot below illustrates a **CIMTool** profile nam
 
 What is not well known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT builders. This internal representation is an XML format structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal representation is exposed and available for viewing using the XML builder bordered in red in the screenshot.
 
-[![image](readme-icons/GetUsagePointGroups-profile.png)](https://raw.githubusercontent.com/CIMug-org/CIMTool-Builders-Library/main/readme-icons/GetUsagePointGroups-profile.png)
+[![image](readme-icons/GetUsagePointGroups-profile.png)](https://raw.githubusercontent.com/cimug-org/CIMTool-Builders-Library/main/readme-icons/GetUsagePointGroups-profile.png)
 
-<br/>The file generated by the XML builder appears next. Noteworthy observations include:
+<br/>The file generated by the XML builder appears below. Noteworthy observations include:
 
 - the namespace ```xmlns:m="http://ucaiug.org/2022/GetUsagePointGroups#"``` of the profile is declared on the outermost ```<Catalog>``` XML element.
-- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in the profile i.e. those represented by the ![image](readme-icons/rootelement.png) icon and bordered in green.
+- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in the profile i.e. those represented by the ![image](readme-icons/rootelement.png) icon and bordered in green in the above screenshot.
 - the ```<ComplexType>``` XML elements correspond to all non-concrete classes declared in the profile i.e. those represented by the ![image](readme-icons/element.png) icon.
 - a class's attributes and associations are defined by the ```<Simple>``` or ```<Instance>``` XML elements respectively.
 - for primitive typed attributes (e.g. string, float, etc.) an ```xstype``` XSD attribute is specified with a corresponding value from the set of W3C XSD [primitive datatypes](https://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/datatypes.html#built-in-primitive-datatypes).
 - the comments on class and attribute defined in the profile are included in the ```<Comment>``` XML elements.
 - minimum and maximum cardinality is declared via the ```minOccurs``` and ```maxOccurs``` attributes in each of the XML elements.
 
+The significance of this internal representation is that it serves as the input into any XSLT builder(s) enabled for a profile. The XML builder itself is made available only so end users can view the internal representation. It does not need to be checked for XSLT builders to function.
+
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
-<Catalog xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://ucaiug.org/2022/GetUsagePointGroups#" baseURI="http://ucaiug.org/2022/GetUsagePointGroups#" name="GetUsagePointGroups">
-    <Root name="DemandResponseProgram" baseClass="http://iec.ch/TC57/CIM-generic#DemandResponseProgram" package="Metering" minOccurs="0" maxOccurs="unbounded">
-        <Comment>Demand response program.</Comment>
-        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="0" maxOccurs="1">
-            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
-            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
-        </Simple>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="type" baseProperty="http://iec.ch/TC57/CIM-generic#DemandResponseProgram.type" minOccurs="0" maxOccurs="1">
-            <Comment>Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program). Note that possible types change a lot and it would be impossible to enumerate them all.</Comment>
-        </Simple>
-        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
-            <Comment>All names of this identified object.</Comment>
-        </Instance>
-    </Root>
-    <ComplexType name="Name" baseClass="http://iec.ch/TC57/CIM-generic#Name" package="Core" minOccurs="0" maxOccurs="unbounded">
-        <Comment>The Name class provides the means to define any number of human readable  names for an object. A name is &lt;b&gt;not&lt;/b&gt; to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.</Comment>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#Name.name" minOccurs="1" maxOccurs="1">
-            <Comment>Any free text that name the object.</Comment>
-        </Simple>
-        <Instance baseClass="http://iec.ch/TC57/CIM-generic#NameType" type="NameType" name="NameType" baseProperty="http://iec.ch/TC57/CIM-generic#Name.NameType" minOccurs="0" maxOccurs="1">
-            <Comment>Type of this name.</Comment>
-        </Instance>
-    </ComplexType>
-    <ComplexType name="NameType" baseClass="http://iec.ch/TC57/CIM-generic#NameType" package="Core" minOccurs="0" maxOccurs="unbounded">
-        <Comment>Type of name. Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:</Comment>
-        <Comment>The localName is a human readable name of the object. It is a free text name local to a node in a naming hierarchy similar to a file directory structure. A power system related naming hierarchy may be: Substation, VoltageLevel, Equipment etc. Children of the same parent in such a hierarchy have names that typically are unique among them.</Comment>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="description" baseProperty="http://iec.ch/TC57/CIM-generic#NameType.description" minOccurs="0" maxOccurs="1">
-            <Comment>Description of the name type.</Comment>
-        </Simple>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#NameType.name" minOccurs="1" maxOccurs="1">
-            <Comment>Name of the name type.</Comment>
-        </Simple>
-        <Instance baseClass="http://iec.ch/TC57/CIM-generic#NameTypeAuthority" type="NameTypeAuthority" name="NameTypeAuthority" baseProperty="http://iec.ch/TC57/CIM-generic#NameType.NameTypeAuthority" minOccurs="0" maxOccurs="1">
-            <Comment>Authority responsible for managing names of this type.</Comment>
-        </Instance>
-    </ComplexType>
-    <ComplexType name="NameTypeAuthority" baseClass="http://iec.ch/TC57/CIM-generic#NameTypeAuthority" package="Core" minOccurs="0" maxOccurs="unbounded">
-        <Comment>Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.</Comment>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="description" baseProperty="http://iec.ch/TC57/CIM-generic#NameTypeAuthority.description" minOccurs="0" maxOccurs="1">
-            <Comment>Description of the name type authority.</Comment>
-        </Simple>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="name" baseProperty="http://iec.ch/TC57/CIM-generic#NameTypeAuthority.name" minOccurs="1" maxOccurs="1">
-            <Comment>Name of the name type authority.</Comment>
-        </Simple>
-    </ComplexType>
-    <Root name="UsagePoint" baseClass="http://iec.ch/TC57/CIM-generic#UsagePoint" package="Metering" minOccurs="0" maxOccurs="unbounded">
-        <Comment>Logical or physical point in the network to which readings or events may be attributed. Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.</Comment>
-        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="0" maxOccurs="1">
-            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
-            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
-        </Simple>
-        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
-            <Comment>All names of this identified object.</Comment>
-        </Instance>
-    </Root>
-    <Root name="UsagePointGroup" baseClass="http://iec.ch/TC57/CIM-generic#UsagePointGroup" package="Metering" minOccurs="0" maxOccurs="unbounded">
-        <Comment>Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points. Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.</Comment>
-        <Stereotype>http://langdale.com.au/2005/UML#concrete</Stereotype>
-        <Simple dataType="http://www.w3.org/2001/XMLSchema#string" xstype="string" name="mRID" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID" minOccurs="0" maxOccurs="1">
-            <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
-            <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
-        </Simple>
-        <Instance baseClass="http://iec.ch/TC57/CIM-generic#Name" type="Name" name="Names" baseProperty="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names" minOccurs="0" maxOccurs="unbounded">
-            <Comment>All names of this identified object.</Comment>
-        </Instance>
-    </Root>
+<Catalog xmlns="http://langdale.com.au/2005/Message#"
+         xmlns:m="http://ucaiug.org/2022/GetUsagePointGroups#"
+         ontologyURI="http://iec.ch/TC57/CIM100"
+         baseURI="http://ucaiug.org/2022/GetUsagePointGroups#"
+         name="GetUsagePointGroups">
+   <Package name="Base" basePackage="http://iec.ch/TC57/CIM100#Package_Base">
+      <Comment>This package models configuration of ICCP required for bilateral exchanges.</Comment>
+      <ParentPackage name="IEC61970"
+                     basePackage="http://iec.ch/TC57/CIM100#Package_IEC61970"/>
+   </Package>
+   <Package name="Core" basePackage="http://iec.ch/TC57/CIM100#Package_Core">
+      <Comment>Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.</Comment>
+      <ParentPackage name="Base" basePackage="http://iec.ch/TC57/CIM100#Package_Base"/>
+   </Package>
+   <Package name="IEC61968"
+            basePackage="http://iec.ch/TC57/CIM100#Package_IEC61968">
+      <Comment>The IEC 61968 subpackages of the CIM are developed, standardized and maintained by the UCA community including its working groups and task forces.</Comment>
+      <Comment>Currently, normative parts of the model support the needs of information exchange defined in IEC 61968-3, IEC 61968-4, IEC 61968-5, IEC 61968-6, IEC 61968-8, IEC 61968-9 and in IEC 61968-13.</Comment>
+      <ParentPackage name="TC57CIM" basePackage="http://iec.ch/TC57/CIM100#Package_TC57CIM"/>
+   </Package>
+   <Package name="IEC61970"
+            basePackage="http://iec.ch/TC57/CIM100#Package_IEC61970">
+      <Comment>Top package for IEC 61970.</Comment>
+      <ParentPackage name="TC57CIM" basePackage="http://iec.ch/TC57/CIM100#Package_TC57CIM"/>
+   </Package>
+   <Package name="Metering"
+            basePackage="http://iec.ch/TC57/CIM100#Package_Metering">
+      <Comment>This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.</Comment>
+      <ParentPackage name="IEC61968"
+                     basePackage="http://iec.ch/TC57/CIM100#Package_IEC61968"/>
+   </Package>
+   <Package name="TC57CIM" basePackage="http://iec.ch/TC57/CIM100#Package_TC57CIM">
+      <Comment>The IEC 61968 subpackages of the CIM are developed, standardized and maintained by the UCA community including its working groups and task forces.</Comment>
+      <Comment>Currently, normative parts of the model support the needs of information exchange defined in IEC 61968-3, IEC 61968-4, IEC 61968-5, IEC 61968-6, IEC 61968-8, IEC 61968-9 and in IEC 61968-13.</Comment>
+   </Package>
+   <Root name="DemandResponseProgram"
+         baseClass="http://iec.ch/TC57/CIM100#DemandResponseProgram"
+         package="Metering"
+         packageURI="http://iec.ch/TC57/CIM100#Package_Metering"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>Demand response program.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="mRID"
+              baseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.mRID"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+         <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+      </Simple>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="type"
+              baseProperty="http://iec.ch/TC57/CIM100#DemandResponseProgram.type"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program). Note that possible types change a lot and it would be impossible to enumerate them all.</Comment>
+      </Simple>
+      <Instance baseClass="http://iec.ch/TC57/CIM100#Name"
+                type="Name"
+                name="Names"
+                baseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.Names"
+                minOccurs="0"
+                maxOccurs="unbounded"
+                inverseBaseProperty="http://iec.ch/TC57/CIM100#Name.IdentifiedObject">
+         <Comment>All names of this identified object.</Comment>
+      </Instance>
+      <InverseInstance baseClass="http://iec.ch/TC57/CIM100#IdentifiedObject"
+                       type="IdentifiedObject"
+                       name="IdentifiedObject"
+                       baseProperty="http://iec.ch/TC57/CIM100#Name.IdentifiedObject"
+                       minOccurs="0"
+                       maxOccurs="1"
+                       inverseBaseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.Names">
+         <Comment>Identified object that this name designates.</Comment>
+      </InverseInstance>
+   </Root>
+   <ComplexType name="Name"
+                baseClass="http://iec.ch/TC57/CIM100#Name"
+                package="Core"
+                packageURI="http://iec.ch/TC57/CIM100#Package_Core"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>The Name class provides the means to define any number of human readable  names for an object. A name is &lt;b&gt;not&lt;/b&gt; to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.</Comment>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="name"
+              baseProperty="http://iec.ch/TC57/CIM100#Name.name"
+              minOccurs="1"
+              maxOccurs="1">
+         <Comment>Any free text that name the object.</Comment>
+      </Simple>
+      <Instance baseClass="http://iec.ch/TC57/CIM100#NameType"
+                type="NameType"
+                name="NameType"
+                baseProperty="http://iec.ch/TC57/CIM100#Name.NameType"
+                minOccurs="0"
+                maxOccurs="1"
+                inverseBaseProperty="http://iec.ch/TC57/CIM100#NameType.Names">
+         <Comment>Type of this name.</Comment>
+      </Instance>
+      <InverseInstance baseClass="http://iec.ch/TC57/CIM100#Name"
+                       type="Name"
+                       name="Names"
+                       baseProperty="http://iec.ch/TC57/CIM100#NameType.Names"
+                       minOccurs="0"
+                       maxOccurs="unbounded"
+                       inverseBaseProperty="http://iec.ch/TC57/CIM100#Name.NameType">
+         <Comment>All names of this type.</Comment>
+      </InverseInstance>
+   </ComplexType>
+   <ComplexType name="NameType"
+                baseClass="http://iec.ch/TC57/CIM100#NameType"
+                package="Core"
+                packageURI="http://iec.ch/TC57/CIM100#Package_Core"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>Type of name. Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:</Comment>
+      <Comment>The localName is a human readable name of the object. It is a free text name local to a node in a naming hierarchy similar to a file directory structure. A power system related naming hierarchy may be: Substation, VoltageLevel, Equipment etc. Children of the same parent in such a hierarchy have names that typically are unique among them.</Comment>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="description"
+              baseProperty="http://iec.ch/TC57/CIM100#NameType.description"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Description of the name type.</Comment>
+      </Simple>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="name"
+              baseProperty="http://iec.ch/TC57/CIM100#NameType.name"
+              minOccurs="1"
+              maxOccurs="1">
+         <Comment>Name of the name type.</Comment>
+      </Simple>
+      <Instance baseClass="http://iec.ch/TC57/CIM100#NameTypeAuthority"
+                type="NameTypeAuthority"
+                name="NameTypeAuthority"
+                baseProperty="http://iec.ch/TC57/CIM100#NameType.NameTypeAuthority"
+                minOccurs="0"
+                maxOccurs="1"
+                inverseBaseProperty="http://iec.ch/TC57/CIM100#NameTypeAuthority.NameTypes">
+         <Comment>Authority responsible for managing names of this type.</Comment>
+      </Instance>
+      <InverseInstance baseClass="http://iec.ch/TC57/CIM100#NameType"
+                       type="NameType"
+                       name="NameTypes"
+                       baseProperty="http://iec.ch/TC57/CIM100#NameTypeAuthority.NameTypes"
+                       minOccurs="0"
+                       maxOccurs="unbounded"
+                       inverseBaseProperty="http://iec.ch/TC57/CIM100#NameType.NameTypeAuthority">
+         <Comment>All name types managed by this authority.</Comment>
+      </InverseInstance>
+   </ComplexType>
+   <ComplexType name="NameTypeAuthority"
+                baseClass="http://iec.ch/TC57/CIM100#NameTypeAuthority"
+                package="Core"
+                packageURI="http://iec.ch/TC57/CIM100#Package_Core"
+                minOccurs="0"
+                maxOccurs="unbounded">
+      <Comment>Authority responsible for creation and management of names of a given type; typically an organization or an enterprise system.</Comment>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="description"
+              baseProperty="http://iec.ch/TC57/CIM100#NameTypeAuthority.description"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Description of the name type authority.</Comment>
+      </Simple>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="name"
+              baseProperty="http://iec.ch/TC57/CIM100#NameTypeAuthority.name"
+              minOccurs="1"
+              maxOccurs="1">
+         <Comment>Name of the name type authority.</Comment>
+      </Simple>
+   </ComplexType>
+   <Root name="UsagePoint"
+         baseClass="http://iec.ch/TC57/CIM100#UsagePoint"
+         package="Metering"
+         packageURI="http://iec.ch/TC57/CIM100#Package_Metering"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>Logical or physical point in the network to which readings or events may be attributed. Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="mRID"
+              baseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.mRID"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+         <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+      </Simple>
+      <Instance baseClass="http://iec.ch/TC57/CIM100#Name"
+                type="Name"
+                name="Names"
+                baseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.Names"
+                minOccurs="0"
+                maxOccurs="unbounded"
+                inverseBaseProperty="http://iec.ch/TC57/CIM100#Name.IdentifiedObject">
+         <Comment>All names of this identified object.</Comment>
+      </Instance>
+      <InverseInstance baseClass="http://iec.ch/TC57/CIM100#IdentifiedObject"
+                       type="IdentifiedObject"
+                       name="IdentifiedObject"
+                       baseProperty="http://iec.ch/TC57/CIM100#Name.IdentifiedObject"
+                       minOccurs="0"
+                       maxOccurs="1"
+                       inverseBaseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.Names">
+         <Comment>Identified object that this name designates.</Comment>
+      </InverseInstance>
+   </Root>
+   <Root name="UsagePointGroup"
+         baseClass="http://iec.ch/TC57/CIM100#UsagePointGroup"
+         package="Metering"
+         packageURI="http://iec.ch/TC57/CIM100#Package_Metering"
+         minOccurs="0"
+         maxOccurs="unbounded">
+      <Comment>Abstraction for management of group communications within a two-way AMR system or the data for a group of related usage points. Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.</Comment>
+      <Stereotype label="Concrete">http://langdale.com.au/2005/UML#concrete</Stereotype>
+      <Simple dataType="http://www.w3.org/2001/XMLSchema#string"
+              xstype="string"
+              name="mRID"
+              baseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.mRID"
+              minOccurs="0"
+              maxOccurs="1">
+         <Comment>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</Comment>
+         <Comment>For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</Comment>
+      </Simple>
+      <Instance baseClass="http://iec.ch/TC57/CIM100#Name"
+                type="Name"
+                name="Names"
+                baseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.Names"
+                minOccurs="0"
+                maxOccurs="unbounded"
+                inverseBaseProperty="http://iec.ch/TC57/CIM100#Name.IdentifiedObject">
+         <Comment>All names of this identified object.</Comment>
+      </Instance>
+      <InverseInstance baseClass="http://iec.ch/TC57/CIM100#IdentifiedObject"
+                       type="IdentifiedObject"
+                       name="IdentifiedObject"
+                       baseProperty="http://iec.ch/TC57/CIM100#Name.IdentifiedObject"
+                       minOccurs="0"
+                       maxOccurs="1"
+                       inverseBaseProperty="http://iec.ch/TC57/CIM100#IdentifiedObject.Names">
+         <Comment>Identified object that this name designates.</Comment>
+      </InverseInstance>
+   </Root>
 </Catalog>
-
 ```
-<br/>
-
-The significance of this internal representation is that it serves as the input into the XSLT builder(s) enabled for a profile. The XML builder itself is made available only so end users can view the internal representation. It does not need to be checked for XSLT builders to function.
 
 ## Creating and Submitting a Custom Builder
 
@@ -169,7 +354,7 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2022 UCAIug
+  Copyright 2024 UCAIug
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -185,7 +370,7 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
   limitations under the License.
 -->
 <xsl:stylesheet exclude-result-prefixes="a"
-    version="1.0"
+    version="3.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:a="http://langdale.com.au/2005/Message#"
@@ -195,6 +380,7 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
     <xsl:param name="copyright" />
     <xsl:param name="version"/>
     <xsl:param name="baseURI"/>
+    <xsl:param name="ontologyURI"/>
     <xsl:param name="envelope">Profile</xsl:param>
       ...
       ...
@@ -206,7 +392,7 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
 
 ### Overview of Internal Profile Representation
 
-Below is a comprehensive list of elements that may appear in the ```.xml``` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support anonymous in-lined type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
+Below is a comprehensive list of elements that may appear in the ```.xml``` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builder/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support anonymous in-lined type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
 
 The top-level elements that appear in an ```.xml``` profile indicate the various types defined and used in a profile and may include the following:
 
@@ -220,15 +406,17 @@ A top-level type further specifies child elements that indicate the attributes o
 
 - **Simple** elements - represent attributes defined as primitive types in the CIM. These elements will contain an @xstype attribute to specify the primitive.
 - **Instance** elements - represent associations in the profile. These elements will contain a @type attribute to specify the type within the profile that the association references.
-- **Reference** elements - also represent associations but ones that must be handled uniquely. These elements will contain a @type attribute to specify the type the reference association is for.  The referent may or may not be represented elsewhere in the profile. When the referent is not represented in the profile, and thus is external to the profile, it may be defined in the contextual model as an abstract class with no concrete sub classes. XSLT builders typically transform these elements into a ```ref``` and ```referenceType``` in the target output. The ```ref``` is used to hold an identifier (i.e. used for the purposes of referencing) and an optional ```referenceType``` used to define the kind of identifier specified by the ```ref``` (e.g. 'mRID' or 'Names.name').  See the [xsd.xsl](shipped-builders/xsd/xsd.xsl) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/json-schema-draft-2020-12.xsl) for examples of builders handling **Reference** elements.
+- **InverseInstance** elements - an **InverseInstance** element will always accompany an **Instance** element in the profile and as the name implies will represent the inverse of the association defined by the **Instance** element. It is specifically included for XSLT builders that may need to know this (e.g. commonly RDFS builders)
+- **Reference** elements - also represent associations but ones that must be handled uniquely. These elements will contain a @type attribute to specify the type the reference association is for.  The referent may or may not be represented elsewhere in the profile. When the referent is not represented in the profile, and thus is external to the profile, it may be defined in the contextual model as an abstract class with no concrete sub classes. XSLT builders may transform these elements into a variety of different ways depending on the type of builder and the specific target output.  In the case of [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) builders additional attributes/elements named ```ref``` and ```referenceType``` are generated in the target output. The ```ref``` is used to hold an identifier (i.e. used for the purposes of referencing) and an optional ```referenceType``` used to define the kind of identifier specified by the ```ref``` (e.g. 'mRID' or 'Names.name'). This unique mapping relevant for XSD and JSON schema generation is formally defined within the IEC 62361-100 and IEC 62361-104 standards respectively. Other builders may handle output for **Reference** elements in a completley different manner (see: [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) for example)
+- **InverseReference** elements - an **InverseReference** element will always accompany a **Reference** element in the profile and as the name implies will represent the inverse of the association defined by the **Reference** element. It is specifically included for XSLT builders that may need to know this (e.g. commonly RDFS builders)
 - **Domain** elements - represent attributes that have a type defined that corresponds to a &lt;&lt;CIMDatatype&gt;&gt; class in the CIM. These types currently resolve to a primitive in CIMTool and therefore the XML child element will contain an @xstype attribute to specify the primitive.
 - **Enumerated** elements - represents an attribute in a class who's referent type is an enumeration defined in the profile. These elements will contain a @type attribute to specify the referent enumeration.
 - **Choice** elements - represents a union property defined for a class which is an association that references a super class in the profile. In this context, the union property essentially offers a choice for what the referent type can be. Specifically, the options for the referent type are the subclasses of the union superclass defined in the profile.
 
 There are two additional specialized cases of child elements for specifying an attribute or association defined for a type. These represent what might be described as an in-lined anonymous definition for the referent type of the attribute or association. They do not represent an actual UML construct in the CIM but rather a particular profiling approach relevant to specific target schema specifications or generated output types (e.g. XSD and JSON schema or anonymous types in Java) that support such in-line anonymous types (see: [Associations and Anonymous Classes](https://wiki.cimtool.org/Associations_and_Anonymous_Classes.html) and [Why There Are so Many Top Level Definitions in an XML Schema Profile](https://wiki.cimtool.org/Why_There_Are_so_Many_Top_Level_Definitions_in_an_XML_Schema_Profile.html) - these articles also are provided as PDF files in the ```\articles``` folder). The child elements for these specialized cases are:
 
-- **SimpleEnumerated** elements - a variant of **Enumerated** this element represents an attribute in a class who's referent type is an enumeration. However, this variant will not contain a @type attribute to specify the referent enumeration. Rather the enumeration is defined anonymously as an in-lined type definition. See the [xsd.xsl](shipped-builders/xsd/xsd.xsl) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/json-schema-draft-2020-12.xsl) for examples of builders handling **SimpleEnumerated** elements.
-- **Complex** elements - a variant of **ComplexType** this element represents an association in a class who's referent type is a CIM class. However, this element will not contain a @type attribute to specify the referent type. Rather the type is defined anonymously as an in-lined type definition. Again, see the [xsd.xsl](shipped-builders/xsd/xsd.xsl) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/json-schema-draft-2020-12.xsl) for examples of builders handling **Complex** elements.
+- **SimpleEnumerated** elements - a variant of **Enumerated** this element represents an attribute in a class who's referent type is an enumeration. However, this variant will not contain a @type attribute to specify the referent enumeration. Rather the enumeration is defined anonymously as an in-lined type definition. See the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) for examples of builders handling **SimpleEnumerated** elements.
+- **Complex** elements - a variant of **ComplexType** this element represents an association in a class who's referent type is a CIM class. However, this element will not contain a @type attribute to specify the referent type. Rather the type is defined anonymously as an in-lined type definition. Again, see the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) for examples of builders handling **Complex** elements.
 
 Finally, there are a couple of additional elements to highlight that are used for specific purposes within the internal representation:
 - **Comment** elements - represent a comment that appears on either a class, attribute or association role end.
@@ -246,8 +434,8 @@ Also provided in the ```/builder-submissions``` folder in this repository is the
 Finally, **CIMTool** internally passes along the following parameters into all XSLT builders:
 
 - **baseURI** - the baseURI is the namespace specified in the Namespace field on the Profile Summary tab for a profile.
-- **ontologyURI** - the ontologyURI is the namespace URI specified at the time a CIM schema is imported into a CIMTool project.  It is the URI that appears in the 'Namespace URI' field on properties dialog for the schema.
-- **envelope** - the envelope is the value specified in the Name field on the Description tab for the profile
+- **ontologyURI** - the ontologyURI is the namespace URI specified at the time a CIM schema is imported into a CIMTool project.  It is the URI that appears in the 'Namespace URI' field on properties dialog for the schema. Some builders needed this additional URI for use in their generated output (refer to the [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) for an example).
+- **envelope** - the envelope is the value specified in the Name field on the Description tab for the profile.
 - **copyright** - the text of a multi-line copyright if one is configured for the project.
 - **copyright-single-line** - the text of a single-line copyright if one is configured for the project.
 
@@ -262,7 +450,7 @@ The **Name** component of a NTE is static and is auto-assigned during import and
 For the **Type** component assigned to the builder there are three variants of XSLT transforms that your builder can be categorized in. As to which variant your builder falls into is dependent upon the type of output it will be generating:
 - **XSD** - This type should only be used if your are generating an XSD based schema as your output. This is because specialized validation on XSDs are performed after they are generated by this category of builder.
 - **TEXT** - This type is typically assigned for builders that generating some type of code such as Java, C#, Python, etc.
-- **TRANSFORM** - This is the most generalized category. Examples of existing builders that fall into this category are the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/profile-doc-rtf.xsl) which generates an MS Word document in the RTF (Rich Text Format).
+- **TRANSFORM** - This is the most generalized category. Examples of existing builders that fall into this category are the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md) which generates an MS Word document in the RTF (Rich Text Format).
 
 Finally, the **Extension** component of your assigned NTE is literally the extension that will be used for the file generated by your builder. It must be unique relative to other builders in the CIMTool-Builders-Library repository. Example extensions and the corresponding output files for a ficticious profile named SubstationEquipment:
 - **schema.json** - SubstationEquipment.schema.json
@@ -294,6 +482,7 @@ Third-party tooling can be used to create and test new XSLT transforms for use a
 
 | | Product / Edition | Description |
 |---------|---------|---------|
+![image](https://www.eclipse.org/downloads/assets/public/images/logo-eclipse.png) | *Eclipse Foundation's XSLT Project <br/>(Free)* | XSL Tools brings XSLT development to the Eclipse platform. Its scope is to provide basic XSL editing and debugging support to compliment and leverage the XML and source editing support within **Web Tools Platform**. <br/><br/>The XSL Tools project focuses specifically on the Transformation engine of the W3C XSL Specification. This project is concerned with the XSL Transformation language for **XSLT 1.0** and **XSLT 2.0**.
 ![image](https://raw.githubusercontent.com/DeltaXML/vscode-xslt-tokenizer/ed51154082720b8e2a2f93463054ebdc0bdde074/deltaxmlLogo.png) | *XSLT/XPath extensions for Visual Studio Code<br/>(Free)* | This VSCode extension provides comprehensive language support for **XSLT 3.0** and **XPath 3.1**. Visit the [Quick Start ReadMe](https://marketplace.visualstudio.com/items?itemName=deltaxml.xslt-xpath) or the full [XSLT/XPath User Guide](https://deltaxml.github.io/vscode-xslt-xpath/) for a more comprehensive overview.<br/><br/>For an introduction to the **XSLT 3.0** features available in this XSLT/XPath extension for Visual Studio Code view this [YouTube](https://www.youtube.com/watch?v=fdxfXaJw6SY) video.<br/><br/>**Note:** Microsoft's free [Visual Studio Code](https://code.visualstudio.com/download) is a streamlined code editor with support for development operations like debugging, task running, and version control. It aims to provide just the tools a developer needs for a quick code-build-debug cycle and leaves more complex workflows to fuller featured IDEs, such as [Visual Studio IDE](https://visualstudio.microsoft.com/)
 ![image](https://www.altova.com/images/logos/xmlspy_2022.png) | *Altova XMLSpy 2022 Enterprise Edition*<br/>*Altova XMLSpy 2022 Professional Edition<br/>(Commercial products)* | **XMLSpy** provides a rich XSLT Editor, Profiler, and Debugger that supports:<ul><li>XSLT 1.0, XSLT 2.0, and XSLT 3.0<li>syntax coloring, line numbering, bookmarking, source folding, & code completion<li>interactive XPath Building and Testing<li>XSLT validation & troubleshooting</ul>For detailed information visit [XSLT/XPath User Guide](https://deltaxml.github.io/vscode-xslt-xpath/) for XMLSpy 2022 Enterprise Edition or [Processing with XSLT and XQuery](https://www.altova.com/manual/XMLSpy/spyprofessional/xsxml_processing.html) using XMLSpy 2022 Professional Edition.
 ![image](https://www.oxygenxml.com/img/Developer80.png) | *Oxygen XML Developer<br/>(Commercial products)*<br/> | **Oxygen XML Developer** offers a powerful XSLT and XQuery debugger that provides full control over the debugging process. Two dedicated perspectives are available, one for XSLT and one for XQuery debugging, both offering specialized views and actions that allow you to troubleshoot and perfect your documents. Visit their [Oxygen XML Developer overview](https://www.oxygenxml.com/xml_developer.html) page for more details.

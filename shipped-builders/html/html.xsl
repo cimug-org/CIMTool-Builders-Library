@@ -43,7 +43,7 @@ h1 { color: white; background: gray;}
 
 h2, h3 { color: gray; text-decoration: none;}
 
-h2.abstract, h2.enumerated, h2.domain {font-style: italic }
+h2.abstract, h2.enumerated, h2.domain {font-style: italic } 
 
 p.note { background-color: #ddd }
 
@@ -63,7 +63,7 @@ div.group {
 	border-style: solid;
 	border-color: gray;
 	border-width: 1px;
-
+	
 }
 
 th, td {
@@ -91,9 +91,9 @@ th, td.type { width: 15em; overflow: visible; }
 
 p.cardinality { width: 4em; }
 
-p.package { position: absolute; right: 10px; top: 0px}
+p.package { position: absolute; right: 10px; top: 0px}				
 </style>
-
+				
 			</head>
 			<body>
 				<h1>Profile Documentation</h1>
@@ -144,7 +144,7 @@ p.package { position: absolute; right: 10px; top: 0px}
 		<xsl:call-template name="complex_type" />
 		</div>
 	</xsl:template>
-
+    
     <xsl:template name="complex_type">
 	    <!-- generates the body of a class -->
         <p class="package"><xsl:value-of select="@package"/></p>
@@ -158,7 +158,7 @@ p.package { position: absolute; right: 10px; top: 0px}
 		<xsl:if test="a:SuperType">
 			<h3>Inherited Members</h3>
         	<xsl:apply-templates select="a:SuperType" mode="inherited"/>
-        </xsl:if>
+        </xsl:if>	
 	</xsl:template>
 
 	<xsl:template match="a:Instance|a:Reference|a:Enumerated|a:Domain">
@@ -185,7 +185,7 @@ p.package { position: absolute; right: 10px; top: 0px}
 		<xsl:apply-templates select="//a:ComplexType[@name=current()/@name]" mode="inherited"/>
 		<xsl:apply-templates select="//a:Root[@name=current()/@name]" mode="inherited"/>
 	</xsl:template>
-
+	
 	<xsl:template match="a:ComplexType|a:Root" mode="inherited">
 		<table>
 		  <xsl:apply-templates select="a:Domain|a:Simple|a:Instance|a:Reference|a:Enumerated" mode="inherited"/>

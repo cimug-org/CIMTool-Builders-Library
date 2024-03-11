@@ -38,7 +38,7 @@
 			<xsl:if test="$copyright and $copyright != ''">
 				<xs:annotation>
 					<xs:documentation xml:lang="en">
-					<xsl:value-of select="$copyright" disable-output-escaping="yes"/>
+					<xsl:value-of select="$copyright" disable-output-escaping="yes"/>				
 					</xs:documentation>
 				</xs:annotation>
 			</xsl:if>
@@ -70,7 +70,7 @@
 	</xsl:template>
 	<xsl:template match="a:Root">
 		<!-- generates the payload element definitions -->
-		<xs:element name="{@name}" type="m:{substring-after(@baseClass, '#')}" minOccurs="{@minOccurs}" maxOccurs="{@maxOccurs}"/>
+		<xs:element name="{@name}" type="m:{@name}" minOccurs="{@minOccurs}" maxOccurs="{@maxOccurs}"/>
 	</xsl:template>
 	<xsl:template match="a:Complex">
 		<!-- generates a nested element with anonymous complex type declared inline -->
@@ -151,14 +151,8 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
-	<xsl:template match="a:ComplexType|a:CompoundType" mode="declare">
+	<xsl:template match="a:ComplexType|a:Root|a:CompoundType" mode="declare">
 		<xs:complexType name="{@name}" sawsdl:modelReference="{@baseClass}">
-			<xsl:call-template name="annotate"/>
-			<xsl:call-template name="type_body"/>
-		</xs:complexType>
-	</xsl:template>
-	<xsl:template match="a:Root" mode="declare">
-		<xs:complexType name="{substring-after(@baseClass, '#')}" sawsdl:modelReference="{@baseClass}">
 			<xsl:call-template name="annotate"/>
 			<xsl:call-template name="type_body"/>
 		</xs:complexType>

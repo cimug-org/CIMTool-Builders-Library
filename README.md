@@ -1,4 +1,4 @@
-# CIMTool-Builders-Library
+# CIMTool Builders Library
 
 ![image](readme-icons/image-header-1.png)
 

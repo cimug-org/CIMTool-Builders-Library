@@ -4,7 +4,9 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-Though not currently published as a formal standard, there has been "de facto agreements" on additional extensions to those defined in the [IEC 61970-501:2006 "Common Information Model Resource Description Framework (CIM RDF) schema"](https://webstore.iec.ch/publication/6215) published standard. These additional extensions were added in order to better support representation of the semantics needed for CIM RDFS profiles. Introduced after the publication of the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215), this latest RDFS schema format is commonly referred to as **RDFS2020** and is in use by ENTSO-E CGMES and supported in both **CimConteXtor/CimSyntaxGen** and **CIMTool** profiling tools. 
+The **[rdfs-2020.xsl](rdfs-2020.xsl)** builder generates **RDFS2020** compliant schemas. 
+
+Though not currently published as a formal standard, there has been "de facto agreements" on extensions in additional to those defined in the [IEC 61970-501:2006 "Common Information Model Resource Description Framework (CIM RDF) schema"](https://webstore.iec.ch/publication/6215) published standard. These additional extensions were added in order to better support representation of the semantics needed for CIM RDFS profiles. Introduced after the publication of the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215), this latest RDFS schema format is commonly referred to as **RDFS2020** and is in use by ENTSO-E CGMES and supported in both **CimConteXtor/CimSyntaxGen** and **CIMTool** profiling tools. 
 
 This **[rdfs-2020.xsl](rdfs-2020.xsl)** builder generates RDFS2020 compliant schemas that include the following:
 

@@ -8,7 +8,7 @@ Though not currently published as a formal standard, there has been "de facto ag
 
 This **[rdfs-2020.xsl](rdfs-2020.xsl)** builder generates RDFS2020 compliant schemas that include the following:
 
-1. The ```xml:lang``` attribute now appears on ```rds:label```-s to endicate the locale language associated with the text:
+1. The ```xml:lang``` attribute now appears on ```rds:label```-s to indicate the locale language associated with the text:
 
     ```xml 
     <rdfs:label xml:lang="en">ACDCConverterDCTerminal</rdfs:label>

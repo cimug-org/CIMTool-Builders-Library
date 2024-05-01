@@ -81,7 +81,7 @@ What is not well known is that **CIMTool** has an alternate internal representat
 
 The significance of this internal representation is that it serves as the input into any XSLT builder(s) enabled for a profile. The XML builder itself is made available only so end users can view the internal representation. It does not need to be checked for XSLT builders to function.
 
-`XML
+```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog xmlns="http://langdale.com.au/2005/Message#"
          xmlns:m="http://ucaiug.org//GetUsagePointGroups#"
@@ -336,7 +336,7 @@ The significance of this internal representation is that it serves as the input 
       </InverseInstance>
    </Root>
 </Catalog>
-`
+```
 
 ## Creating and Submitting a Custom Builder
 
@@ -356,7 +356,7 @@ Make a copy of the`\builder-submissions\builder-submission-template.md` file and
 
 If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your `.xsl` should match the folder name plus the `.xsl` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next. This is the copyright associated with the XSLT builder and not that included in the generated output:
 
-`XML
+```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Copyright 2024 UCAIug
@@ -391,7 +391,7 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
       ...
       ...
 </xsl:stylesheet>
-`
+```
 
 ### Step 3:  Developing Your Builder
 
@@ -464,9 +464,9 @@ Finally, the **Extension** component of your assigned NTE is literally the exten
 
 Please note that you can experiment with your builder and test it by assigning a type of **TEXT** during import and review what **CIMTool** generates.  If there are issues delete the builder using the 'Maintain XSLT Builders' dialog (shown earlier) and reimport your builder as a **TRANSFORM** builder and recheck your output. This has been known to correct issues for certain builders that for example had their encoding set to ASCII:
 
-`XML
+```XML
 <xsl:output indent="no" method="text" encoding="ASCII"/>
-`
+```
 
 ### Step 4:  Final Pre-Commit Checklist for Review
 

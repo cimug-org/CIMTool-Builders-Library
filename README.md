@@ -5,7 +5,7 @@
       
 This is the official UCAIug repository for custom **CIMTool** [XSLT](https://www.w3schools.com/xml/xsl_intro.asp) builders and is provided as a public space to create, collaborate and contribute back builders for the benefit of the **CIMTool** community at large.  This library of builders can be used in [CIMTool](https://cimtool.ucaiug.io/) to generate various types of target artifacts from a **CIMTool** profile definition.  
 
-Would you like a custom builder that generates C/C++ objects from your CIMTool profiles? Perhaps you've wished there was a builder to create [Apache Avro](https://avro.apache.org/) schemas for data serialization or one that would automatically generate a [Google Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview) ```.proto``` file?  You can now with **CIMTool**'s custom builder import feature.
+Would you like a custom builder that generates C/C++ objects from your CIMTool profiles? Perhaps you've wished there was a builder to create [Apache Avro](https://avro.apache.org/) schemas for data serialization or one that would automatically generate a [Google Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview) `.proto` file?  You can now with **CIMTool**'s custom builder import feature.
 
 Included in this library is the base set of XSLT transforms that comes shipped with **CIMTool**. These have been included to serve as examples or starting points that can be either extended or used as working examples when creating new XSLT builders.
 
@@ -23,9 +23,9 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 | [legacy-rdfs.xsl](shipped-builders/legacy-rdfs/builder.md) | RDFS schema | The **legacy-rdfs.xsl** builder generates an early RDFS schema format used prior to that officially defined within the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215) published standard. |
 | [legacy-rdfs-augmented.xsl](shipped-builders/legacy-rdfs-augmented/builder.md) | RDFS schema | The **legacy-rdfs-augmented.xsl** builder generates RDFS schema in primary alignment with that defined within the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215) published standard. |
 | [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) | RDFS schema | This **rdfs-2020.xsl** builder generates RDFS2020 compliant schemas that reflect that latest de facto agreements on extensions post [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215). |
-| [jpa.xsl](shipped-builders/jpa/builder.md) | Java source file | The **jpa.xsl** builder generates a Java source file (```*.java```) containing JPA classes compatible with JPA 2.2 and earlier. The defined JPA classes can be utilized in Java applications for persisting profiles to a database. |
-| [scala.xsl](shipped-builders/scala/builder.md) | Scala source file | The **scala.xsl** builder produces a Scala source file (```*.scala```) that defines a vocabulary for a profile definition. These source files contain Scala classes/objects representative of those in the profile and may be used in applications implemented in the Scala programming language. |
-| [sql.xsl](shipped-builders/sql/builder.md) | SQL DDL file | The **sql.xsl** builder generates an ANSI SQL-compliant DDL (Data Definition Language) script (```*.sql```) that can be used to create the database tables and fields corresponding to the classes and attributes represented in a profile. |
+| [jpa.xsl](shipped-builders/jpa/builder.md) | Java source file | The **jpa.xsl** builder generates a Java source file (`*.java`) containing JPA classes compatible with JPA 2.2 and earlier. The defined JPA classes can be utilized in Java applications for persisting profiles to a database. |
+| [scala.xsl](shipped-builders/scala/builder.md) | Scala source file | The **scala.xsl** builder produces a Scala source file (`*.scala`) that defines a vocabulary for a profile definition. These source files contain Scala classes/objects representative of those in the profile and may be used in applications implemented in the Scala programming language. |
+| [sql.xsl](shipped-builders/sql/builder.md) | SQL DDL file | The **sql.xsl** builder generates an ANSI SQL-compliant DDL (Data Definition Language) script (`*.sql`) that can be used to create the database tables and fields corresponding to the classes and attributes represented in a profile. |
 | [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md) | Microsoft Word file | The **profile-doc-rtf.xsl** builder produces a Microsoft Word compatible RTF (Rich Text Format) document that contains the complete documentation for all classes, attributes and associations defined in a profile. |
 | [html.xsl](shipped-builders/html/builder.md) | HTML file | The **html.xsl** builder generates a standalone HTML file containing the complete documentation for all classes, attributes and associations defined in a profile. |
 | [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) | JSON schema | The **json-schema-draft-07.xsl** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is draft-07. |
@@ -63,7 +63,7 @@ From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builder
 
 ## How XSLT Builders Work
 
-As a working example, the screenshot below illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  ```GetUsagePointGroups.owl``` bordered in blue. An ```.owl``` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
+As a working example, the screenshot below illustrates a **CIMTool** profile named GetUsagePointGroups. The profile is represented as a [web ontology language](https://en.wikipedia.org/wiki/Web_Ontology_Language) file and appears in the **CIMTool** project as the  `GetUsagePointGroups.owl` bordered in blue. An `.owl` file is a public standalone artifact that can be imported or copied into other **CIMTool** projects.
 
 What is not well known is that **CIMTool** has an alternate internal representation for a profile that is used specifically by XSLT builders. This internal representation is an XML format structured in such a manner so as to support straightforward and efficient XSLT transformations into any target output.  This internal representation is exposed and available for viewing using the XML builder bordered in red in the screenshot.
 
@@ -71,17 +71,17 @@ What is not well known is that **CIMTool** has an alternate internal representat
 
 <br/>The file generated by the XML builder appears below. Noteworthy observations include:
 
-- the namespace ```xmlns:m="http://ucaiug.org//GetUsagePointGroups#"``` of the profile is declared on the outermost ```<Catalog>``` XML element.
-- the ```<Root>``` XML elements correspond to all classes declared as **concrete** in the profile i.e. those represented by the ![image](readme-icons/rootelement.png) icon and bordered in green in the above screenshot.
-- the ```<ComplexType>``` XML elements correspond to all non-concrete classes declared in the profile i.e. those represented by the ![image](readme-icons/element.png) icon.
-- a class's attributes and associations are defined by the ```<Simple>``` or ```<Instance>``` XML elements respectively.
-- for primitive typed attributes (e.g. string, float, etc.) an ```xstype``` XSD attribute is specified with a corresponding value from the set of W3C XSD [primitive datatypes](https://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/datatypes.html#built-in-primitive-datatypes).
-- the comments on class and attribute defined in the profile are included in the ```<Comment>``` XML elements.
-- minimum and maximum cardinality is declared via the ```minOccurs``` and ```maxOccurs``` attributes in each of the XML elements.
+- the namespace `xmlns:m="http://ucaiug.org//GetUsagePointGroups#"` of the profile is declared on the outermost `<Catalog>` XML element.
+- the `<Root>` XML elements correspond to all classes declared as **concrete** in the profile i.e. those represented by the ![image](readme-icons/rootelement.png) icon and bordered in green in the above screenshot.
+- the `<ComplexType>` XML elements correspond to all non-concrete classes declared in the profile i.e. those represented by the ![image](readme-icons/element.png) icon.
+- a class's attributes and associations are defined by the `<Simple>` or `<Instance>` XML elements respectively.
+- for primitive typed attributes (e.g. string, float, etc.) an `xstype` XSD attribute is specified with a corresponding value from the set of W3C XSD [primitive datatypes](https://www.w3.org/TR/2012/REC-xmlschema11-2-20120405/datatypes.html#built-in-primitive-datatypes).
+- the comments on class and attribute defined in the profile are included in the `<Comment>` XML elements.
+- minimum and maximum cardinality is declared via the `minOccurs` and `maxOccurs` attributes in each of the XML elements.
 
 The significance of this internal representation is that it serves as the input into any XSLT builder(s) enabled for a profile. The XML builder itself is made available only so end users can view the internal representation. It does not need to be checked for XSLT builders to function.
 
-```XML
+`XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog xmlns="http://langdale.com.au/2005/Message#"
          xmlns:m="http://ucaiug.org//GetUsagePointGroups#"
@@ -336,7 +336,7 @@ The significance of this internal representation is that it serves as the input 
       </InverseInstance>
    </Root>
 </Catalog>
-```
+`
 
 ## Creating and Submitting a Custom Builder
 
@@ -344,19 +344,19 @@ The following approach is recommended for creating, testing and submitting a cus
 
 ### Step 1:  Create a Branch to Work In
 
-First, request to be added as collaborator to the **CIMTool-Builders-Library** repository.  Create a branch off of ```main``` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
+You can start via one of two options. Either you can fork the **CIMTool-Builders-Library** repository, perform your work and then create a pulle request (see Step 5 below). Alternately, you can request to be added as a collaborator on the **CIMTool-Builders-Library** project and create a branch off of `main` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
 
-We ask you to name your branch to match what your XSLT will be named (e.g. ```google-proto-buffers.xsl```).
+We ask you to name your branch to match what your XSLT will be named (e.g. `google-proto-buffers.xsl`).
 
 ### Step 2:  Builder Setup Conventions
 
-Once you have created and cloned your branch make a subfolder under ```custom-builders``` that matches the name of your builder minus the ```.xsl``` extension.
+Once you have created and cloned your branch make a subfolder under `custom-builders` that matches the name of your builder minus the `.xsl` extension.
 
-Make a copy of the```\builder-submissions\builder-submission-template.md``` file and place it in your newly created subfolder. Rename it to ```builder.md``` and update its contents as outlined in the instructions contained in it.  Feel free to review other builders as examples.
+Make a copy of the`\builder-submissions\builder-submission-template.md` file and place it in your newly created subfolder. Rename it to `builder.md` and update its contents as outlined in the instructions contained in it.  Feel free to review other builders as examples.
 
-If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your ```.xsl``` should match the folder name plus the ```.xsl``` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next. This is the copyright associated with the XSLT builder and not that included in the generated output:
+If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your `.xsl` should match the folder name plus the `.xsl` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next. This is the copyright associated with the XSLT builder and not that included in the generated output:
 
-```XML
+`XML
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Copyright 2024 UCAIug
@@ -391,15 +391,15 @@ If you are deriving an XSLT from an existing builder then copy the builder into 
       ...
       ...
 </xsl:stylesheet>
-```
+`
 
 ### Step 3:  Developing Your Builder
 
 ### Overview of Internal Profile Representation
 
-Below is a comprehensive list of elements that may appear in the ```.xml``` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support anonymous in-lined type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
+Below is a comprehensive list of elements that may appear in the `.xml` internal representation of a profile used as input to XSLT builders. Some builders handle all of them while others ignore in-lined anonymous definitions. Which way you implement your builder is highly dependent on the output that your builder will be generating. For example, the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) schema builders handle the in-line type definition elements since the specifications for those output types support anonymous in-lined type definitions. However, the [scala.xsl](shipped-builders/scala/builder.md), [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md), and [sql.xsl](shipped-builders/sql/builder.md) builders do not. The recommendation is to handle them in your builder if your builder's generated output type supports them.
 
-The top-level elements that appear in an ```.xml``` profile indicate the various types defined and used in a profile and may include the following:
+The top-level elements that appear in an `.xml` profile indicate the various types defined and used in a profile and may include the following:
 
 - **Root** elements - all types declared as 'concrete' in the profile
 - **ComplexType** elements - non-concrete types in the profile (i.e. abstract types)
@@ -412,13 +412,13 @@ A top-level type further specifies child elements that indicate the attributes o
 - **Simple** elements - represent attributes defined as primitive types in the CIM. These elements will contain an @xstype attribute to specify the primitive.
 - **Instance** elements - represent associations in the profile. These elements will contain a @type attribute to specify the type within the profile that the association references.
 - **InverseInstance** elements - an **InverseInstance** element will always accompany an **Instance** element in the profile and as the name implies will represent the inverse of the association defined by the **Instance** element. It is specifically included for XSLT builders that may need to know this (e.g. commonly RDFS builders)
-- **Reference** elements - also represent associations but ones that must be handled uniquely. These elements will contain a @type attribute to specify the type the reference association is for.  The referent may or may not be represented elsewhere in the profile. When the referent is not represented in the profile, and thus is external to the profile, it may be defined in the contextual model as an abstract class with no concrete sub classes. XSLT builders may transform these elements into a variety of different ways depending on the type of builder and the specific target output.  In the case of [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) builders additional attributes/elements named ```ref``` and ```referenceType``` are generated in the target output. The ```ref``` is used to hold an identifier (i.e. used for the purposes of referencing) and an optional ```referenceType``` used to define the kind of identifier specified by the ```ref``` (e.g. 'mRID' or 'Names.name'). This unique mapping relevant for XSD and JSON schema generation is formally defined within the IEC 62361-100 and IEC 62361-104 standards respectively. Other builders may handle output for **Reference** elements in a completley different manner (see: [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) for example)
+- **Reference** elements - also represent associations but ones that must be handled uniquely. These elements will contain a @type attribute to specify the type the reference association is for.  The referent may or may not be represented elsewhere in the profile. When the referent is not represented in the profile, and thus is external to the profile, it may be defined in the contextual model as an abstract class with no concrete sub classes. XSLT builders may transform these elements into a variety of different ways depending on the type of builder and the specific target output.  In the case of [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) builders additional attributes/elements named `ref` and `referenceType` are generated in the target output. The `ref` is used to hold an identifier (i.e. used for the purposes of referencing) and an optional `referenceType` used to define the kind of identifier specified by the `ref` (e.g. 'mRID' or 'Names.name'). This unique mapping relevant for XSD and JSON schema generation is formally defined within the IEC 62361-100 and IEC 62361-104 standards respectively. Other builders may handle output for **Reference** elements in a completley different manner (see: [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) for example)
 - **InverseReference** elements - an **InverseReference** element will always accompany a **Reference** element in the profile and as the name implies will represent the inverse of the association defined by the **Reference** element. It is specifically included for XSLT builders that may need to know this (e.g. commonly RDFS builders)
 - **Domain** elements - represent attributes that have a type defined that corresponds to a &lt;&lt;CIMDatatype&gt;&gt; class in the CIM. These types currently resolve to a primitive in CIMTool and therefore the XML child element will contain an @xstype attribute to specify the primitive.
 - **Enumerated** elements - represents an attribute in a class who's referent type is an enumeration defined in the profile. These elements will contain a @type attribute to specify the referent enumeration.
 - **Choice** elements - represents a union property defined for a class which is an association that references a super class in the profile. In this context, the union property essentially offers a choice for what the referent type can be. Specifically, the options for the referent type are the subclasses of the union superclass defined in the profile.
 
-There are two additional specialized cases of child elements for specifying an attribute or association defined for a type. These represent what might be described as an in-lined anonymous definition for the referent type of the attribute or association. They do not represent an actual UML construct in the CIM but rather a particular profiling approach relevant to specific target schema specifications or generated output types (e.g. XSD and JSON schema or anonymous types in Java) that support such in-line anonymous types (see: [Associations and Anonymous Classes](https://wiki.cimtool.org/Associations_and_Anonymous_Classes.html) and [Why There Are so Many Top Level Definitions in an XML Schema Profile](https://wiki.cimtool.org/Why_There_Are_so_Many_Top_Level_Definitions_in_an_XML_Schema_Profile.html) - these articles also are provided as PDF files in the ```\articles``` folder). The child elements for these specialized cases are:
+There are two additional specialized cases of child elements for specifying an attribute or association defined for a type. These represent what might be described as an in-lined anonymous definition for the referent type of the attribute or association. They do not represent an actual UML construct in the CIM but rather a particular profiling approach relevant to specific target schema specifications or generated output types (e.g. XSD and JSON schema or anonymous types in Java) that support such in-line anonymous types (see: [Associations and Anonymous Classes](https://wiki.cimtool.org/Associations_and_Anonymous_Classes.html) and [Why There Are so Many Top Level Definitions in an XML Schema Profile](https://wiki.cimtool.org/Why_There_Are_so_Many_Top_Level_Definitions_in_an_XML_Schema_Profile.html) - these articles also are provided as PDF files in the `\articles` folder). The child elements for these specialized cases are:
 
 - **SimpleEnumerated** elements - a variant of **Enumerated** this element represents an attribute in a class who's referent type is an enumeration. However, this variant will not contain a @type attribute to specify the referent enumeration. Rather the enumeration is defined anonymously as an in-lined type definition. See the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) for examples of builders handling **SimpleEnumerated** elements.
 - **Complex** elements - a variant of **ComplexType** this element represents an association in a class who's referent type is a CIM class. However, this element will not contain a @type attribute to specify the referent type. Rather the type is defined anonymously as an in-lined type definition. Again, see the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) for examples of builders handling **Complex** elements.
@@ -430,9 +430,9 @@ Finally, there are a couple of additional elements to highlight that are used fo
 
 ### Development and Testing
 
-Turning now to developing and testing your builder. Provided in the table at the end of this README is a list of tooling both free and commercial for developing and testing XSLT transforms.  This list is by no means comprehensive but is a good starting point. The intent is that one of these options (or a similar option) is used to create, edit and debug your XSLT builder using the ```.xml``` internal representations as input. Each of the individual toolsets outlined has its own instructions on how to run/debug XSLTs in their environments. You can utilize one of the existing stable builders in this library to experiment with in the environment. For an introductory tutorial on XSLT visit the [W3C XSLT tutorial](https://www.w3schools.com/xml/xsl_intro.asp).
+Turning now to developing and testing your builder. Provided in the table at the end of this README is a list of tooling both free and commercial for developing and testing XSLT transforms.  This list is by no means comprehensive but is a good starting point. The intent is that one of these options (or a similar option) is used to create, edit and debug your XSLT builder using the `.xml` internal representations as input. Each of the individual toolsets outlined has its own instructions on how to run/debug XSLTs in their environments. You can utilize one of the existing stable builders in this library to experiment with in the environment. For an introductory tutorial on XSLT visit the [W3C XSLT tutorial](https://www.w3schools.com/xml/xsl_intro.asp).
 
-Also provided in the ```/builder-submissions``` folder in this repository is the **CIMTool-Test-Project**. This project contains two ```.owl``` profiles along with their respective ```.xml``` files. The **EndDeviceControlsTestProfilWithAnonymousTypes.owl** profile and its corresponding [EndDeviceControlsTestProfilWithAnonymousTypes.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.xml) contain all possible XML elements as just described while the **EndDeviceControlsTestProfile.owl** and its corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file are defined without anonymous type definitions. The project has been provided as a matter of convenience. You can use it to create your own profile definitions or utilize just the pre-generated ```.xml``` files for testing your builder depending on whether your builder's target output supports anonymous classes.
+Also provided in the `/builder-submissions` folder in this repository is the **CIMTool-Test-Project**. This project contains two `.owl` profiles along with their respective `.xml` files. The **EndDeviceControlsTestProfilWithAnonymousTypes.owl** profile and its corresponding [EndDeviceControlsTestProfilWithAnonymousTypes.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.xml) contain all possible XML elements as just described while the **EndDeviceControlsTestProfile.owl** and its corresponding [EndDeviceControlsTestProfile.xml](builder-submissions/CIMTool-Test-Project/Profiles/EndDeviceControlsTestProfile.xml) file are defined without anonymous type definitions. The project has been provided as a matter of convenience. You can use it to create your own profile definitions or utilize just the pre-generated `.xml` files for testing your builder depending on whether your builder's target output supports anonymous classes.
 
 ### Internal XSLT Parameters Passed By CIMTool
 
@@ -450,7 +450,7 @@ For copyright support you must determine which of the two your builder will use.
 
 All builders have what is referred to as a NTE (Name/Type/Extension) configuration entry assigned to them when imported into **CIMTool**. This information is used internally by **CIMTool** for different purposes.
 
-The **Name** component of a NTE is static and is auto-assigned during import and is based on the file name of the XSLT file minus the ```.xsl``` extension. You should stick to standard ascii alphanumeric characters and avoid any special characters in your XSLT file name.
+The **Name** component of a NTE is static and is auto-assigned during import and is based on the file name of the XSLT file minus the `.xsl` extension. You should stick to standard ascii alphanumeric characters and avoid any special characters in your XSLT file name.
 
 For the **Type** component assigned to the builder there are three variants of XSLT transforms that your builder can be categorized in. As to which variant your builder falls into is dependent upon the type of output it will be generating:
 - **XSD** - This type should only be used if your are generating an XSD based schema as your output. This is because specialized validation on XSDs are performed after they are generated by this category of builder.
@@ -464,18 +464,18 @@ Finally, the **Extension** component of your assigned NTE is literally the exten
 
 Please note that you can experiment with your builder and test it by assigning a type of **TEXT** during import and review what **CIMTool** generates.  If there are issues delete the builder using the 'Maintain XSLT Builders' dialog (shown earlier) and reimport your builder as a **TRANSFORM** builder and recheck your output. This has been known to correct issues for certain builders that for example had their encoding set to ASCII:
 
-```XML
+`XML
 <xsl:output indent="no" method="text" encoding="ASCII"/>
-```
+`
 
 ### Step 4:  Final Pre-Commit Checklist for Review
 
 Once you've determined your builder is ready confirm the following items:
 
-1. The detailed description in your ```builder.md``` has been completed.  If there are particular aspects of your builder that should be highlighted this should be done here. For example, if your builder warrants it, you may include images in your builder's folder and display them within the description section of your builder.md file.  A great example of this is the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md) builder.
-2. You've uploaded a NTE (Name/Type/Extension) Import wizard screenshot named ```import-builder.png``` (e.g. [import-builder.png](shipped-builders/xsd/import-builder.png)) file to your custom builder's folder. You can refer to existing builders as examples.
-3. Your builder is using either the ```$copyright``` or ```$copyright-single-line``` parameter to generate a copyright as part of its generated output.  A copyright is relevant for most builders.
-4. You have added a new row to the **Community Developed Builders** table in this README. The description in the row entry is typically a simplified version of the description in your builder's ```builders.md``` summarizing your builder.
+1. The detailed description in your `builder.md` has been completed.  If there are particular aspects of your builder that should be highlighted this should be done here. For example, if your builder warrants it, you may include images in your builder's folder and display them within the description section of your builder.md file.  A great example of this is the [profile-doc-rtf.xsl](shipped-builders/profile-doc-rtf/builder.md) builder.
+2. You've uploaded a NTE (Name/Type/Extension) Import wizard screenshot named `import-builder.png` (e.g. [import-builder.png](shipped-builders/xsd/import-builder.png)) file to your custom builder's folder. You can refer to existing builders as examples.
+3. Your builder is using either the `$copyright` or `$copyright-single-line` parameter to generate a copyright as part of its generated output.  A copyright is relevant for most builders.
+4. You have added a new row to the **Community Developed Builders** table in this README. The description in the row entry is typically a simplified version of the description in your builder's `builders.md` summarizing your builder.
 
 ### Step 5:  Pull Request
 

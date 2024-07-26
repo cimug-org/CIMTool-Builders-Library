@@ -7,7 +7,7 @@ This is the official UCAIug repository for custom **CIMTool** [XSLT](https://www
 
 Would you like a custom builder that generates C/C++ objects from your CIMTool profiles? Perhaps you've wished there was a builder to create [Apache Avro](https://avro.apache.org/) schemas for data serialization or one that would automatically generate a [Google Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview) `.proto` file?  You can now with **CIMTool**'s custom builder import feature.
 
-Included in this library is the base set of XSLT transforms that comes shipped with **CIMTool**. These have been included to serve as examples or starting points that can be either extended or used as working examples when creating new XSLT builders.
+Included in this library is the base set of XSLT transforms that come shipped with **CIMTool**. These have been included to serve as examples or starting points that can be either extended or used as working examples when creating new XSLT builders.
 
 Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builders-Library/discussions) around a new idea for a custom builder or to post a question on the discussions board. Please contribute new builders to this library using the submission process outlined towards the end of this page.
 

@@ -344,7 +344,7 @@ The following approach is recommended for creating, testing and submitting a cus
 
 ### Step 1:  Create a Branch to Work In
 
-You can start via one of two options. Either you can fork the **CIMTool-Builders-Library** repository, perform your work and then create a pulle request (see Step 5 below). Alternately, you can request to be added as a collaborator on the **CIMTool-Builders-Library** project and create a branch off of `main` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
+You can start via one of two options. Either you can fork the **CIMTool-Builders-Library** repository, perform your work and then create a pull request (see Step 5 below). Alternately, you can request to be added as a collaborator on the **CIMTool-Builders-Library** project and create a branch off of `main` to develop your custom builder. A branch will isolate your development work from other branches in the repository.
 
 We ask you to name your branch to match what your XSLT will be named (e.g. `google-proto-buffers.xsl`).
 

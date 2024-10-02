@@ -32,6 +32,8 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 | [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) | JSON schema | The **json-schema-draft-2020-12.xsl** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is draft-2020-12. |
 | [cimantic-graphs.xsl](shipped-builders/cimantic-graphs/builder.md)| Python Source Code | The **cimantic-graphs.xsl** builder produces a specialized python dataclass schema to be used as input into the CIMantic Graphs open source library for creating, parsing, and editing CIM power system models using in-memory knowledge graphs. |
 | [cimantic-graphs-init.xsl](shipped-builders/cimantic-graphs/builder.md)| Python Source Code | This builder is intended to be used in conjunction with the **cimantic-graphs.xsl** builder and is responsible for generating the `python __init__.py` file required for library imports to work correctly. |
+| [puml-t2b.xsl](shipped-builders/puml-t2b/builder.md)| PlantUML class diagram | The **puml-t2b.xsl** builder produces a PlantUML class diagram representing the profile (for an RDFS schema) that this builder is executed on. The layout of the diagram is top-to-bottom (i.e. t2b). |
+| [puml-l2r.xsl](shipped-builders/puml-l2r/builder.md)| PlantUML class diagram | The **puml-l2r.xsl** builder produces a PlantUML class diagram representing the profile (for an RDFS schema) that this builder is executed on. The layout of the diagram is left-to-right (i.e. l2r). |
 
 #### Community Developed Builders:
 

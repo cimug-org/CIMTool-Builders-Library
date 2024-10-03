@@ -6,6 +6,8 @@ This builder currently ships with CIMTool.
 
 The **[puml-t2b.xsl](puml-t2b.xsl)** builder produces a [PlantUML](https://plantuml.com) class diagram representing the profile (for an RDFS schema) that this builder is executed for. The layout of the diagram is top-to-bottom (i.e. t2b).
 
+The following is an example of a generated PlantUML class diagram:
+
 ![image](sample-puml-t2b.png)
 
 ## XSLT Version

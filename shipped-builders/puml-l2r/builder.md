@@ -6,6 +6,8 @@ This builder currently ships with CIMTool.
 
 The **[puml-l2r.xsl](puml-l2r.xsl)** builder produces a [PlantUML](https://plantuml.com) class diagram representing the profile (for an RDFS schema) that this builder is executed for. The layout of the diagram is left-to-right (i.e. l2r).
 
+The following is an example of a generated PlantUML class diagram:
+
 ![image](sample-puml-l2r.png)
 
 ## XSLT Version

@@ -438,7 +438,7 @@ Also provided in the `/builder-submissions` folder in this repository is the **C
 
 ### Internal XSLT Parameters Passed By CIMTool
 
-Finally, **CIMTool** internally passes along the following parameters into all XSLT builders:
+Finally, **CIMTool**  passes along the following parameters into all XSLT builders:
 
 - **baseURI** - the baseURI is the namespace specified in the Namespace field on the Profile Summary tab for a profile.
 - **ontologyURI** - the ontologyURI is the namespace URI specified at the time a CIM schema is imported into a CIMTool project.  It is the URI that appears in the 'Namespace URI' field on properties dialog for the schema. Some builders needed this additional URI for use in their generated output (refer to the [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) for an example).
@@ -446,7 +446,7 @@ Finally, **CIMTool** internally passes along the following parameters into all X
 - **copyright** - the text of a multi-line copyright if one is configured for the project.
 - **copyright-single-line** - the text of a single-line copyright if one is configured for the project.
 
-For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how these four internally passed parameters are used. Currently only the JSON schema related builders utilize the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas and therefore requies a single line copyright notice.
+For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how each of these internally passed parameters are used. Currently only the JSON schema related builders utilize the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas and therefore requies a single line copyright notice.
 
 ### NTE (Name/Type/Extension) Assignment
 

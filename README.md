@@ -86,9 +86,9 @@ The significance of this internal representation is that it serves as the input 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog xmlns="http://langdale.com.au/2005/Message#"
-         xmlns:m="http://ucaiug.org//GetUsagePointGroups#"
-         ontologyURI="http://iec.ch/TC57/CIM100"
-         baseURI="http://iec.ch/TC57/GetUsagePointGroups#"
+         xmlns:m="http://ucaiug.org/GetUsagePointGroups#"
+         ontologyURI="http://.ch/TC57/CIM100"
+         baseURI="http://ucaiug.org/GetUsagePointGroups#"
          name="GetUsagePointGroups">
    <Package name="Base" basePackage="http://iec.ch/TC57/CIM100#Package_Base">
       <Comment>This package models configuration of ICCP required for bilateral exchanges.</Comment>

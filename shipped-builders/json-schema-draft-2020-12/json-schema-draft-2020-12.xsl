@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2022 UCAIug
+  Copyright 2024 UCAIug
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -1030,7 +1030,7 @@
 	<!-- END SECTION:  ComplexType, Root, & CompoundType(s) attribute/association templates                           -->
 	<!-- ============================================================================================================ -->
 	<xsl:template name="annotate">
-		<xsl:variable name="notes" select="a:Comment|a:Note"/>
+		<xsl:param name="notes" select="a:Comment|a:Note"/>
 		<!-- generate human readable annotation -->
 		<list begin="" indent="" delim=" " end="">
 			<xsl:for-each select="$notes">

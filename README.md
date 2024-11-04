@@ -30,8 +30,10 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 | [html.xsl](shipped-builders/html/builder.md) | HTML file | The **html.xsl** builder generates a standalone HTML file containing the complete documentation for all classes, attributes and associations defined in a profile. |
 | [json-schema-draft-07.xsl](shipped-builders/json-schema-draft-07/builder.md) | JSON schema | The **json-schema-draft-07.xsl** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is draft-07. |
 | [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) | JSON schema | The **json-schema-draft-2020-12.xsl** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is draft-2020-12. |
-| [cimantic-graphs.xsl](custom-builders/cimantic-graphs/builder.md)| Python Source Code | The **cimantic-graphs.xsl** builder produces a specialized python dataclass schema to be used as input into the CIMantic Graphs open source library for creating, parsing, and editing CIM power system models using in-memory knowledge graphs. |
-| [cimantic-graphs-init.xsl](custom-builders/cimantic-graphs/builder.md)| Python Source Code | This builder is intended to be used in conjunction with the **cimantic-graphs.xsl** builder and is responsible for generating the `python __init__.py` file required for library imports to work correctly. |
+| [cimantic-graphs.xsl](shipped-builders/cimantic-graphs/builder.md)| Python Source Code | The **cimantic-graphs.xsl** builder produces a specialized python dataclass schema to be used as input into the CIMantic Graphs open source library for creating, parsing, and editing CIM power system models using in-memory knowledge graphs. |
+| [cimantic-graphs-init.xsl](shipped-builders/cimantic-graphs/builder.md)| Python Source Code | This builder is intended to be used in conjunction with the **cimantic-graphs.xsl** builder and is responsible for generating the `python __init__.py` file required for library imports to work correctly. |
+| [puml-t2b.xsl](shipped-builders/puml-t2b/builder.md)| PlantUML class diagram | The **puml-t2b.xsl** builder produces a PlantUML class diagram representing the profile (for an RDFS schema) that this builder is executed on. The layout of the diagram is top-to-bottom (i.e. t2b). |
+| [puml-l2r.xsl](shipped-builders/puml-l2r/builder.md)| PlantUML class diagram | The **puml-l2r.xsl** builder produces a PlantUML class diagram representing the profile (for an RDFS schema) that this builder is executed on. The layout of the diagram is left-to-right (i.e. l2r). |
 
 #### Community Developed Builders:
 
@@ -59,7 +61,10 @@ From the "Import" wizards screen... | ...Launch the "Import XSLT Transform Build
 
 From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builders" screen
 ---------|---------
-[![image](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png)](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png) |[![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
+|[![image](https://github.com/user-attachments/assets/a7025bab-4a0b-4232-a61d-9121ae6deacd)](https://github.com/user-attachments/assets/a7025bab-4a0b-4232-a61d-9121ae6deacd) | [![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
+
+
+
 
 ## How XSLT Builders Work
 
@@ -84,9 +89,9 @@ The significance of this internal representation is that it serves as the input 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog xmlns="http://langdale.com.au/2005/Message#"
-         xmlns:m="http://ucaiug.org//GetUsagePointGroups#"
-         ontologyURI="http://iec.ch/TC57/CIM100"
-         baseURI="http://iec.ch/TC57/GetUsagePointGroups#"
+         xmlns:m="http://ucaiug.org/GetUsagePointGroups#"
+         ontologyURI="http://.ch/TC57/CIM100"
+         baseURI="http://ucaiug.org/GetUsagePointGroups#"
          name="GetUsagePointGroups">
    <Package name="Base" basePackage="http://iec.ch/TC57/CIM100#Package_Base">
       <Comment>This package models configuration of ICCP required for bilateral exchanges.</Comment>
@@ -418,7 +423,7 @@ A top-level type further specifies child elements that indicate the attributes o
 - **Enumerated** elements - represents an attribute in a class who's referent type is an enumeration defined in the profile. These elements will contain a @type attribute to specify the referent enumeration.
 - **Choice** elements - represents a union property defined for a class which is an association that references a super class in the profile. In this context, the union property essentially offers a choice for what the referent type can be. Specifically, the options for the referent type are the subclasses of the union superclass defined in the profile.
 
-There are two additional specialized cases of child elements for specifying an attribute or association defined for a type. These represent what might be described as an in-lined anonymous definition for the referent type of the attribute or association. They do not represent an actual UML construct in the CIM but rather a particular profiling approach relevant to specific target schema specifications or generated output types (e.g. XSD and JSON schema or anonymous types in Java) that support such in-line anonymous types (see: [Associations and Anonymous Classes](https://wiki.cimtool.org/Associations_and_Anonymous_Classes.html) and [Why There Are so Many Top Level Definitions in an XML Schema Profile](https://wiki.cimtool.org/Why_There_Are_so_Many_Top_Level_Definitions_in_an_XML_Schema_Profile.html) - these articles also are provided as PDF files in the `\articles` folder). The child elements for these specialized cases are:
+There are two additional specialized cases of child elements for specifying an attribute or association defined for a type. These represent what might be described as an in-lined anonymous definition for the referent type of the attribute or association. They do not represent an actual UML construct in the CIM but rather a particular profiling approach relevant to specific target schema specifications or generated output types (e.g. XSD and JSON schema or anonymous types in Java) that support such in-line anonymous types (see: [Associations and Anonymous Classes](articles/Associations_and_Anonymous_Classes.pdf) and [Why There Are so Many Top Level Definitions in an XML Schema Profile](articles/Why_There_Are_so_Many_Top_Level_Definitions_in_an_XML_Schema_Profile.pdf) - these articles also are provided as PDF files in the `\articles` folder). The child elements for these specialized cases are:
 
 - **SimpleEnumerated** elements - a variant of **Enumerated** this element represents an attribute in a class who's referent type is an enumeration. However, this variant will not contain a @type attribute to specify the referent enumeration. Rather the enumeration is defined anonymously as an in-lined type definition. See the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) for examples of builders handling **SimpleEnumerated** elements.
 - **Complex** elements - a variant of **ComplexType** this element represents an association in a class who's referent type is a CIM class. However, this element will not contain a @type attribute to specify the referent type. Rather the type is defined anonymously as an in-lined type definition. Again, see the [xsd.xsl](shipped-builders/xsd/builder.md) and [json-schema-draft-2020-12.xsl](shipped-builders/json-schema-draft-2020-12/builder.md) for examples of builders handling **Complex** elements.
@@ -436,7 +441,7 @@ Also provided in the `/builder-submissions` folder in this repository is the **C
 
 ### Internal XSLT Parameters Passed By CIMTool
 
-Finally, **CIMTool** internally passes along the following parameters into all XSLT builders:
+Finally, **CIMTool**  passes along the following parameters into all XSLT builders:
 
 - **baseURI** - the baseURI is the namespace specified in the Namespace field on the Profile Summary tab for a profile.
 - **ontologyURI** - the ontologyURI is the namespace URI specified at the time a CIM schema is imported into a CIMTool project.  It is the URI that appears in the 'Namespace URI' field on properties dialog for the schema. Some builders needed this additional URI for use in their generated output (refer to the [rdfs-2020.xsl](shipped-builders/rdfs-2020/builder.md) for an example).
@@ -444,7 +449,7 @@ Finally, **CIMTool** internally passes along the following parameters into all X
 - **copyright** - the text of a multi-line copyright if one is configured for the project.
 - **copyright-single-line** - the text of a single-line copyright if one is configured for the project.
 
-For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how these four internally passed parameters are used. Currently only the JSON schema related builders utilize the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas and therefore requies a single line copyright notice.
+For copyright support you must determine which of the two your builder will use. Most likely your builder will utilize the multiline **copyright**. Refer to existing builders in this library for examples of how each of these internally passed parameters are used. The JSON schema related builders provide an example of utilizing the **copyright-single-line** as JSON has certain constraints related to carriage returns in descriptions and comments within schemas and therefore requies a single line copyright notice.
 
 ### NTE (Name/Type/Extension) Assignment
 

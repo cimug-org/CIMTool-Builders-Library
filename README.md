@@ -61,7 +61,10 @@ From the "Import" wizards screen... | ...Launch the "Import XSLT Transform Build
 
 From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builders" screen
 ---------|---------
-[![image](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png)](https://user-images.githubusercontent.com/63370413/186978387-015e3f32-7683-4623-bb8a-017e97102db6.png) |[![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
+|[![image](https://github.com/user-attachments/assets/a7025bab-4a0b-4232-a61d-9121ae6deacd)](https://github.com/user-attachments/assets/a7025bab-4a0b-4232-a61d-9121ae6deacd) | [![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
+
+
+
 
 ## How XSLT Builders Work
 

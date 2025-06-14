@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-This builder is released under a BSD-3 license as part of the CIMantic Graphs library developed by PNNL.
-
-This software was created under a project sponsored by the U.S. Department of Energy’s Office of Electricity, 
-an agency of the United States Government. Neither the United States Government nor the United States Department 
-of Energy, nor Battelle, nor any of their employees, nor any jurisdiction or organization that has cooperated 
-in the development of these materials, makes any warranty, express or implied, or assumes any legal liability 
-or responsibility for the accuracy, completeness, or usefulness or any information, apparatus, product, software, 
-or process disclosed, or represents that its use would not infringe privately owned rights.
-
-Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, 
-or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United 
-States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed 
-herein do not necessarily state or reflect those of the United States Government or any agency thereof.
-
-PACIFIC NORTHWEST NATIONAL LABORATORY operated by BATTELLE for the UNITED STATES DEPARTMENT OF ENERGY 
-under Contract DE-AC05-76RL01830
+     This builder is released under a BSD-3 license as part of the CIMantic Graphs library developed by PNNL.
+     
+     This software was created under a project sponsored by the U.S. Department of Energy’s Office of Electricity, 
+     an agency of the United States Government. Neither the United States Government nor the United States Department 
+     of Energy, nor Battelle, nor any of their employees, nor any jurisdiction or organization that has cooperated 
+     in the development of these materials, makes any warranty, express or implied, or assumes any legal liability 
+     or responsibility for the accuracy, completeness, or usefulness or any information, apparatus, product, software, 
+     or process disclosed, or represents that its use would not infringe privately owned rights.
+     
+     Reference herein to any specific commercial product, process, or service by trade name, trademark, manufacturer, 
+     or otherwise does not necessarily constitute or imply its endorsement, recommendation, or favoring by the United 
+     States Government or any agency thereof, or Battelle Memorial Institute. The views and opinions of authors expressed 
+     herein do not necessarily state or reflect those of the United States Government or any agency thereof.
+     
+     PACIFIC NORTHWEST NATIONAL LABORATORY operated by BATTELLE for the UNITED STATES DEPARTMENT OF ENERGY 
+     under Contract DE-AC05-76RL01830
 -->
 <xsl:stylesheet version="1.0"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -43,7 +43,8 @@ under Contract DE-AC05-76RL01830
             <item>from dataclasses import dataclass, field</item>
             <item>from typing import Optional</item>
             <item>from enum import Enum</item>
-            <item>from cimgraph.data_profile.identity import Identity</item>
+            <item>from cimgraph.data_profile.identity import Identity, CIMStereotype, stereotype</item>
+            <item>from cimgraph.data_profile.units import CIMUnit</item>
             <item>_log = logging.getLogger(__name__)</item>
 
             <list begin="'''" indent="    " end="'''">
@@ -55,36 +56,57 @@ under Contract DE-AC05-76RL01830
             <item>BASE_URI = '<xsl:value-of select="$baseURI"/>'</item>
             <item>ONTOLOGY_URI = '<xsl:value-of select="$ontologyURI"/>#'</item>
             <item></item>
-
-        <!-- Start with top-level concrete classes and then work down -->
-        <xsl:for-each select="a:Root[not(a:SuperType)]">
-            <xsl:call-template name="super"/>
-        </xsl:for-each>
-        <!-- Then do top-level abstract classes and work down -->
-        <xsl:for-each select="a:ComplexType[not(a:SuperType)]">
-            <xsl:call-template name="super"/>
-        </xsl:for-each>
-        <!-- Then do all enumerations -->
-        <xsl:for-each select="a:EnumeratedType">
-            <xsl:call-template name="enumeration"/>
-        </xsl:for-each>
-        <!-- Then do all primitives -->
-        <xsl:for-each select="a:SimpleType">
-            <xsl:call-template name="primitive"/>
-        </xsl:for-each>
-        <!-- Then do all compounds -->
-        <xsl:for-each select="a:CompoundType">
-            <xsl:call-template name="super"/>
-        </xsl:for-each>
+            
+            <!-- Start with top-level concrete classes and then work down -->
+            <xsl:for-each select="a:Root[not(a:SuperType)]">
+                <xsl:call-template name="super"/>
+            </xsl:for-each>
+            <!-- Then do top-level abstract classes and work down -->
+            <xsl:for-each select="a:ComplexType[not(a:SuperType)]">
+                <xsl:call-template name="super"/>
+            </xsl:for-each>
+            <!-- Then do all enumerations -->
+            <xsl:for-each select="a:EnumeratedType">
+                <xsl:call-template name="enumeration"/>
+            </xsl:for-each>
+            <!-- Then do all primitives -->
+            <xsl:for-each select="a:SimpleType">
+                <xsl:call-template name="units"/>
+            </xsl:for-each>
+            <!-- Then do all compounds -->
+            <xsl:for-each select="a:CompoundType">
+                <xsl:call-template name="super"/>
+            </xsl:for-each>
         </document>
     </xsl:template>
-
+    
     <!-- Template for top-level classes with no inheritance -->
     <xsl:template name="super">
         <!-- Create dataclass for each CIM class -->
+        
+        <!-- Parse Stereotype -->
+        <xsl:choose>
+            <xsl:when test="a:Stereotype[@label='Description']">
+                <item>@stereotype(CIMStereotype.Description)</item>
+            </xsl:when>
+            <xsl:when test="a:Stereotype[@label='Concrete']">
+                <item>@stereotype(CIMStereotype.Concrete)</item>
+            </xsl:when>
+            <xsl:when test="a:Stereotype/@label">
+                <item>@stereotype(CIMStereotype.<xsl:value-of select="a:Stereotype/@label"/>)</item>
+            </xsl:when>
+        </xsl:choose>
+        
+        <xsl:variable name="name">
+            <xsl:call-template name="name">
+                <xsl:with-param name="name" select="@name"/>
+                <xsl:with-param name="type" select="@name"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
         <item>@dataclass(repr=False)</item>
-        <item>class <xsl:value-of select="@name"/>(Identity):</item>
-
+        <item>class <xsl:value-of select="$name"/>(Identity):</item>
+        
         <!-- Parse all comment text, merge multiple comments into single block -->
         <list begin="    '''" indent="    " end="    '''">
             <xsl:for-each select="a:Comment">
@@ -92,7 +114,7 @@ under Contract DE-AC05-76RL01830
             </xsl:for-each>
         </list>
         <item></item>
-
+        
         <!-- Parse all simple attributes -->
         <xsl:for-each select="a:Simple">
             <list begin="" indent="    " end="">
@@ -116,17 +138,38 @@ under Contract DE-AC05-76RL01830
             <xsl:call-template name="lower"/>
         </xsl:for-each>
     </xsl:template>
-
+    
     <!-- Template for lower level classes -->
     <xsl:template name="lower">
         <!-- Only process the first occurrence of each SuperType -->
         <xsl:if test="generate-id() = generate-id(key('classes-by-super', a:SuperType/@name)[1])">
             <!-- Find all Root elements with the same SuperType -->
             <xsl:for-each select="key('classes-by-super', a:SuperType/@name)">
+                <!-- Parse Stereotype -->
+                <xsl:choose>
+                    <xsl:when test="a:Stereotype[@label='Description']">
+                        <item>@stereotype(CIMStereotype.Description)</item>
+                    </xsl:when>
+                    <xsl:when test="a:Stereotype[@label='Concrete']">
+                        <item>@stereotype(CIMStereotype.Concrete)</item>
+                    </xsl:when>
+                    <xsl:when test="a:Stereotype/@label">
+                        <item>@stereotype(CIMStereotype.<xsl:value-of select="a:Stereotype/@label"/>)</item>
+                    </xsl:when>
+                </xsl:choose>
+                
                 <!-- Create dataclass for each CIM class -->
                 <item>@dataclass(repr=False)</item>
+                
+                <xsl:variable name="name">
+                    <xsl:call-template name="name">
+                        <xsl:with-param name="name" select="@name"/>
+                        <xsl:with-param name="type" select="@name"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                
                 <item>
-                    class <xsl:value-of select="@name"/>(<xsl:value-of select="a:SuperType/@name"/>):
+                    class <xsl:value-of select="$name"/>(<xsl:value-of select="a:SuperType/@name"/>):
                 </item>
                 <!-- Parse all comment text, merge multiple comments into single block -->
                 <list begin="    '''" indent="    " end="    '''">
@@ -135,7 +178,7 @@ under Contract DE-AC05-76RL01830
                     </xsl:for-each>
                 </list>
                 <item></item>
-
+                
                 <!-- Parse all simple attributes -->
                 <xsl:for-each select="a:Simple">
                     <list begin="" indent="    " end="">
@@ -161,7 +204,7 @@ under Contract DE-AC05-76RL01830
             </xsl:for-each>
         </xsl:if>
     </xsl:template>
-
+    
     <!-- Template for Domain attributes with datatypes -->
     <xsl:template name = 'attribute'>
         <!-- Parse attributes with cardinality of 0..1 -->
@@ -206,10 +249,10 @@ under Contract DE-AC05-76RL01830
                 </xsl:for-each>
             </list>
             <item></item>
-
+            
         </xsl:if>
     </xsl:template>
-
+    
     <!-- Template for Simple attributes with primitive datatypes -->
     <xsl:template name = 'simpleattribute'>
         <!-- Parse attributes with cardinality of 0..1 -->
@@ -251,10 +294,10 @@ under Contract DE-AC05-76RL01830
                 </xsl:for-each>
             </list>
             <item></item>
-
+            
         </xsl:if>
     </xsl:template>
-
+    
     <!-- Template for associations with other classes -->
     <xsl:template name = 'assocation'>
         <!-- Parse assocations with cardinality of 0..1 -->
@@ -308,13 +351,20 @@ under Contract DE-AC05-76RL01830
             </xsl:for-each>
         </list>
         <item></item>
-
+        
     </xsl:template>
-
+    
     <!-- Template for enumerations -->
     <xsl:template name="enumeration">
         <!-- Parse enumeration name -->
-        <item>class <xsl:value-of select="@name"/>(Enum):</item>
+        <xsl:variable name="name">
+            <xsl:call-template name="name">
+                <xsl:with-param name="name" select="@name"/>
+                <xsl:with-param name="type" select="@name"/>
+            </xsl:call-template>
+        </xsl:variable>
+        <item>@stereotype(CIMStereotype.Enumeration)</item>
+        <item>class <xsl:value-of select="$name"/>(Enum):</item>
         <!-- Parse all comment text, merge multiple comments into single block -->
         <list begin="    '''" indent="    " end="    '''">
             <xsl:for-each select="a:Comment">
@@ -322,7 +372,7 @@ under Contract DE-AC05-76RL01830
             </xsl:for-each>
         </list>
         <item></item>
-
+        
         <!-- Parse enumeration value -->
         <xsl:for-each select="a:EnumeratedValue">
             <list begin="" indent="    " end="">
@@ -330,38 +380,89 @@ under Contract DE-AC05-76RL01830
             </list>
         </xsl:for-each>
     </xsl:template>
-
-    <!-- Template for primitives -->
-    <xsl:template name="primitive">
-        <xsl:variable name="xstype">
-            <xsl:call-template name="type">
-                <xsl:with-param name="xstype" select="@xstype"/>
-            </xsl:call-template>
-        </xsl:variable>
-        <!-- Parse primitve name and type -->
-        <item>@dataclass</item>
-        <item>class <xsl:value-of select="@name"/>():</item>
-            <list begin="" indent="    " end="">
-                value: <xsl:value-of select="$xstype"/> = field(default=None)
-            </list>
-        <!-- Parse all comment text, merge multiple comments into single block -->
+    
+    <!-- Template for CIM Units as SimpleType -->
+    <xsl:template name="units">
+        <!-- Parse SimpleType name and always inherit from CIMUnit -->
+        <item>@stereotype(CIMStereotype.CIMDatatype)</item>
+        <item>@dataclass(repr=False)</item>
+        <item>class <xsl:value-of select="@name"/>(CIMUnit):</item>
+        
+        <!-- Parse all comment text for the class docstring -->
         <list begin="    '''" indent="    " end="    '''">
             <xsl:for-each select="a:Comment">
                 <xsl:call-template name="comment"/>
             </xsl:for-each>
         </list>
+        
+        <!-- Process Simple elements as regular fields -->
+        <xsl:for-each select="a:Simple">
+            <xsl:variable name="xstype">
+                <xsl:call-template name="type">
+                    <xsl:with-param name="xstype" select="@xstype"/>
+                </xsl:call-template>
+            </xsl:variable>
+            <list begin="" indent="    " end="">
+                <xsl:value-of select="@name"/>: <xsl:value-of select="$xstype"/> = field(default=None)
+            </list>
+        </xsl:for-each>
+        
+        <!-- Process multiplier Enumerated elements as regular fields -->
+        <xsl:for-each select="a:Enumerated[@name='multiplier']">
+            <xsl:variable name="multiplierConstant">
+                <xsl:choose>
+                    <xsl:when test="@constant = '' or @constant = 'none'">none</xsl:when>
+                    <xsl:otherwise><xsl:value-of select="@constant"/></xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <list begin="" indent="    " end="">
+                <xsl:value-of select="@name"/>: <xsl:value-of select="@type"/> = field(default=<xsl:value-of select="@type"/>.<xsl:value-of select="$multiplierConstant"/>)
+            </list>
+        </xsl:for-each>
+        
+        <!-- Process unit Enumerated elements as read-only properties -->
+        <xsl:for-each select="a:Enumerated[@name='unit']">
+            <xsl:variable name="unitConstant">
+                <xsl:choose>
+                    <xsl:when test="@constant = '' or @constant = 'none'">none</xsl:when>
+                    <xsl:otherwise><xsl:value-of select="@constant"/></xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <list begin="" indent="    " end="">
+                @property #read-only
+            </list>
+            <list begin="" indent="    " end="">
+                def <xsl:value-of select="@name"/>(self):
+            </list>
+            <list begin="" indent="        " end="">
+                return <xsl:value-of select="@type"/>.<xsl:value-of select="$unitConstant"/>
+            </list>
+        </xsl:for-each>
+        
+        <!-- Add __init__ method with unit symbol as default -->
+        <xsl:variable name="unitConstant">
+            <xsl:choose>
+                <xsl:when test="a:Enumerated[@name='unit']/@constant = '' or a:Enumerated[@name='unit']/@constant = 'none'">none</xsl:when>
+                <xsl:otherwise><xsl:value-of select="a:Enumerated[@name='unit']/@constant"/></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <list begin="" indent="    " end="">
+            def __init__(self, value, input_unit:str='<xsl:value-of select="$unitConstant"/>', input_multiplier:str=None):
+        </list>
+        <list begin="" indent="        " end="">
+            self.__pint__(value = value, input_unit=input_unit, input_multiplier=input_multiplier)
+        </list>
+        
         <item></item>
-
-
     </xsl:template>
-
+    
     <!-- Template for wrapping comment text -->
     <xsl:template name="comment">
         <wrap width="70">
             <xsl:value-of select="."/>
         </wrap>
     </xsl:template>
-
+    
     <!-- Template for attribute metadata -->
     <xsl:template name="attr_metadata">
         <!-- Use stereotype label if provided, otherwise, use 'Attribute' -->
@@ -374,17 +475,17 @@ under Contract DE-AC05-76RL01830
         <item> 'minOccurs': '<xsl:value-of select="@minOccurs"/>', </item>
         <item> 'maxOccurs': '<xsl:value-of select="@maxOccurs"/>', </item>
         <item> 'namespace': '<xsl:value-of select="substring-before(@baseProperty,'#')"/>#' </item>
-
+        
         <!-- Uncomment lines below to include docstring in attribute metadata -->
         <!-- <item> 'maxOccurs': '<xsl:value-of select="@maxOccurs"/>', </item> -->
         <!-- <item> 'docstring': </item> -->
         <!-- <list begin="    '''" indent="    " end="    '''"> -->
-            <!-- <xsl:for-each select="a:Comment"> -->
-                <!-- <xsl:call-template name="comment"/> -->
-            <!-- </xsl:for-each> -->
+        <!-- <xsl:for-each select="a:Comment"> -->
+        <!-- <xsl:call-template name="comment"/> -->
+        <!-- </xsl:for-each> -->
         <!-- </list> -->
     </xsl:template>
-
+    
     <!-- Template for association metadata -->
     <xsl:template name="assc_metadata">
         <!-- Use stereotype label if provided, otherwise, use 'Association' -->
@@ -398,17 +499,40 @@ under Contract DE-AC05-76RL01830
         <item> 'maxOccurs': '<xsl:value-of select="@maxOccurs"/>', </item>
         <item> 'inverse': '<xsl:value-of select="substring-after(@inverseBaseProperty,'#')"/>', </item>
         <item> 'namespace': '<xsl:value-of select="substring-before(@baseProperty,'#')"/>#' </item>
-
+        
         <!-- Uncomment lines below to include docstring in association metadata -->
         <!-- <item> 'inverse': '<xsl:value-of select="substring-after(@inverseBaseProperty,'#')"/>', </item> -->
         <!-- <item> 'docstring': </item> -->
         <!-- <list begin="    '''" indent="    " end="    '''"> -->
-            <!-- <xsl:for-each select="a:Comment"> -->
-                <!-- <xsl:call-template name="comment"/> -->
-            <!-- </xsl:for-each> -->
+        <!-- <xsl:for-each select="a:Comment"> -->
+        <!-- <xsl:call-template name="comment"/> -->
+        <!-- </xsl:for-each> -->
         <!-- </list> -->
     </xsl:template>
-
+    
+    <!-- Template for attribute metadata -->
+    <xsl:template name="primitive_metadata">
+        <!-- Use stereotype label if provided, otherwise, use 'Attribute' -->
+        <xsl:if test="a:Stereotype/@label">
+            <item> 'type': '<xsl:value-of select="a:Stereotype/@label"/>', </item>
+        </xsl:if>
+        <xsl:if test="not(a:Stereotype/@label)">
+            <item> 'type': 'Attribute', </item>
+        </xsl:if>
+        <item> 'minOccurs': '<xsl:value-of select="@minOccurs"/>', </item>
+        <item> 'maxOccurs': '<xsl:value-of select="@maxOccurs"/>', </item>
+        <item> 'namespace': '<xsl:value-of select="substring-before(@baseProperty,'#')"/>#' </item>
+        
+        <!-- Uncomment lines below to include docstring in attribute metadata -->
+        <!-- <item> 'maxOccurs': '<xsl:value-of select="@maxOccurs"/>', </item> -->
+        <!-- <item> 'docstring': </item> -->
+        <!-- <list begin="    '''" indent="    " end="    '''"> -->
+        <!-- <xsl:for-each select="a:Comment"> -->
+        <!-- <xsl:call-template name="comment"/> -->
+        <!-- </xsl:for-each> -->
+        <!-- </list> -->
+    </xsl:template>
+    
     <!-- Template for enumeration values -->
     <xsl:template name="enumvalue">
         <!-- Error handling for invalid or missing names -->
@@ -428,9 +552,9 @@ under Contract DE-AC05-76RL01830
             </xsl:for-each>
         </list>
         <item></item>
-
+        
     </xsl:template>
-
+    
     <!-- Template for converting primitives to python spelling -->
     <xsl:template name="type">
         <xsl:param name="xstype" select="@xstype"/>
@@ -443,50 +567,89 @@ under Contract DE-AC05-76RL01830
             <xsl:otherwise>str</xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
+    
     <!-- Template for error handling of missing or reserved names -->
     <xsl:template name="name">
         <xsl:param name="name" select="@name"/>
         <xsl:param name="type" select="@type"/>
-
+        
+        <xsl:variable name="cleanName">
+            <xsl:call-template name="removeSpecialChars">
+                <xsl:with-param name="text" select="$name"/>
+            </xsl:call-template>
+        </xsl:variable>
+        
         <xsl:choose>
             <xsl:when test="contains($name,'EAID_')"><xsl:value-of select="$type"/></xsl:when>
-            <xsl:when test="$name = 'and'">_and</xsl:when>
-            <xsl:when test="$name = 'as'">_as</xsl:when>
-            <xsl:when test="$name = 'assert'">_assert</xsl:when>
-            <xsl:when test="$name = 'break'">_break</xsl:when>
-            <xsl:when test="$name = 'class'">_class</xsl:when>
-            <xsl:when test="$name = 'continue'">_continue</xsl:when>
-            <xsl:when test="$name = 'def'">_def</xsl:when>
-            <xsl:when test="$name = 'del'">_del</xsl:when>
-            <xsl:when test="$name = 'elif'">_elif</xsl:when>
-            <xsl:when test="$name = 'else'">_else</xsl:when>
-            <xsl:when test="$name = 'except'">_except</xsl:when>
-            <xsl:when test="$name = 'finally'">_finally</xsl:when>
-            <xsl:when test="$name = 'for'">_for</xsl:when>
-            <xsl:when test="$name = 'from'">_from</xsl:when>
-            <xsl:when test="$name = 'global'">_global</xsl:when>
-            <xsl:when test="$name = 'if'">_if</xsl:when>
-            <xsl:when test="$name = 'import'">_import</xsl:when>
-            <xsl:when test="$name = 'in'">_in</xsl:when>
-            <xsl:when test="$name = 'is'">_is</xsl:when>
-            <xsl:when test="$name = 'lambda'">_lambda</xsl:when>
-            <xsl:when test="$name = 'nonlocal'">_nonlocal</xsl:when>
-            <xsl:when test="$name = 'not'">_not</xsl:when>
-            <xsl:when test="$name = 'or'">_or</xsl:when>
-            <xsl:when test="$name = 'pass'">_pass</xsl:when>
-            <xsl:when test="$name = 'raise'">_raise</xsl:when>
-            <xsl:when test="$name = 'return'">_return</xsl:when>
-            <xsl:when test="$name = 'try'">_try</xsl:when>
-            <xsl:when test="$name = 'while'">_while</xsl:when>
-            <xsl:when test="$name = 'with'">_with</xsl:when>
-            <xsl:when test="$name = 'yield'">_yield</xsl:when>
-            <xsl:otherwise><xsl:value-of select="$name"/></xsl:otherwise>
+            <xsl:when test="string-length($cleanName) > 0 and translate(substring($cleanName,1,1),'0123456789','') = ''">_<xsl:value-of select="$cleanName"/></xsl:when>
+            <xsl:when test="$cleanName = 'and'">_and</xsl:when>
+            <xsl:when test="$cleanName = 'as'">_as</xsl:when>
+            <xsl:when test="$cleanName = 'assert'">_assert</xsl:when>
+            <xsl:when test="$cleanName = 'break'">_break</xsl:when>
+            <xsl:when test="$cleanName = 'class'">_class</xsl:when>
+            <xsl:when test="$cleanName = 'continue'">_continue</xsl:when>
+            <xsl:when test="$cleanName = 'def'">_def</xsl:when>
+            <xsl:when test="$cleanName = 'del'">_del</xsl:when>
+            <xsl:when test="$cleanName = 'elif'">_elif</xsl:when>
+            <xsl:when test="$cleanName = 'else'">_else</xsl:when>
+            <xsl:when test="$cleanName = 'except'">_except</xsl:when>
+            <xsl:when test="$cleanName = 'finally'">_finally</xsl:when>
+            <xsl:when test="$cleanName = 'for'">_for</xsl:when>
+            <xsl:when test="$cleanName = 'from'">_from</xsl:when>
+            <xsl:when test="$cleanName = 'global'">_global</xsl:when>
+            <xsl:when test="$cleanName = 'if'">_if</xsl:when>
+            <xsl:when test="$cleanName = 'import'">_import</xsl:when>
+            <xsl:when test="$cleanName = 'in'">_in</xsl:when>
+            <xsl:when test="$cleanName = 'is'">_is</xsl:when>
+            <xsl:when test="$cleanName = 'lambda'">_lambda</xsl:when>
+            <xsl:when test="$cleanName = 'nonlocal'">_nonlocal</xsl:when>
+            <xsl:when test="$cleanName = 'not'">_not</xsl:when>
+            <xsl:when test="$cleanName = 'or'">_or</xsl:when>
+            <xsl:when test="$cleanName = 'pass'">_pass</xsl:when>
+            <xsl:when test="$cleanName = 'raise'">_raise</xsl:when>
+            <xsl:when test="$cleanName = 'return'">_return</xsl:when>
+            <xsl:when test="$cleanName = 'try'">_try</xsl:when>
+            <xsl:when test="$cleanName = 'while'">_while</xsl:when>
+            <xsl:when test="$cleanName = 'with'">_with</xsl:when>
+            <xsl:when test="$cleanName = 'yield'">_yield</xsl:when>
+            <xsl:otherwise><xsl:value-of select="$cleanName"/></xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template name="removeSpecialChars">
+        <xsl:param name="text"/>
+        <xsl:param name="pos" select="1"/>
+        <xsl:param name="result" select="''"/>
+        
+        <xsl:choose>
+            <xsl:when test="$pos > string-length($text)">
+                <xsl:value-of select="$result"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="char" select="substring($text, $pos, 1)"/>
+                <xsl:variable name="validChars" select="'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'"/>
+                <xsl:variable name="isValidChar" select="contains($validChars, $char)"/>
+                
+                <xsl:call-template name="removeSpecialChars">
+                    <xsl:with-param name="text" select="$text"/>
+                    <xsl:with-param name="pos" select="$pos + 1"/>
+                    <xsl:with-param name="result">
+                        <xsl:choose>
+                            <xsl:when test="$isValidChar">
+                                <xsl:value-of select="concat($result, $char)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$result"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
 </xsl:stylesheet>
 
 <!-- <list begin="" indent="    " end=""> -->
-    <!-- <item> </item> -->
+<!-- <item> </item> -->
 <!-- </list> -->

@@ -94,19 +94,20 @@
         
         <xsl:call-template name="generate_class_docstring"/>
         
+        <!-- Process attributes -->
+        <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
+        <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
+        <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
+        
         <!-- Add class metadata -->
         <xsl:call-template name="generate-class-metadata"/>
         
         <!-- Process inverse references first (they come from other classes) -->
         <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
         
-        <!-- Process attributes -->
-        <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
-        <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
-        <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
-        
         <!-- Process child classes -->
         <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
+        
     </xsl:template>
     
     <!-- Template for lower level classes -->
@@ -122,17 +123,17 @@
                 
                 <xsl:call-template name="generate_class_docstring"/>
                 
-                <!-- Add class metadata -->
-                <xsl:call-template name="generate-class-metadata"/>
-                
-                <!-- Process inverse references first (they come from other classes) -->
-                <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
-                
                 <!-- Process attributes -->
                 <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
                 <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
                 <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
                 
+                <!-- Process inverse references first (they come from other classes) -->
+                <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
+                
+                <!-- Add class metadata -->
+                <xsl:call-template name="generate-class-metadata"/>
+
                 <!-- Process child classes -->
                 <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
             </xsl:for-each>
@@ -312,6 +313,10 @@
                 <xsl:call-template name="generate_attr_docstring"/>
             </list>
         </xsl:for-each>
+        
+        <!-- Add class metadata -->
+        <xsl:call-template name="generate-class-metadata"/>
+
     </xsl:template>
     
     <!-- Template for CIM Units as SimpleType -->
@@ -358,7 +363,9 @@
                 <item>self.__pint__(value=value, input_unit=input_unit, input_multiplier=input_multiplier)</item>
             </list>
         </list>
-        
+
+        <!-- Add class metadata -->
+        <xsl:call-template name="generate-class-metadata"/>
         <item/>
     </xsl:template>
     
@@ -368,6 +375,7 @@
         <item>'minOccurs': '<xsl:value-of select="(@minOccurs, '0')[1]"/>',</item>
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'namespace': '<xsl:value-of select="substring-before((@baseProperty, '#')[1],'#')"/>#',</item>
+        <item>'serialize': True,</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
         <item> 'docstring': </item>
         <xsl:call-template name="generate_class_docstring"/>
@@ -385,6 +393,7 @@
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'inverse': '<xsl:value-of select="substring-after((@inverseBaseProperty, '#')[1],'#')"/>',</item>
         <item>'namespace': '<xsl:value-of select="substring-before((@baseProperty, '#')[1],'#')"/>#',</item>
+        <item>'serialize': True,</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
         <item> 'docstring': </item>
         <xsl:call-template name="generate_class_docstring"/>
@@ -397,6 +406,7 @@
         <item>'maxOccurs': '<xsl:value-of select="(@maxOccurs, '1')[1]"/>',</item>
         <item>'inverse': '<xsl:value-of select="substring-after(@inverseBaseProperty, '#')"/>',</item>
         <item>'namespace': '<xsl:value-of select="substring-before(@baseProperty,'#')"/>#',</item>
+        <item>'serialize': False,</item>
         <!-- Uncomment lines below to include docstring in attribute metadata (for AI training, etc.)-->
         <item> 'docstring': </item>
         <xsl:call-template name="generate_class_docstring"/>
@@ -410,10 +420,26 @@
         <xsl:variable name="maxOccurs" select="(@maxOccurs, '1')[1]"/>
         
         <list begin="" indent="    " end="">
-            <item>__namespace__ = '<xsl:value-of select="$namespace"/>#'</item>
-            <item>__package__ = '<xsl:value-of select="$package"/>'</item>
-            <item>__minOccurs__ = '<xsl:value-of select="$minOccurs"/>'</item>
-            <item>__maxOccurs__ = '<xsl:value-of select="$maxOccurs"/>'</item>
+            <item>@property</item>
+            <item>def __namespace__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$namespace"/>#'</item>
+            </list>
+            <item>@property</item>
+            <item>def __package__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$package"/>'</item>
+            </list>
+            <item>@property</item>
+            <item>def __minOccurs__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$minOccurs"/>'</item>
+            </list>
+            <item>@property</item>
+            <item>def __maxOccurs__(self):</item>
+            <list begin="" indent="    " end="">
+                <item>return '<xsl:value-of select="$maxOccurs"/>'</item>
+            </list>
             <item/>
         </list>
     </xsl:template>

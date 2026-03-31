@@ -126,6 +126,10 @@
     
     <!-- Property template for a:Simple and a:Domain (simple attributes) -->
     <xsl:template match="a:Simple | a:Domain">
+        <!-- Only define the EF key on inheritance roots so subclasses inherit it. -->
+        <xsl:if test="@name = 'mRID' and not(parent::*[self::a:ComplexType or self::a:Root]/a:SuperType)">
+            <item>    [Key]</item>
+        </xsl:if>
         <item>    [Column(&quot;<xsl:value-of select="@name"/>&quot;)]</item>
         <item>    public <xsl:call-template name="type">
                     <xsl:with-param name="xstype" select="@xstype"/>

@@ -100,31 +100,42 @@ under Contract DE-AC05-76RL01830
         <item/>
     </xsl:template>
     
-    <!-- Template for top-level classes with no inheritance -->
+    <!-- Template for top-level classes with no inheritance.
+         If the class is named 'Identity', skip emitting it (but still process its children)
+         because cimgraph imports its own Identity base class from cimgraph.data_profile.identity
+         and a profile-defined Identity class would overwrite it. -->
     <xsl:template match="a:Root | a:ComplexType | a:CompoundType" mode="super">
-        <xsl:call-template name="generate_stereotype"/>
-        
-        <xsl:variable name="class_name" select="local:sanitize_name(@name, @name)"/>
-        
-        <item>@dataclass(repr=False)</item>
-        <item>class <xsl:value-of select="$class_name"/>(Identity):</item>
-        
-        <xsl:call-template name="generate_class_docstring"/>
-        
-        <!-- Process attributes -->
-        <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
-        <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
-        <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
-        
-        <!-- Add class metadata -->
-        <xsl:call-template name="generate-class-metadata"/>
-        
-        <!-- Process inverse references first (they come from other classes) -->
-        <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
-        
-        <!-- Process child classes -->
-        <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
-        
+        <xsl:choose>
+            <xsl:when test="@name = 'Identity'">
+                <xsl:message>Skipping profile class 'Identity' — reserved for cimgraph base class.</xsl:message>
+                <!-- Still emit children that inherit from Identity -->
+                <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="generate_stereotype"/>
+
+                <xsl:variable name="class_name" select="local:sanitize_name(@name, @name)"/>
+
+                <item>@dataclass(repr=False)</item>
+                <item>class <xsl:value-of select="$class_name"/>(Identity):</item>
+
+                <xsl:call-template name="generate_class_docstring"/>
+
+                <!-- Process attributes -->
+                <xsl:apply-templates select="a:Simple" mode="simple_attribute"/>
+                <xsl:apply-templates select="a:Domain | a:Enumerated" mode="attribute"/>
+                <xsl:apply-templates select="a:Instance | a:Reference" mode="association"/>
+
+                <!-- Add class metadata -->
+                <xsl:call-template name="generate-class-metadata"/>
+
+                <!-- Process inverse references first (they come from other classes) -->
+                <xsl:apply-templates select="key('inverse_references', @name)" mode="inverse_association"/>
+
+                <!-- Process child classes -->
+                <xsl:apply-templates select="key('classes_by_super', @name)" mode="lower"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- Template for lower level classes -->

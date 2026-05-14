@@ -34,6 +34,7 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 | [cimantic-graphs-init.xsl](shipped-builders/cimantic-graphs/builder.md)| Python Source Code | This builder is intended to be used in conjunction with the **cimantic-graphs.xsl** builder and is responsible for generating the `python __init__.py` file required for library imports to work correctly. |
 | [puml-t2b.xsl](shipped-builders/puml-t2b/builder.md)| PlantUML class diagram | The **puml-t2b.xsl** builder produces a PlantUML class diagram representing the profile (for an RDFS schema) that this builder is executed on. The layout of the diagram is top-to-bottom (i.e. t2b). |
 | [puml-l2r.xsl](shipped-builders/puml-l2r/builder.md)| PlantUML class diagram | The **puml-l2r.xsl** builder produces a PlantUML class diagram representing the profile (for an RDFS schema) that this builder is executed on. The layout of the diagram is left-to-right (i.e. l2r). |
+| [csharp-ef-rdfs.xsl](shipped-builders/csharp-ef-rdfs/builder.md) | C# file | The csharp-ef-rdfs.xsl builder generates a C# source file (*.cs) containing entity frameworks. The defined C# classes can be utilized in C# applications for persisting profiles to a database. |
 
 #### Community Developed Builders:
 
@@ -41,7 +42,7 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 |------------------|------------------|------------------|
 | [json-schema-draft-07-jsonschema2pojo.xsl](custom-builders/json-schema-draft-07-jsonschema2pojo/builder.md) | Specialized JSON schema |  The **json-schema-draft-07-jsonschema2pojo.xsl** builder produces a specialized JSON schema to be used as input into the jsonschema2pojo open source Maven or Gradle build plugins to generate annotated Java classes for data-binding with Jackson 2.x or Gson. This custom builder was derived from the **json-schema-draft-07.xsl** builder and is intended to serve as a companion builder to it. |
 | [json-schema-draft-2020-12-jsonschema2pojo.xsl](custom-builders/json-schema-draft-2020-12-jsonschema2pojo/builder.md) | Specialized JSON schema | The **json-schema-draft-2020-12-jsonschema2pojo.xsl** builder produces a specialized JSON schema to be used as input into the jsonschema2pojo open source Maven or Gradle build plugins to generate annotated Java classes for data-binding with Jackson 2.x or Gson. This custom builder was derived from the **json-schema-draft-2020-12.xsl** builder and is intended to serve as a companion builder to it. |
-| [csharp-draft-2025-4-csharp.xsl](shipped-builders/csharp-entity-framework/builder.md) | C# file | The csharp.xsl builder generates a C# source file (*.cs) containing entity frameworks. The defined C# classes can be utilized in C# applications for persisting profiles to a database. |
+
 
 
 ## Background

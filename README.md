@@ -14,7 +14,7 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 ## Current Library of Builders
 ![image](readme-icons/icons8-folder-tree-96.png)
 
-#### Builders Shipped with CIMTool:
+#### Builders Shipped with CIMTool 2.3.0 (Latest Production Release):
 
 | XSLT Builder | Output Type | Description |
 |------------------|------------------|------------------|
@@ -52,6 +52,8 @@ Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builde
 | [xsd.xsl](shipped-builders/xsd/builder.md) | XSD schema | The **[xsd.xsl](shipped-builders/xsd/builder.md)** builder generates an XSD schema that is compliant with the [IEC 62361-100:2016](https://webstore.iec.ch/publication/25114) (CIM Profiles to XML Schema Mapping) standard. Additionally, these schemas are compatible with the [IEC 61968-100:2013](https://webstore.iec.ch/publication/6198) (Implementation Profiles) standard used for enterprise integration. |
 
 #### Community Developed Builders:
+
+These builders are not shipped with CIMTool out of the box. They are available here for download and can be manually imported into CIMTool using the Import XSLT Transform Builder dialog.
 
 | XSLT Builder | Output Type | Description |
 |------------------|------------------|------------------|

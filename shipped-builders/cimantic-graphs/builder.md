@@ -116,32 +116,27 @@ Alex A. Anderson [@aandersn] on behalf of UCAIug.
 
 ## Builder NTE Configuration
 
+The below tables highlight the NTE (Name/Type/Extension) settings for this pair of builders. A blank Includes File Name row indicates that no XSLT include file is required for this builder.
 
+The **cimantic-graphs.xsl** builder should be imported first:
 
-The below screenshot highlights the NTE (Name/Type/Extension) settings for the builder.
+| Field | Value |
+|---|---|
+| Builder XSLT Name: | `cimantic-graphs.xsl` |
+| Includes File Name: |  |
+| Transform Builder Type: | `TEXT` |
+| File Extension of Generated Files: | `cimantic-graphs.py` |
 
-The cimantic-graphs.xsl builder should be configured as a `TEXT` transform with the extension of `py`. The cimantic-graphs-init.xsl builder should be configured as a `TEXT` transform with the extensions of `__init__.py`.
+The **cimantic-graphs-init.xsl** builder should then be imported:
 
-![cimantic-graphs](cimantic_graphs.png)
-
-![cimantic-graphs-init](cimantic_graphs_init.png)
-
-To generate the profile artifacts for use with CIMantic Graphs, select both builders in the Profile Summary tab and click Save. Next, create a new folder in the cimgraph/data_profile subdirectory with the same name as the new profile. Copy the generated .py files to the new folder and rename the second file to just `__init__.py`. It may also be necessary to rename the main python file to match the profile/namespace name in line 5 of the init file.
-
-![profile](profile.png)
-
-![init](init.png)
-
-The dataclasses can then be accessed by calling from 
-```PYTHON
-import cimgraph.data_profile.EndDeviceControls as cim
-
-new_device = cim.EndDevice()
-```
-
+| Field | Value |
+|---|---|
+| Builder XSLT Name: | `cimantic-graphs-init.xsl` |
+| Includes File Name: |  |
+| Transform Builder Type: | `TEXT` |
+| File Extension of Generated Files: | `__init__.py` |
 
 >*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from within the "Maintain XSLT Transform Builders" screen.*
-
 
 ## License
 

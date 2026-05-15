@@ -319,11 +319,16 @@ Todd Viegut [@tviegut] on behalf of UCAIug.
 
 ## Builder NTE Configuration
 
-The below screenshot highlights a suggested NTE (Name/Type/Extension) setting for the builder.  Minimally, the transform builder type must be declared as type **TEXT** in the dropdown.  However, the file extension may be specified per user preference (e.g. ```js2p.schema.json```).
+The below table highlights the NTE (Name/Type/Extension) settings for the builder. A blank Includes File Name row indicates that no XSLT include file is required for this builder.
 
 >*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from within the "Maintain XSLT Transform Builders" screen.*
 
-![image](import-builder.png)
+| Field | Value |
+|---|---|
+| Builder XSLT Name: | `json-schema-draft-07-jsonschema2pojo.xsl` |
+| Includes File Name: |  |
+| Transform Builder Type: | `TEXT` |
+| File Extension of Generated Files: | `draft-07-jsonschema2pojo.schema.json` |
 
 ## License
 

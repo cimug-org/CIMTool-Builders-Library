@@ -104,7 +104,9 @@ __all__ = [
 
 ## XSLT Version
 
-This builder is XSLT 1.0 compliant.
+The **cimantic-graphs.xsl** builder is XSLT 3.0 compliant.
+
+The **cimantic-graphs-init.xsl** builder is XSLT 1.0 compliant.
 
 ## Author
 

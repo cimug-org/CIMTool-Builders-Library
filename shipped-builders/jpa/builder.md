@@ -1,6 +1,7 @@
 # jpa.xsl
 
 This builder currently ships with CIMTool.
+> **Deprecation Notice:** The **jpa.xsl** builder is officially deprecated as of CIMTool release 2.3.0 and will be removed in a future release. It is strongly recommended that users migrate to the **[jpa-rdfs.xsl](../jpa-rdfs/builder.md)** builder, which targets Jakarta Persistence 3.1 (Jakarta EE 10) and provides RDFS-schema-aware primary key logic for use with profiles whose primary schema artifact is RDFS.
 
 ## Builder Description
 

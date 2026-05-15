@@ -1,6 +1,7 @@
 # sql.xsl
 
 This builder currently ships with CIMTool.
+> **Deprecation Notice:** The **sql.xsl** builder is officially deprecated as of CIMTool release 2.3.0 and will be removed in a future release. It is strongly recommended that users migrate to the **[sql-rdfs-ansi92.xsl](../sql-rdfs-ansi92/builder.md)** builder, which provides RDFS-schema-aware primary key logic and is designed for use with profiles whose primary schema artifact is RDFS.
 
 ## Builder Description
 

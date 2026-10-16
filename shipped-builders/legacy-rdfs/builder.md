@@ -1,6 +1,6 @@
 # legacy-rdfs.xsl
 
-This builder currently ships with CIMTool.
+This builder no longer ships as an XSLT builder. CIMTool generates this format with a built-in Java builder of the same name.
 
 ## Builder Description
 
@@ -8,10 +8,20 @@ The **[legacy-rdfs.xsl](legacy-rdfs.xsl)** builder generates an early RDFS schem
 
 For a builder that generates RDFS schemas compatible with [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215) visit the page entry for the [legacy-rdfs-augmented.xsl](../legacy-rdfs-augmented/builder.md) builder.
 
+The XSLT is kept in the library for reference. For current RDFS profiles use the [rdfs-2020.xsl](../rdfs-2020/builder.md) builder.
 
 ## XSLT Version
 
 This builder is XSLT 3.0 compliant.
+
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | URIs are now treated as local only when they start with the profile namespace followed by ```#```, associations take ```rdfs:domain``` from the owning class, and the ```rdf:type``` of enumeration values now names the enumeration class, including for enumerations outside the profile namespace. |
+| [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | URIs outside the profile namespace are now written in full, multiplicities are always written as a range (for example ```M:1..1```), and ```rdfs:domain``` is taken from the property's class instead of being parsed from the property URI. Associations no longer include ```cims:inverseRoleName```. |
+| [2.0.1](https://cimtool.ucaiug.io/release-notes/) | 12-May-2024 | Changed the ```xsd``` namespace declared in the generated RDFS from ```http://www.w3.org/2001/XMLSchema#``` to ```http://www.w3.org/2001/XMLSchema```. From this release CIMTool no longer registers this XSLT builder and generates ```*.legacy-rdfs``` output with its built-in Java builder instead. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Added to CIMTool ([#26](https://github.com/cimug-org/CIMTool/issues/26)). It replaced the built-in Java builder for ```*.legacy-rdfs``` output. |
 
 ## Author
 

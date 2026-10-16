@@ -104,7 +104,14 @@ __all__ = [
 
 ## XSLT Version
 
-This builder is XSLT 1.0 compliant.
+This builder is XSLT 3.0 compliant.
+
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | **cimantic-graphs.xsl:** Upgraded to XSLT 3.0. Updated to the latest PNNL release: top-level classes now inherit from ```Identity```, CIMDatatypes are generated as ```CIMUnit``` classes, field metadata now includes stereotypes and namespaces, and names that are Python reserved words are escaped ([#188](https://github.com/cimug-org/CIMTool/issues/188)). **cimantic-graphs-init.xsl:** Updated to the latest PNNL release: the generated file now imports and exports ```Identity```, lists names in ```__all__``` as quoted strings, and escapes names that are Python reserved words or contain invalid characters ([#188](https://github.com/cimug-org/CIMTool/issues/188)). |
+| [2.1.0](https://cimtool.ucaiug.io/release-notes/) | 09-Aug-2024 | **cimantic-graphs.xsl:** Added to CIMTool ([#133](https://github.com/cimug-org/CIMTool/issues/133)). **cimantic-graphs-init.xsl:** Added to CIMTool ([#133](https://github.com/cimug-org/CIMTool/issues/133)). |
 
 ## Author
 
@@ -122,9 +129,9 @@ The below screenshot highlights the NTE (Name/Type/Extension) settings for the b
 
 The cimantic-graphs.xsl builder should be configured as a `TEXT` transform with the extension of `py`. The cimantic-graphs-init.xsl builder should be configured as a `TEXT` transform with the extensions of `__init__.py`.
 
-![cimantic-graphs](cimantic_graphs.png)
+![cimantic-graphs](import-builder.png)
 
-![cimantic-graphs-init](cimantic_graphs_init.png)
+![cimantic-graphs-init](import-builder-init.png)
 
 To generate the profile artifacts for use with CIMantic Graphs, select both builders in the Profile Summary tab and click Save. Next, create a new folder in the cimgraph/data_profile subdirectory with the same name as the new profile. Copy the generated .py files to the new folder and rename the second file to just `__init__.py`. It may also be necessary to rename the main python file to match the profile/namespace name in line 5 of the init file.
 

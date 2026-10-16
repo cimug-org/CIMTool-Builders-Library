@@ -12,6 +12,13 @@ The **[html.xsl](html.xsl)** builder generates a standalone HTML document contai
 
 This builder is XSLT 1.0 compliant.
 
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Added a Primitive Types section. Member tables now list compound and choice members, and attribute types link to their CIM datatypes. |
+| [1.10.0](https://cimtool.ucaiug.io/release-notes/) | 26-Aug-2022 | Earliest release in the CIMTool GitHub repository. The builder shipped with earlier releases of CIMTool. |
+
 ## Author
 
 Arnold deVos on behalf of UCAIug.

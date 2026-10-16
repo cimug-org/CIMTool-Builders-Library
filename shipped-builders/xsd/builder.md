@@ -14,6 +14,14 @@ For a builder that generates XSD schemas compatible with [IEC 61968-100 Ed 2.0](
 
 This builder is XSLT 1.0 compliant.
 
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Compound attributes are now supported, and properties with the ```<<XSDattribute>>``` stereotype are generated as XSD attributes and classes with the ```<<XSDattributeGroup>>``` stereotype as XSD attribute groups ([#247](https://github.com/cimug-org/CIMTool/issues/247)). Enumerations with the ```<<CodeList>>``` stereotype now emit their codes in place of their names ([#250](https://github.com/cimug-org/CIMTool/issues/250)). |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Root elements and their complex types are now named after the profile class rather than the underlying CIM class ([#77](https://github.com/cimug-org/CIMTool/issues/77)). |
+| [1.10.0](https://cimtool.ucaiug.io/release-notes/) | 26-Aug-2022 | Earliest release in the CIMTool GitHub repository. The builder shipped with earlier releases of CIMTool. |
+
 ## Author
 
 Arnold deVos on behalf of UCAIug.

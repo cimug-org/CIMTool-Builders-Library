@@ -10,7 +10,17 @@ The **[profile-doc-rtf.xsl](profile-doc-rtf.xsl)** builder produces a Microsoft 
 
 ## XSLT Version
 
-This builder is XSLT 1.0 compliant.
+This builder is XSLT 2.0 compliant.
+
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Upgraded to XSLT 2.0. Non-ASCII characters in descriptions are now written as Unicode escapes, and each comment or note is kept as its own paragraph ([#244](https://github.com/cimug-org/CIMTool/issues/244)). The document also gains a Primitive Types section, lists compound and choice members, and links attribute types to their CIM datatypes. |
+| [2.0.1](https://cimtool.ucaiug.io/release-notes/) | 12-May-2024 | The Compound Types section now comes before Enumerations, the Concrete Classes section appears whenever the profile has root or message classes, and member table cells are explicitly aligned. Classes with no members that are used for 'By Reference' associations now get an explanatory note. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Class definitions now show a hyperlinked inheritance path, and attribute and association names are followed by their stereotypes in brackets. |
+| [1.11.1](https://cimtool.ucaiug.io/release-notes/) | 14-Feb-2023 | The document title no longer repeats "Profile" when the profile name is the default ```Profile```. |
+| [1.10.0](https://cimtool.ucaiug.io/release-notes/) | 26-Aug-2022 | Added to CIMTool ([#27](https://github.com/cimug-org/CIMTool/issues/27)). |
 
 ## Author
 

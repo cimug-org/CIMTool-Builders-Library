@@ -217,3 +217,41 @@ html { overflow-x: hidden; }
 
 .markdown-body code { background: rgba(10, 46, 87, 0.07); color: $cimmm-navy; }
 .markdown-body pre code { background: transparent; color: $cimmm-ink; }
+
+// ---- internal profile representation reference (README, Step 3) ----------
+.markdown-body table.ipr {
+  width: 100%;
+  display: table;
+
+  > tbody > tr > td { vertical-align: top; }
+  > tbody > tr > td:first-child { width: 22%; min-width: 150px; }
+  > tbody > tr > td > p:first-child { margin-top: 0; }
+  .ipr-in { font-size: 12px; color: $cimmm-navy; opacity: 0.75; }
+
+  table.ipr-attrs {
+    width: 100%;
+    display: table;
+    margin: 8px 0 2px;
+    th {
+      background: $cimmm-band;
+      color: $cimmm-navy;
+      border-right: 1px solid $cimmm-frame;
+      text-align: left;
+      &:last-child { border-right: 0; }
+    }
+    td { font-size: 13px; background: #fff; vertical-align: top; }
+    td:first-child { width: 30%; white-space: nowrap; }
+    tr:nth-child(2n) td { background: $cimmm-band; }
+  }
+}
+
+@media (max-width: 600px) {
+  .markdown-body table.ipr {
+    display: block;
+    > thead { display: none; }
+    > tbody, > tbody > tr, > tbody > tr > td { display: block; width: 100%; }
+    > tbody > tr > td:first-child { width: 100%; border-top: 2px solid $cimmm-frame; }
+    > tbody > tr > td:last-child { border-top: 0; padding-top: 0; }
+    table.ipr-attrs td:first-child { white-space: normal; word-break: break-word; width: 40%; }
+  }
+}

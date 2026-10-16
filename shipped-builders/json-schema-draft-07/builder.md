@@ -190,7 +190,16 @@ The following is an example of a generated JSON schema:
 
 ## XSLT Version
 
-This builder is XSLT 1.0 compliant.
+This builder is XSLT 2.0 compliant.
+
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Changed the declared XSLT version from 3.0 to 2.0. Every object now has a required ```@type``` property, a choice is generated as one property holding a ```oneOf``` list in place of the earlier required-choice constraints, compound attributes are supported and root definitions are named after the profile class. Enumerations with the ```<<CodeList>>``` stereotype now emit their codes in place of their names ([#250](https://github.com/cimug-org/CIMTool/issues/250)). |
+| [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | Upgraded to XSLT 3.0. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Compound types now include a ```modelReference``` to their CIM class. |
+| [1.10.0](https://cimtool.ucaiug.io/release-notes/) | 26-Aug-2022 | Added to CIMTool. |
 
 ## Author
 

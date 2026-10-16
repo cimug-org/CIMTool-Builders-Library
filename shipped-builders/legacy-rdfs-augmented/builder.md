@@ -1,6 +1,6 @@
 # legacy-rdfs-augmented.xsl
 
-This builder currently ships with CIMTool.
+This builder no longer ships as an XSLT builder. CIMTool generates this format with a built-in Java builder of the same name.
 
 ## Builder Description
 
@@ -8,10 +8,20 @@ The **[legacy-rdfs-augmented.xsl](legacy-rdfs-augmented.xsl)** builder generates
 
 Note, though not currently published as a formal standard, there has been "de facto agreements" on additional extensions to that defined in the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215) in order to better support CIM RDFS semantic needs. Introduced after the publication of the [IEC 61970-501:2006](https://webstore.iec.ch/publication/6215), the latest RDFS schema format is  commonly referred to as RDFS2020 and is in use by ENTSO-E CGMES and is supported in both **CimConteXtor/CimSyntaxGen** and **CIMTool** profiling tools. For a **CIMTool** builder that generates such RDFS2020 schemas with the latest agreed upon extensions visit the page entry for the [rdfs-2020.xsl](../rdfs-2020/builder.md) builder.
 
+The XSLT is kept in the library for reference. For current RDFS profiles use the [rdfs-2020.xsl](../rdfs-2020/builder.md) builder.
 
 ## XSLT Version
 
 This builder is XSLT 3.0 compliant.
+
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Stereotype URIs now use the ```http://iec.ch/TC57/NonStandard/UML#``` namespace instead of ```http://langdale.com.au/2005/UML#```, ```<<Compound>>``` classes and compound attributes are now generated, and associations gain ```cims:AssociationUsed```. CIMDatatype classes get the ```CIMDatatype``` stereotype and ```cims:belongsToCategory```, simple attributes take ```cims:dataType``` from their CIM datatype, and each non-shadow superclass gets its own ```rdfs:subClassOf```. |
+| [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | URIs outside the profile namespace are now written in full, multiplicities are always written as a range (for example ```M:1..1```), and ```rdfs:domain``` is taken from the property's class instead of being parsed from the property URI. Enumeration values now always carry the ```enum``` stereotype. |
+| [2.0.1](https://cimtool.ucaiug.io/release-notes/) | 12-May-2024 | Changed the ```xsd``` namespace declared in the generated RDFS from ```http://www.w3.org/2001/XMLSchema#``` to ```http://www.w3.org/2001/XMLSchema```. From this release CIMTool no longer registers this XSLT builder and generates ```*.legacy-rdfs-augmented``` output with its built-in Java builder instead. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Added to CIMTool ([#26](https://github.com/cimug-org/CIMTool/issues/26)). It replaced the built-in Java builder for ```*.legacy-rdfs-augmented``` output. |
 
 ## Author
 

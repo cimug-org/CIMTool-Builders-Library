@@ -90,6 +90,16 @@ The generated **RDFS2020** schemas include the following:
 
 This builder is XSLT 3.0 compliant.
 
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Compound classes, compound attributes and primitive types are now generated, and simple attributes take ```cims:dataType``` from their CIM datatype ([#171](https://github.com/cimug-org/CIMTool/issues/171), [#207](https://github.com/cimug-org/CIMTool/issues/207)). Each non-shadow superclass now gets its own ```rdfs:subClassOf```, associations take ```rdfs:domain``` from the owning class and ```rdfs:range``` from the target class, constant enumerated attributes get ```cims:isFixed```, and the aggregation and composition stereotypes are written as UML URIs. |
+| [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | URIs outside the profile namespace are now written in full, multiplicities are always written as a range (for example ```M:1..1```), and ```rdfs:domain``` is taken from the property's class instead of being parsed from the property URI. Enumeration classes now get the ```enumeration``` stereotype and CIMDatatype classes the ```CIMDatatype``` stereotype, and the ```byreference```, aggregation and composition stereotypes are no longer written ([#154](https://github.com/cimug-org/CIMTool/issues/154)). |
+| [2.1.0](https://cimtool.ucaiug.io/release-notes/) | 09-Aug-2024 | Comments on inverse associations are now typed ```xsd:string``` instead of ```rdf:parseType="Literal"```. |
+| [2.0.1](https://cimtool.ucaiug.io/release-notes/) | 12-May-2024 | Changed the ```xsd``` namespace declared in the generated RDFS from ```http://www.w3.org/2001/XMLSchema#``` to ```http://www.w3.org/2001/XMLSchema```. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Added to CIMTool ([#78](https://github.com/cimug-org/CIMTool/issues/78)). |
+
 ## Author
 
 Todd Viegut [@tviegut] on behalf of UCAIug.

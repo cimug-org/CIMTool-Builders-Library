@@ -7,6 +7,8 @@ description: >-
   The UCAIug's CIMTool community repository of publicly available XSLT
   builders.
 url: https://cimtool-builders.ucaiug.io
+# Link-preview (Open Graph / Twitter card) image, emitted by {% seo %} in _layouts/default.html.
+image: /media/logo/cimtool-builders-social-1280x640.png
 baseurl: ""
 
 # Primer prints the site title above a page whose title differs from it.

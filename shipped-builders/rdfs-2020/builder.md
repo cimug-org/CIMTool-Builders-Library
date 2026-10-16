@@ -12,7 +12,7 @@ The generated **RDFS2020** schemas include the following:
 
 1. The ```xml:lang``` attribute now appears on ```rds:label```-s to indicate the locale language associated with the text:
 
-    ```xml 
+    ```xml
     <rdfs:label xml:lang="en">ACDCConverterDCTerminal</rdfs:label>
     ```
 

@@ -12,7 +12,7 @@ Per the wikipedia entry for Scala:
 
 A sample extract of a generated Scala source file is illustrated next:
 
-``` Scala
+```scala
 package au.com.langdale.skena.vocabulary;
 import au.com.langdale.skena._
 /**

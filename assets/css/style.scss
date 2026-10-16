@@ -1,0 +1,219 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+// ---------------------------------------------------------------------------
+// CIM Model Management branding (brand kit / KB v1.7)
+//   navy #0A2E57 · brand blue #0058A9 · teal #0097A5 · light teal #7FD3DC
+//   green #00A851 · band tint #EEF4F8 · hairline #C8D2DA · frame #D5DEE5
+// The header block is in _layouts/default.html (class cb-hero).
+// ---------------------------------------------------------------------------
+
+$cimmm-navy: #0A2E57;
+$cimmm-blue: #0058A9;
+$cimmm-teal: #0097A5;
+$cimmm-teal-light: #7FD3DC;
+$cimmm-green: #00A851;
+$cimmm-band: #EEF4F8;
+$cimmm-hover: #D6E6F5;
+$cimmm-hairline: #C8D2DA;
+$cimmm-frame: #D5DEE5;
+$cimmm-ink: #231F20;
+$cimmm-heading-font: Arial, "Liberation Sans", Helvetica, sans-serif;
+
+// The website header shows the CIMTool Builders Library logo, so README.md's logo heading is
+// collapsed rather than removed: it stays the page's h1 for search engines and screen readers.
+.markdown-body > h1#cimtool-builders-library { height: 0; margin: 0; padding: 0; border: 0; overflow: hidden; }
+
+// The navy header runs edge to edge, so stop the page scrolling sideways.
+html { overflow-x: hidden; }
+
+// ---- navy header band -----------------------------------------------------
+// Breaks out of Primer's centred content column to the full window width;
+// -32px cancels the column's top margin (Primer's my-5), which Primer also
+// forces to 0 on the first element, hence the !important.
+.cb-hero {
+  position: relative;
+  overflow: hidden;
+  margin: -32px calc(50% - 50vw) 24px;
+  padding: 0 calc(50vw - 50%);
+  background: $cimmm-navy;
+}
+.markdown-body > .cb-hero:first-child { margin-top: -32px !important; }
+.markdown-body .cb-hero img { background-color: transparent; }   // Primer gives images a white background
+
+// Faint CIMug mark bleeding off the right edge (as on the deck's cover)
+.cb-hero-mark {
+  position: absolute;
+  top: -70px;
+  right: calc(50% - 50vw - 110px);
+  height: 300px;
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+.cb-hero-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 132px;
+  padding: 16px 0;
+}
+
+.cb-hero-home { flex: none; line-height: 0; }
+.cb-hero-logo { height: 72px; }
+
+.cb-hero-rule {
+  flex: none;
+  align-self: stretch;
+  width: 1px;
+  margin: 14px 0;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.cb-hero-text { flex: 1; min-width: 0; }
+
+.cb-hero-kicker {
+  margin-bottom: 6px;
+  color: $cimmm-teal-light;
+  font: 700 12px/1.2 $cimmm-heading-font;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cb-nowrap { white-space: nowrap; }
+
+.cb-hero-tag {
+  max-width: 34em;
+  color: #fff;
+  font: 700 20px/1.3 $cimmm-heading-font;
+  text-wrap: balance;
+}
+
+.cb-hero-cimmm { flex: none; height: 44px; }
+
+// Quick-action buttons
+.cb-hero-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0 0 22px;
+}
+
+.markdown-body a.cb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  color: #fff;
+  font: 700 14px/1 $cimmm-heading-font;
+  text-decoration: none;
+
+  &:hover { background: rgba(255, 255, 255, 0.12); }
+
+  &.primary {
+    border-color: $cimmm-green;
+    background: $cimmm-green;
+    &:hover { background: darken($cimmm-green, 6%); }
+  }
+
+  small { font-weight: 400; opacity: 0.85; }
+}
+
+@media (max-width: 600px) {
+  .cb-hero-inner { flex-wrap: wrap; gap: 12px; min-height: 0; }
+  .cb-hero-logo { height: 52px; }
+  .cb-hero-rule, .cb-hero-cimmm { display: none; }
+  .cb-hero-text { flex-basis: 100%; }
+  .cb-hero-tag { font-size: 17px; }
+  .cb-hero-kicker { font-size: 10px; }
+  .cb-hero-mark { top: -40px; height: 200px; }
+  .markdown-body a.cb-btn { padding: 7px 12px; font-size: 13px; }
+}
+
+// ---- page text and headings ----------------------------------------------
+.markdown-body { color: $cimmm-ink; }
+.markdown-body a { color: $cimmm-blue; }
+
+.markdown-body h2 {
+  position: relative;
+  margin-top: 40px;
+  border-bottom: 1px solid $cimmm-hairline;
+  color: $cimmm-navy;
+  font-family: $cimmm-heading-font;
+  font-weight: 700;
+
+  // short teal accent under the start of the rule
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 56px;
+    height: 3px;
+    background: $cimmm-teal;
+  }
+}
+
+.markdown-body h3,
+.markdown-body h4 {
+  color: $cimmm-navy;
+  font-family: $cimmm-heading-font;
+  font-weight: 700;
+}
+
+// ---- tables (brand-blue header, banded rows, as in the deck) --------------
+.markdown-body table {
+  width: max-content;
+  max-width: 100%;
+  border: 1px solid $cimmm-frame;
+  border-radius: 4px;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  th,
+  td { border: 0; }
+
+  th {
+    background: $cimmm-blue;
+    color: #fff;
+    font-family: $cimmm-heading-font;
+    font-size: 13.5px;
+    border-right: 1px solid rgba(255, 255, 255, 0.25);
+
+    &:last-child { border-right: 0; }
+  }
+
+  td {
+    border-top: 1px solid $cimmm-frame;
+    font-size: 14px;
+  }
+
+  tr { background-color: #fff; border-top: 0; }
+  tr:nth-child(2n) { background-color: $cimmm-band; }
+  tbody tr:hover { background-color: $cimmm-hover; }
+}
+
+// ---- notes (block quotes) and code ----------------------------------------
+.markdown-body blockquote {
+  padding: 10px 16px;
+  border-left: 4px solid $cimmm-teal;
+  border-radius: 0 4px 4px 0;
+  background: #F6F9FB;
+  color: $cimmm-ink;
+}
+
+.markdown-body pre,
+.markdown-body .highlight pre {
+  border: 1px solid $cimmm-frame;
+  border-radius: 4px;
+  background: $cimmm-band;
+}
+
+.markdown-body code { background: rgba(10, 46, 87, 0.07); color: $cimmm-navy; }
+.markdown-body pre code { background: transparent; color: $cimmm-ink; }

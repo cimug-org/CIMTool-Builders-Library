@@ -1,8 +1,5 @@
-# CIMTool-Builders-Library
+<h1 id="cimtool-builders-library"><img src="media/logo/cimtool-builders-logo.svg#gh-light-mode-only" alt="CIMTool Builders Library" height="64"><img src="media/logo/cimtool-builders-logo-dark.svg#gh-dark-mode-only" alt="CIMTool Builders Library" height="64"></h1>
 
-![image](readme-icons/image-header-1.png)  
-\[[GitHub Repo](https://github.com/cimug-org/CIMTool-Builders-Library)\]
-      
 This is the official UCAIug repository for custom **CIMTool** [XSLT](https://www.w3schools.com/xml/xsl_intro.asp) builders and is provided as a public space to create, collaborate and contribute back builders for the benefit of the **CIMTool** community at large.  This library of builders can be used in [CIMTool](https://cimtool.ucaiug.io/) to generate various types of target artifacts from a **CIMTool** profile definition.  
 
 Would you like a custom builder that generates C/C++ objects from your CIMTool profiles? Perhaps you've wished there was a builder to create [Apache Avro](https://avro.apache.org/) schemas for data serialization or one that would automatically generate a [Google Protocol Buffers](https://developers.google.com/protocol-buffers/docs/overview) `.proto` file?  You can now with **CIMTool**'s custom builder import feature.
@@ -12,7 +9,6 @@ Included in this library is the base set of XSLT transforms that come shipped wi
 Feel free to initiate a [discussion](https://github.com/cimug-org/CIMTool-Builders-Library/discussions) around a new idea for a custom builder or to post a question on the discussions board. Please contribute new builders to this library using the submission process outlined towards the end of this page.
 
 ## Current Library of Builders
-![image](readme-icons/icons8-folder-tree-96.png)
 
 #### Builders Shipped with CIMTool:
 
@@ -59,11 +55,11 @@ The screenshots below illustrate how to access the new import and maintenance sc
 
 From the "Import" wizards screen... | ...Launch the "Import XSLT Transform Builder" screen
 ---------|---------
-[![image](https://user-images.githubusercontent.com/63370413/186978949-cf9cdbfe-e1e4-43ae-b8b6-91e212426a98.png)](https://user-images.githubusercontent.com/63370413/186978949-cf9cdbfe-e1e4-43ae-b8b6-91e212426a98.png) | [![image](https://user-images.githubusercontent.com/63370413/186978126-ec4fca57-53a1-4e16-a998-d3519371ebcc.png)](https://user-images.githubusercontent.com/63370413/186978126-ec4fca57-53a1-4e16-a998-d3519371ebcc.png)
+[![image](readme-icons/import-wizard.png)](readme-icons/import-wizard.png) | [![image](readme-icons/import-xslt-transform-builder.png)](readme-icons/import-xslt-transform-builder.png)
 
 From the "Profile Summary" tab... | ...Launch the "Manage XSLT Transform Builders" screen
 ---------|---------
-|[![image](https://github.com/user-attachments/assets/a7025bab-4a0b-4232-a61d-9121ae6deacd)](https://github.com/user-attachments/assets/a7025bab-4a0b-4232-a61d-9121ae6deacd) | [![image](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)](https://user-images.githubusercontent.com/63370413/188269652-758f2e79-e1fe-4c4a-99c3-8cc21923fcc5.png)
+[![image](readme-icons/profile-summary-manage-builders.png)](readme-icons/profile-summary-manage-builders.png) | [![image](readme-icons/manage-xslt-transform-builders.png)](readme-icons/manage-xslt-transform-builders.png)
 
 
 
@@ -88,7 +84,7 @@ What is not well known is that **CIMTool** has an alternate internal representat
 
 The significance of this internal representation is that it serves as the input into any XSLT builder(s) enabled for a profile. The XML builder itself is made available only so end users can view the internal representation. It does not need to be checked for XSLT builders to function.
 
-```XML
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog xmlns="http://langdale.com.au/2005/Message#"
          xmlns:m="http://ucaiug.org/GetUsagePointGroups#"
@@ -363,7 +359,7 @@ Make a copy of the`\builder-submissions\builder-submission-template.md` file and
 
 If you are deriving an XSLT from an existing builder then copy the builder into your new folder and rename it. By convention the name of your `.xsl` should match the folder name plus the `.xsl` file extension. If creating a new XSLT builder be sure to include the Apache 2.0 copyright header as shown next. This is the copyright associated with the XSLT builder and not that included in the generated output:
 
-```XML
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Copyright 2024 UCAIug
@@ -471,7 +467,7 @@ Finally, the **Extension** component of your assigned NTE is literally the exten
 
 Please note that you can experiment with your builder and test it by assigning a type of **TEXT** during import and review what **CIMTool** generates.  If there are issues delete the builder using the 'Maintain XSLT Builders' dialog (shown earlier) and reimport your builder as a **TRANSFORM** builder and recheck your output. This has been known to correct issues for certain builders that for example had their encoding set to ASCII:
 
-```XML
+```xml
 <xsl:output indent="no" method="text" encoding="ASCII"/>
 ```
 
@@ -494,11 +490,11 @@ Third-party tooling can be used to create and test new XSLT transforms for use a
 
 | | Product / Edition | Description |
 |---------|---------|---------|
-![image](https://www.eclipse.org/downloads/assets/public/images/logo-eclipse.png) | *Eclipse Foundation's XSLT Project <br/>(Free)* | XSL Tools brings XSLT development to the Eclipse platform. Its scope is to provide basic XSL editing and debugging support to compliment and leverage the XML and source editing support within **Web Tools Platform**. <br/><br/>The XSL Tools project focuses specifically on the Transformation engine of the W3C XSL Specification. This project is concerned with the XSL Transformation language for **XSLT 1.0** and **XSLT 2.0**.
-![image](https://raw.githubusercontent.com/DeltaXML/vscode-xslt-tokenizer/ed51154082720b8e2a2f93463054ebdc0bdde074/deltaxmlLogo.png) | *XSLT/XPath extensions for Visual Studio Code<br/>(Free)* | This VSCode extension provides comprehensive language support for **XSLT 3.0** and **XPath 3.1**. Visit the [Quick Start ReadMe](https://marketplace.visualstudio.com/items?itemName=deltaxml.xslt-xpath) or the full [XSLT/XPath User Guide](https://deltaxml.github.io/vscode-xslt-xpath/) for a more comprehensive overview.<br/><br/>For an introduction to the **XSLT 3.0** features available in this XSLT/XPath extension for Visual Studio Code view this [YouTube](https://www.youtube.com/watch?v=fdxfXaJw6SY) video.<br/><br/>**Note:** Microsoft's free [Visual Studio Code](https://code.visualstudio.com/download) is a streamlined code editor with support for development operations like debugging, task running, and version control. It aims to provide just the tools a developer needs for a quick code-build-debug cycle and leaves more complex workflows to fuller featured IDEs, such as [Visual Studio IDE](https://visualstudio.microsoft.com/)
-![image](https://www.altova.com/images/logos/xmlspy_2024.png) | *Altova XMLSpy Enterprise Edition*<br/>*Altova XMLSpy Professional Edition<br/>(Commercial products)* | **XMLSpy** provides a rich XSLT Editor, Profiler, and Debugger that supports:<ul><li>XSLT 1.0, XSLT 2.0, and XSLT 3.0<li>syntax coloring, line numbering, bookmarking, source folding, & code completion<li>interactive XPath Building and Testing<li>XSLT validation & troubleshooting</ul>For detailed information visit [XSLT/XPath User Guide](https://deltaxml.github.io/vscode-xslt-xpath/) for XMLSpy Enterprise Edition or [Processing with XSLT and XQuery](https://www.altova.com/manual/XMLSpy/spyprofessional/xsxml_processing.html) using XMLSpy Professional Edition.
-![image](https://www.oxygenxml.com/img/Developer80.png) | *Oxygen XML Developer<br/>(Commercial products)*<br/> | **Oxygen XML Developer** offers a powerful XSLT and XQuery debugger that provides full control over the debugging process. Two dedicated perspectives are available, one for XSLT and one for XQuery debugging, both offering specialized views and actions that allow you to troubleshoot and perfect your documents. Visit their [Oxygen XML Developer overview](https://www.oxygenxml.com/xml_developer.html) page for more details.
-![image](https://sparxsystems.com/images/earose.png) | *Enterprise Architect<br/>(Commercial product)* | **Enterprise Architect** provides basic facilities for modeling and executing XSL Transforms that can be used to convert XML input documents into other types of documents. Stylesheets are the XSL components used to transform the content. Note that the XSL processor used in EA is built from the Apache Xalan Project so you will be limited to **XSLT 1.0** compliant transform builders.<br/><br/>Visit the Sparx EA [online user guide](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/xml_to_html_transformation.html) for information on how to [model](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/model_an_xsl_transformation.html), [execute](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/execute_an_xsl_transformation.html) and [debug](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/debug_an_xsl_transformation.html) XSL transforms from within EA.
+![image](readme-icons/editor-eclipse.png) | *Eclipse Foundation's XSLT Project <br/>(Free)* | XSL Tools brings XSLT development to the Eclipse platform. Its scope is to provide basic XSL editing and debugging support to compliment and leverage the XML and source editing support within **Web Tools Platform**. <br/><br/>The XSL Tools project focuses specifically on the Transformation engine of the W3C XSL Specification. This project is concerned with the XSL Transformation language for **XSLT 1.0** and **XSLT 2.0**.
+![image](readme-icons/editor-deltaxml.png) | *XSLT/XPath extensions for Visual Studio Code<br/>(Free)* | This VSCode extension provides comprehensive language support for **XSLT 3.0** and **XPath 3.1**. Visit the [Quick Start ReadMe](https://marketplace.visualstudio.com/items?itemName=deltaxml.xslt-xpath) or the full [XSLT/XPath User Guide](https://deltaxml.github.io/vscode-xslt-xpath/) for a more comprehensive overview.<br/><br/>For an introduction to the **XSLT 3.0** features available in this XSLT/XPath extension for Visual Studio Code view this [YouTube](https://www.youtube.com/watch?v=fdxfXaJw6SY) video.<br/><br/>**Note:** Microsoft's free [Visual Studio Code](https://code.visualstudio.com/download) is a streamlined code editor with support for development operations like debugging, task running, and version control. It aims to provide just the tools a developer needs for a quick code-build-debug cycle and leaves more complex workflows to fuller featured IDEs, such as [Visual Studio IDE](https://visualstudio.microsoft.com/)
+![image](readme-icons/editor-xmlspy.webp) | *Altova XMLSpy Enterprise Edition*<br/>*Altova XMLSpy Professional Edition<br/>(Commercial products)* | **XMLSpy** provides a rich XSLT Editor, Profiler, and Debugger that supports:<ul><li>XSLT 1.0, XSLT 2.0, and XSLT 3.0<li>syntax coloring, line numbering, bookmarking, source folding, & code completion<li>interactive XPath Building and Testing<li>XSLT validation & troubleshooting</ul>For detailed information visit [XSLT/XPath User Guide](https://deltaxml.github.io/vscode-xslt-xpath/) for XMLSpy Enterprise Edition or [Processing with XSLT and XQuery](https://www.altova.com/manual/XMLSpy/spyprofessional/xsxml_processing.html) using XMLSpy Professional Edition.
+![image](readme-icons/editor-oxygen.png) | *Oxygen XML Developer<br/>(Commercial products)*<br/> | **Oxygen XML Developer** offers a powerful XSLT and XQuery debugger that provides full control over the debugging process. Two dedicated perspectives are available, one for XSLT and one for XQuery debugging, both offering specialized views and actions that allow you to troubleshoot and perfect your documents. Visit their [Oxygen XML Developer overview](https://www.oxygenxml.com/xml_developer.html) page for more details.
+![image](readme-icons/editor-sparx-ea.png) | *Enterprise Architect<br/>(Commercial product)* | **Enterprise Architect** provides basic facilities for modeling and executing XSL Transforms that can be used to convert XML input documents into other types of documents. Stylesheets are the XSL components used to transform the content. Note that the XSL processor used in EA is built from the Apache Xalan Project so you will be limited to **XSLT 1.0** compliant transform builders.<br/><br/>Visit the Sparx EA [online user guide](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/xml_to_html_transformation.html) for information on how to [model](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/model_an_xsl_transformation.html), [execute](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/execute_an_xsl_transformation.html) and [debug](https://sparxsystems.com/enterprise_architect_user_guide/15.0/model_domains/debug_an_xsl_transformation.html) XSL transforms from within EA.
 **[EditX]** | *EditiX XSLT Editor<br/>(Commercial product)* | <ul><li>XSLT 1.0 / 2.0 / 3.0 editor<li>Debugger with breakpoints (current, next elements, next breakpoint)<li>Debugger with XPath context and XSLT location<li>Syntax colors for XSLT elements and output elements<li>XML Data source preview<li>XML Output preview</ul>Visit the [XSLT Editor](https://www.editix.com/features/xslt_editor.html) page for details.
 
 ## License

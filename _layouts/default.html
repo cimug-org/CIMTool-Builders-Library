@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="icon" href="{{ "/favicon.ico" | relative_url }}" sizes="16x16 32x32 48x48">
+    <link rel="icon" href="{{ "/media/logo/cimtool-builders-mark.svg" | relative_url }}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ "/media/logo/cimtool-builders-mark-180.png" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    {% include head-custom.html %}
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      {%- comment -%}
+        Website header (CIM Model Management branding), shown on every page: the home page
+        (README.md) and each builder's builder.md. It lives here rather than in README.md so
+        the GitHub repository page, which also shows README.md, is unchanged.
+      {%- endcomment -%}
+      {%- assign home = "/" | relative_url -%}
+      <div class="cb-hero">
+        <img class="cb-hero-mark" src="{{ "/media/brand/CIMug_mark.svg" | relative_url }}" alt="">
+        <div class="cb-hero-inner">
+          <a class="cb-hero-home" href="{{ home }}"><img class="cb-hero-logo" src="{{ "/media/logo/cimtool-builders-logo-dark.svg" | relative_url }}" alt="CIMTool Builders Library"></a>
+          <span class="cb-hero-rule"></span>
+          <div class="cb-hero-text">
+            <div class="cb-hero-kicker">UCAIug open source library · <span class="cb-nowrap">builders for CIMTool</span></div>
+            <div class="cb-hero-tag">The UCAIug’s CIMTool community repository of publicly available XSLT builders</div>
+          </div>
+          <img class="cb-hero-cimmm" src="{{ "/media/brand/CIM_Model_Management_logo_white.svg" | relative_url }}" alt="CIM Model Management">
+        </div>
+        <div class="cb-hero-actions">
+          <a class="cb-btn primary" href="{{ home }}#current-library-of-builders">Browse builders</a>
+          <a class="cb-btn" href="{{ home }}#creating-and-submitting-a-custom-builder">Submit a builder</a>
+          <a class="cb-btn" href="https://github.com/cimug-org/CIMTool-Builders-Library/discussions" target="_blank" rel="noopener">Discussions</a>
+          <a class="cb-btn" href="https://cimtool.ucaiug.io/" target="_blank" rel="noopener">CIMTool</a>
+          <a class="cb-btn" href="https://github.com/cimug-org/CIMTool-Builders-Library" target="_blank" rel="noopener">GitHub repo</a>
+        </div>
+      </div>
+
+      {{ content }}
+
+      {% if site.github.private != true and site.github.license %}
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. {% github_edit_link "Improve this page" %}.
+      </div>
+      {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    <script>
+      // Links that leave the site open in a new tab, as on www.ucaiug.io.
+      // Links within cimtool-builders.ucaiug.io (pages, .xsl files, PDFs) stay in the same tab.
+      document.querySelectorAll('.markdown-body a[href]').forEach(function (a) {
+        if (a.hostname && a.hostname !== location.hostname && !a.target) {
+          a.target = '_blank';
+          a.rel = 'noopener';
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -8,7 +8,7 @@ The **[json-schema-draft-2020-12.xsl](json-schema-draft-2020-12.xsl)** builder g
 
 The following is an example of a generated JSON schema:
 
-```JSON
+```json
 {
      "$comment": "Copyright 2022 UCAIug SPDX-License-Identifier: Apache-2.0",
      "$id": "http://ucaiug.org/2022/GetUsagePointGroups.schema.json",

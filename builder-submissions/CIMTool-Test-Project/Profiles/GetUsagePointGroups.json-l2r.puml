@@ -183,7 +183,7 @@ hide <<abstract>> stereotype
 hide <<error>> stereotype
 
 class GetUsagePointGroups <<Document Root>> <<(D, #F3F3F3)>> {
-   http://iec.ch/TC57/2022/GetUsagePointGroups#
+   http://ucaiug.org/2022/GetUsagePointGroups#
 }
 
 GetUsagePointGroups --> "DemandResponseProgram 0..*" DemandResponseProgram

@@ -20,13 +20,13 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-    xmlns="http://iec.ch/TC57/2022/GetUsagePointGroups#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns="http://ucaiug.org/2022/GetUsagePointGroups#"
     xmlns:uml="http://langdale.com.au/2005/UML#"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-  xml:base="http://iec.ch/TC57/2022/GetUsagePointGroups" > 
+  xml:base="http://ucaiug.org/2022/GetUsagePointGroups" > 
   <rdf:Description rdf:nodeID="Xd2X650bea62Xa3X12ee8289f94Xa3X-7c4c">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
     <owl:allValuesFrom rdf:nodeID="Xd2X650bea62Xa3X12ee8289f94Xa3X-7c4d"/>
@@ -207,6 +207,30 @@
     <rdfs:label>mRID</rdfs:label>
     <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-json.adoc">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-xsd.adoc">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#json-l2r.puml">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#json-t2b.puml">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xml">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xsd">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xsd-l2r.puml">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xsd-t2b.puml">
+    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
+  </rdf:Description>
   <rdf:Description rdf:about="">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
     <rdfs:label>GetUsagePointGroups</rdfs:label>
@@ -255,30 +279,6 @@
     <rdfs:subClassOf rdf:nodeID="Xd2X650bea62Xa3X12ee8289f94Xa3X-7c59"/>
     <rdfs:subClassOf rdf:nodeID="Xd2X650bea62Xa3X12ee8289f94Xa3X-7c5c"/>
     <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM-generic#UsagePointGroup"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-json.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#article-xsd.adoc">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#json-l2r.puml">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#json-t2b.puml">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xml">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xsd">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xsd-l2r.puml">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://langdale.com.au/2007/Buildlet#xsd-t2b.puml">
-    <rdf:type rdf:resource="http://langdale.com.au/2005/Message#Flag"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>

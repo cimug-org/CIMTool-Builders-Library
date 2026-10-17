@@ -26,7 +26,7 @@
 
 == Overview
 
-Profile namespace: http://iec.ch/TC57/2022/GetUsagePointGroups#
+Profile namespace: http://ucaiug.org/2022/GetUsagePointGroups#
 
 .GetUsagePointGroups Profile
 plantuml::./Profiles/GetUsagePointGroups.json-l2r.puml[format=svg, align=center]

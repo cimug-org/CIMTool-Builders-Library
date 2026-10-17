@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:m="http://iec.ch/TC57/2022/GetUsagePointGroups#"
+<xs:schema xmlns:m="http://ucaiug.org/2022/GetUsagePointGroups#"
            xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://iec.ch/TC57/2022/GetUsagePointGroups#"
+           targetNamespace="http://ucaiug.org/2022/GetUsagePointGroups#"
            elementFormDefault="qualified"
            attributeFormDefault="unqualified">
    <xs:annotation>

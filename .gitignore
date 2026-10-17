@@ -1,0 +1,7 @@
+# CIMTool test project: hidden files that CIMTool and Eclipse regenerate locally.
+# Profiles/.<profile>.puml are the live PlantUML preview diagrams;
+# .asciidoctorconfig.adoc is created automatically by the Eclipse AsciiDoc editor.
+# The project's own settings files (.project, .cimtool-settings, .builder-preferences,
+# .cimtool-global-preferences, .copyright-*) are kept under version control.
+builder-submissions/CIMTool-Test-Project/Profiles/.*
+builder-submissions/CIMTool-Test-Project/.asciidoctorconfig.adoc

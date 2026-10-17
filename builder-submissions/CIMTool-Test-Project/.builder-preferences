@@ -8,3 +8,580 @@
 @prefix dc:      <http://purl.org/dc/elements/1.1/> .
 @prefix prefs:   <http://cimtoole.langdale.com.au/2009/builder-prefs#> .
 
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfile.json-l2r.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "50" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "50" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfile.json-t2b.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "50" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "50" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfile.owl>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_current_profile_preview_style
+              "" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "50" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "50" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfile.xsd-l2r.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "50" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "50" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfile.xsd-t2b.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "50" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "50" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.json-l2r.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "100" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "100" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.json-t2b.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "100" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "100" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.owl>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_current_profile_preview_style
+              "" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "100" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "100" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.xsd-l2r.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "100" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "100" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfileWithAnonymousTypes.xsd-t2b.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "100" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "100" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/GetUsagePointGroups.owl>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_current_profile_preview_style
+              "" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "125" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "125" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/GetUsagePointGroups.xsd-l2r.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "125" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "125" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/GetUsagePointGroups.xsd-t2b.puml>
+      prefs:plantuml_abstract_classes_color
+              "#E8E8E8" ;
+      prefs:plantuml_choices_color
+              "#E6E6FF" ;
+      prefs:plantuml_cimdatatypes_color
+              "#FFEBCD" ;
+      prefs:plantuml_compounds_color
+              "#FFEBCD" ;
+      prefs:plantuml_concrete_classes_color
+              "#FFFFE0" ;
+      prefs:plantuml_docroot_classes_color
+              "#D3FBFE" ;
+      prefs:plantuml_enable_dark_mode
+              "false" ;
+      prefs:plantuml_enable_shadowing
+              "true" ;
+      prefs:plantuml_enumerations_color
+              "#A9F1A9" ;
+      prefs:plantuml_hide_cardinality_for_required_attributes
+              "false" ;
+      prefs:plantuml_hide_cimdatatypes
+              "true" ;
+      prefs:plantuml_hide_compounds
+              "true" ;
+      prefs:plantuml_hide_enumerations
+              "true" ;
+      prefs:plantuml_hide_primitives
+              "true" ;
+      prefs:plantuml_nodesep_horizontal_spacing
+              "125" ;
+      prefs:plantuml_primitives_color
+              "#E6E6FF" ;
+      prefs:plantuml_ranksep_vertical_spacing
+              "125" ;
+      prefs:plantuml_refs_color
+              "#FFDBDB" ;
+      prefs:plantuml_set_anonymous_classes_color_to_white
+              "true" ;
+      prefs:plantuml_shadow_classes_color
+              "#C0C0C0" ;
+      prefs:plantuml_theme
+              "_none_" .

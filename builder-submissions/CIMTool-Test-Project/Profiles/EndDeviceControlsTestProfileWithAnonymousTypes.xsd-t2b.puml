@@ -61,9 +61,9 @@ top to bottom direction
 hide empty methods
 
 ' Adjust the horizontal spacing for better spatial rendering (the PlantUML default is ~20)
-skinparam nodesep 20
+skinparam nodesep 100
 ' Adjust the vertical spacing for better spatial rendering (the PlantUML default is ~30)
-skinparam ranksep 30
+skinparam ranksep 100
 
 skinparam BackgroundColor #FFFFFF
 skinparam shadowing false
@@ -276,54 +276,15 @@ abstract class PanPricing <<XSDcomplexType>> <<abstract>> {
    <$empty_icon>startDateTime: DateTime [0..1]
 }
 
-enum PhaseCode <<XSDsimpleType>> <<enumeration>>  {
-   A
-   AB
-   ABC
-   ABCN
-   ABN
-   AC
-   ACN
-   AN
-   B
-   BC
-   BCN
-   BN
-   C
-   CN
-   N
-   X
-   XN
-   XY
-   XYN
-   none
-   [Remaining 6 literals hidden]
-}
-
-enum TransmissionModeKind <<XSDsimpleType>> <<enumeration>>  {
-   anonymous
-   both
-   normal
-}
-
 ' UsagePoint inherits from IdentifiedObject
 abstract class UsagePoint <<XSDcomplexType>> <<abstract>> {
 }
 
 IdentifiedObject <|-- UsagePoint
 ' Anonymous complex type UsagePoint
-class Anon::EndDeviceControls::EndDevice::UsagePoint::n1 as "UsagePoint" <<anonymous>>  {
+class Anon::EndDeviceControls::EndDevice::UsagePoint::n1 as "UsagePoint" <<anonymous>> #FFFFFF {
    <$empty_icon>isSdp: Boolean [1]
    <$empty_icon>phaseCode: PhaseCode [1]
-}
-
-' Anonymous enumeration RandomisationKind
-enum Anon::EndDeviceControls::EndDeviceTiming::randomisation::n1 as "EndDeviceTiming::RandomisationKind" <<anonymous>> <<enumeration>>  {
-   default
-   end
-   none
-   start
-   startAndEnd
 }
 
 EndDevice --> "Names 0..*" Name

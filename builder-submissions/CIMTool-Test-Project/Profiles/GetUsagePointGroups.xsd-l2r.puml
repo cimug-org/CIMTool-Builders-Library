@@ -1,0 +1,241 @@
+@startuml
+
+sprite $choice_icon [32x32/16] {
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000FFFFF0000000000000
+00000000000000FFFFF0000000000000
+0000000000A000FFFFF00FFFFF000000
+000000000AFA00FFFFF000000F000000
+00000000AFA000FFFFF000000F000000
+0000000AFA000000000000000F000000
+000000AFA00000FFFFF000000F000000
+00000AFA000000FFFFF000000F000000
+0FFFFFA0000000FFFFF00FFFFFFFFFF0
+00000000000000FFFFF000000F000000
+00000000000000FFFFF000000F000000
+0000000000000000000000000F000000
+00000000000000FFFFF000000F000000
+00000000000000FFFFF000000F000000
+00000000000000FFFFF00FFFFF000000
+00000000000000FFFFF0000000000000
+00000000000000FFFFF0000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+00000000000000000000000000000000
+}
+
+sprite $ref_icon {
+0
+}
+
+sprite $empty_icon [16x16/16] {
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+0000000000000000
+}
+
+left to right direction
+hide empty methods
+
+' Adjust the horizontal spacing for better spatial rendering (the PlantUML default is ~20)
+skinparam nodesep 20
+' Adjust the vertical spacing for better spatial rendering (the PlantUML default is ~30)
+skinparam ranksep 30
+
+skinparam BackgroundColor #FFFFFF
+skinparam shadowing false
+skinparam RoundCorner 5
+skinparam BorderColor #454645
+skinparam ArrowColor #454645
+skinparam FontColor #000000
+
+skinparam class {
+  ' Document root element style definition
+  BackgroundColor<<Document Root>> #D3FBFE
+  FontColor<<Document Root>> #000000
+  FontSize<<Document Root>> 18
+  AttributeFontColor<<Document Root>> #000000
+  AttributeFontSize<<Document Root>> 18
+  StereotypeFontColor<<Document Root>> #000000
+  StereotypeFontSize<<Document Root>> 14
+  HeaderFontColor<<Document Root>> #000000
+  
+  ' Choice element style definition
+  BackgroundColor<<Choice>> #E6E6FF
+  FontColor<<Choice>> #000000
+  AttributeFontColor<<Choice>> #000000
+  StereotypeFontColor<<Choice>> #000000
+  HeaderFontColor<<Choice>> #000000
+  BorderColor<<Choice>> #454645
+  BorderThickness<<Choice>> 1
+  
+  ' Ref element style definition
+  BackgroundColor<<Ref>> #FFDBDB
+  FontColor<<Ref>> #000000
+  AttributeFontColor<<Ref>> #000000
+  StereotypeFontColor<<Ref>> #000000
+  HeaderFontColor<<Ref>> #000000
+  BorderColor<<Ref>> #454645
+  BorderThickness<<Ref>> 1
+  
+  ' Concrete classes style definition
+  BackgroundColor #FFFFE0
+  FontColor #000000
+  AttributeFontColor #000000
+  StereotypeFontColor #000000
+  HeaderFontColor #000000
+  BorderColor #454645
+  BorderThickness 1
+  
+  ' Abstract classes style definition
+  BackgroundColor<<abstract>> #E8E8E8
+  FontColor<<abstract>> #000000
+  AttributeFontColor<<abstract>> #000000
+  StereotypeFontColor<<abstract>> #000000
+  HeaderFontColor<<abstract>> #000000
+  BorderColor<<abstract>> #454645
+  BorderThickness<<abstract>> 1
+  
+  ' Enumerations style definition
+  BackgroundColor<<enumeration>> #A9F1A9
+  FontColor<<enumeration>> #000000
+  AttributeFontColor<<enumeration>> #000000
+  StereotypeFontColor<<enumeration>> #000000
+  HeaderFontColor <<enumeration>> #000000
+  BorderColor<<enumeration>> #454645
+  BorderThickness<<enumeration>> 1
+  
+  ' CIMDatatypes style definition
+  BackgroundColor<<CIMDatatype>> #FFEBCD
+  FontColor<<CIMDatatype>> #000000
+  AttributeFontColor<<CIMDatatype>> #000000
+  StereotypeFontColor<<CIMDatatype>> #000000
+  HeaderFontColor<<CIMDatatype>> #000000
+  BorderColor<<CIMDatatype>> #454645
+  BorderThickness<<CIMDatatype>> 1
+  
+  ' Compound classes style definition
+  BackgroundColor<<Compound>> #FFEBCD
+  FontColor<<Compound>> #000000
+  AttributeFontColor<<Compound>> #000000
+  StereotypeFontColor<<Compound>> #000000
+  HeaderFontColor<<Compound>> #000000
+  BorderColor<<Compound>> #454645
+  BorderThickness<<Compound>> 1
+  
+  ' Primitive classes style definition
+  BackgroundColor<<Primitive>> #E6E6FF
+  FontColor<<Primitive>> #000000
+  AttributeFontColor<<Primitive>> #000000
+  StereotypeFontColor<<Primitive>> #000000
+  HeaderFontColor<<Primitive>> #000000
+  BorderColor<<Primitive>> #454645
+  BorderThickness<<Primitive>> 1
+  
+  ' Errors classes style definition
+  BackgroundColor<<error>> #FFC0CB
+  FontColor<<error>> #000000
+  AttributeFontColor<<error>> #000000
+  StereotypeFontColor<<error>> #000000
+  HeaderFontColor<<error>> #000000
+  BorderColor<<error>> #454645
+  BorderThickness<<error>> 1
+  
+  ' Shadow classes style definition
+  BackgroundColor<<ShadowExtension>> #C0C0C0
+  FontColor<<ShadowExtension>> #000000
+  AttributeFontColor<<ShadowExtension>> #000000
+  StereotypeFontColor<<ShadowExtension>> #000000
+  HeaderFontColor<<ShadowExtension>> #000000
+  BorderColor<<ShadowExtension>> #454645
+  BorderThickness<<ShadowExtension>> 1
+  
+}
+
+skinparam shadowing true
+
+hide <<Document Root>> stereotype
+hide <<Choice>> stereotype
+hide <<Ref>> stereotype
+hide <<abstract>> stereotype
+hide <<error>> stereotype
+
+class GetUsagePointGroups <<Root XSDelement>> <<Document Root>> <<(E, #F3F3F3)>> {
+   http://iec.ch/TC57/2022/GetUsagePointGroups#
+}
+
+GetUsagePointGroups --> "DemandResponseProgram 0..*" DemandResponseProgram
+GetUsagePointGroups --> "UsagePoint 0..*" UsagePoint
+GetUsagePointGroups --> "UsagePointGroup 0..*" UsagePointGroup
+
+skinparam note {
+  BorderColor #454645
+  BorderThickness 1.5
+  FontSize 14
+  Font Bold
+  FontColor #000000
+}
+
+' DemandResponseProgram
+class DemandResponseProgram <<XSDcomplexType>>  {
+   <$empty_icon>mRID: String [0..1]
+   <$empty_icon>type: String [0..1]
+}
+
+' Name
+abstract class Name <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>name: String [1]
+}
+
+' NameType
+abstract class NameType <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>description: String [0..1]
+   <$empty_icon>name: String [1]
+}
+
+' NameTypeAuthority
+abstract class NameTypeAuthority <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>description: String [0..1]
+   <$empty_icon>name: String [1]
+}
+
+' UsagePoint
+class UsagePoint <<XSDcomplexType>>  {
+   <$empty_icon>mRID: String [0..1]
+}
+
+' UsagePointGroup
+class UsagePointGroup <<XSDcomplexType>>  {
+   <$empty_icon>mRID: String [0..1]
+}
+
+DemandResponseProgram --> "Names 0..*" Name
+Name --> "NameType 0..1" NameType
+NameType --> "NameTypeAuthority 0..1" NameTypeAuthority
+UsagePoint --> "Names 0..*" Name
+UsagePointGroup --> "Names 0..*" Name
+
+@enduml

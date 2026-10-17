@@ -57,7 +57,7 @@ sprite $empty_icon [16x16/16] {
 0000000000000000
 }
 
-top to bottom direction
+left to right direction
 hide empty methods
 
 ' Adjust the horizontal spacing for better spatial rendering (the PlantUML default is ~20)
@@ -183,186 +183,135 @@ hide <<Ref>> stereotype
 hide <<abstract>> stereotype
 hide <<error>> stereotype
 
-
-skinparam note {
-   BorderColor #454645
-   BorderThickness 1
-   FontSize 14
-   Font Bold
-   FontColor #000000
+class EndDeviceControls <<Root XSDelement>> <<Document Root>> <<(E, #F3F3F3)>> {
+   http://ucaiug.org/2022/EndDeviceControls#
 }
 
-' Add a note towards the upper left corner of the diagram
-note as EndDeviceControlsNote #lightyellow
-   Profile: EndDeviceControls
-   Namespace: http://ucaiug.org/2022/EndDeviceControls#
-end note
+EndDeviceControls --> "EndDeviceControl 0..*" EndDeviceControl
+EndDeviceControls --> "EndDeviceControlType 0..*" EndDeviceControlType
+
+skinparam note {
+  BorderColor #454645
+  BorderThickness 1.5
+  FontSize 14
+  Font Bold
+  FontColor #000000
+}
 
 ' Asset inherits from IdentifiedObject
-abstract class Asset  <<abstract>> {
+abstract class Asset <<XSDcomplexType>> <<abstract>> {
 }
 
 IdentifiedObject <|-- Asset
-
-
 ' AssetContainer inherits from Asset
-abstract class AssetContainer  <<abstract>> {
+abstract class AssetContainer <<XSDcomplexType>> <<abstract>> {
 }
 
 Asset <|-- AssetContainer
-
-
 ' EndDevice inherits from AssetContainer
-abstract class EndDevice  <<abstract>> {
-   +installCode: String [0..1]
-   +isPan: Boolean [0..1]
+abstract class EndDevice <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>installCode: String [0..1]
+   <$empty_icon>isPan: Boolean [0..1]
 }
 
 AssetContainer <|-- EndDevice
-
-IdentifiedObject "+IdentifiedObject 0..1" --> "+Names 0..*" Name
-EndDevice "+EndDevices 0..*" --> "+UsagePoint 1" UsagePoint
-
 ' EndDeviceAction
-abstract class EndDeviceAction <<error>>  <<abstract>> {
-   +command: String [0..1]
+abstract class EndDeviceAction <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>command: String [0..1]
 }
 
-
-
-note as ErrorEndDeviceAction
-Class EndDeviceAction is 'abstract' and has no parent class,
-child class, or association references to it. It should either be
-removed from the profile or declared as 'concrete'.
-end note
-
-ErrorEndDeviceAction ..> EndDeviceAction #red
-
 ' EndDeviceControl inherits from IdentifiedObject
-class EndDeviceControl   {
-   +drProgramLevel: Integer [0..1]
-   +drProgramMandatory: Boolean [0..1]
-   +issuerID: String [0..1]
-   +priceSignal: Float [0..1]
-   +primaryDeviceTiming: EndDeviceTiming [0..1]
+class EndDeviceControl <<XSDcomplexType>>  {
+   <$empty_icon>drProgramLevel: Integer [0..1]
+   <$empty_icon>drProgramMandatory: Boolean [0..1]
+   <$empty_icon>issuerID: String [0..1]
+   <$empty_icon>priceSignal: Float [0..1]
+   <$empty_icon>primaryDeviceTiming: EndDeviceTiming [0..1]
+   <$empty_icon>scheduledInterval: EndDeviceControl::DateTimeInterval [1]
 }
 
 IdentifiedObject <|-- EndDeviceControl
-
-EndDeviceControl "+EndDeviceControls 0..*" --> "+EndDeviceControlType 1" EndDeviceControlType
-EndDeviceControl "+EndDeviceControls 0..*" --> "+EndDevices 0..*" EndDevice
-EndDeviceControl "+EndDeviceControls 0..*" --> "+UsagePoints 0..*" UsagePoint
-
 ' EndDeviceControlType inherits from IdentifiedObject
-class EndDeviceControlType   {
-   +type: String [0..1]
+class EndDeviceControlType <<XSDcomplexType>>  {
+   <$empty_icon>type: String [0..1]
 }
 
 IdentifiedObject <|-- EndDeviceControlType
-
-
 ' IdentifiedObject
-abstract class IdentifiedObject  <<abstract>> {
-   +mRID: String [1]
+abstract class IdentifiedObject <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>mRID: String [1]
 }
-
 
 ' Name
-abstract class Name <<error>>  <<abstract>> {
-   +name: String [0..1]
+abstract class Name <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>name: String [0..1]
 }
 
-
-
-note as ErrorName
-Class Name is 'abstract'. If it is serving as
-a reference to an external object then no fields should be defined in
-it. Otherwise, it should be declared as 'concrete'.
-end note
-
-ErrorName ..> Name #red
-
-' Name
-abstract class Name <<error>>  <<abstract>> {
-   +name: String [1]
+' Name2
+abstract class Name2 <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>name: String [1]
 }
-
-
-
-note as ErrorName
-Class Name is 'abstract'. If it is serving as
-a reference to an external object then no fields should be defined in
-it. Otherwise, it should be declared as 'concrete'.
-end note
-
-ErrorName ..> Name #red
 
 ' PanDemandResponse
-abstract class PanDemandResponse <<error>>  <<abstract>> {
-   +appliance: ControlledAppliance [0..1]
-   +cancelDateTime: DateTime [0..1]
-   +command: String [0..1]
-   +coolingSetpoint: Temperature [0..1]
-   +durationIndefinite: Boolean [0..1]
-   +dutyCycle: PerCent [0..1]
+abstract class PanDemandResponse <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>appliance: ControlledAppliance [0..1]
+   <$empty_icon>cancelDateTime: DateTime [0..1]
+   <$empty_icon>command: String [0..1]
+   <$empty_icon>coolingSetpoint: Temperature [0..1]
+   <$empty_icon>durationIndefinite: Boolean [0..1]
+   <$empty_icon>dutyCycle: PerCent [0..1]
 }
-
-
-
-note as ErrorPanDemandResponse
-Class PanDemandResponse is 'abstract' and has no parent class,
-child class, or association references to it. It should either be
-removed from the profile or declared as 'concrete'.
-end note
-
-ErrorPanDemandResponse ..> PanDemandResponse #red
 
 ' PanDisplay
-abstract class PanDisplay <<error>>  <<abstract>> {
-   +command: String [0..1]
-   +confirmationRequired: Boolean [0..1]
-   +startDateTime: DateTime [0..1]
-   +transmissionMode: TransmissionModeKind [0..1]
+abstract class PanDisplay <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>command: String [0..1]
+   <$empty_icon>confirmationRequired: Boolean [0..1]
+   <$empty_icon>startDateTime: DateTime [0..1]
+   <$empty_icon>transmissionMode: TransmissionModeKind [0..1]
 }
-
-
-
-note as ErrorPanDisplay
-Class PanDisplay is 'abstract' and has no parent class,
-child class, or association references to it. It should either be
-removed from the profile or declared as 'concrete'.
-end note
-
-ErrorPanDisplay ..> PanDisplay #red
 
 ' PanPricing
-abstract class PanPricing <<error>>  <<abstract>> {
-   +command: String [0..1]
-   +startDateTime: DateTime [0..1]
+abstract class PanPricing <<XSDcomplexType>> <<abstract>> {
+   <$empty_icon>command: String [0..1]
+   <$empty_icon>startDateTime: DateTime [0..1]
 }
 
-
-
-note as ErrorPanPricing
-Class PanPricing is 'abstract' and has no parent class,
-child class, or association references to it. It should either be
-removed from the profile or declared as 'concrete'.
-end note
-
-ErrorPanPricing ..> PanPricing #red
-
-enum TransmissionModeKind <<enumeration>>  {
+enum TransmissionModeKind <<XSDsimpleType>> <<enumeration>>  {
    anonymous
    both
    normal
 }
 
 ' UsagePoint inherits from IdentifiedObject
-abstract class UsagePoint  <<abstract>> {
+abstract class UsagePoint <<XSDcomplexType>> <<abstract>> {
 }
 
 IdentifiedObject <|-- UsagePoint
+EndDevice --> "Names 0..*" Name
+EndDevice --> "UsagePoint 1" UsagePoint
 
-IdentifiedObject "+IdentifiedObject 0..1" --> "+Names 0..*" Name2
+' Choice placeholder class for EndDeviceAction
+class "EndDeviceAction [0..1]" as Choice::EndDeviceControls::EndDeviceControl::EndDeviceAction::n1 <<Choice>> <<($choice_icon)>> {
+}
+
+hide "Choice::EndDeviceControls::EndDeviceControl::EndDeviceAction::n1" attributes
+
+EndDeviceControl --> Choice::EndDeviceControls::EndDeviceControl::EndDeviceAction::n1
+
+
+Choice::EndDeviceControls::EndDeviceControl::EndDeviceAction::n1 --> "PanDemandResponse 1" PanDemandResponse
+Choice::EndDeviceControls::EndDeviceControl::EndDeviceAction::n1 --> "PanDisplay 1" PanDisplay
+Choice::EndDeviceControls::EndDeviceControl::EndDeviceAction::n1 --> "PanPricing 1" PanPricing
+
+' Ref placeholder class for EndDeviceControlType
+class Ref::EndDeviceControls::EndDeviceControl::EndDeviceControlType::n1 as "@ref  " <<Ref>> <<($ref_icon)>> {
+}
+
+hide "Ref::EndDeviceControls::EndDeviceControl::EndDeviceControlType::n1" attributes
+
+EndDeviceControl --> "EndDeviceControlType 1" Ref::EndDeviceControls::EndDeviceControl::EndDeviceControlType::n1
+EndDeviceControl --> "EndDevices 0..*" EndDevice
+EndDeviceControl --> "UsagePoints 0..*" UsagePoint
+UsagePoint --> "Names 0..*" Name2
 
 @enduml

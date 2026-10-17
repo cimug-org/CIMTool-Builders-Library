@@ -1,0 +1,727 @@
+//==================================================================
+// Following is the "header" attributes defined for this asciidoc
+//==================================================================
+:stem: latexmath
+//
+//============ General document settings ============
+//
+:doctype: article
+:reproducible:
+:icons: font
+:sectnums:
+:sectnumlevels: 4
+:xrefstyle: short
+:table-stripes: even
+//==================================================================
+//
+
+= EndDeviceControls Profile Specification
+
+
+// TOC must appear after the title of the doc (above)
+:toc-placement: preamble
+:toc-title: Table of Contents
+:toc:
+:toclevels: 6
+
+== Overview
+
+Profile namespace: http://ucaiug.org/2022/EndDeviceControls#
+
+.EndDeviceControls Profile
+plantuml::./Profiles/EndDeviceControlsTestProfile.xsd-l2r.puml[format=svg, align=center]
+
+
+=== Concrete Classes
+
+[[EndDeviceControlsTestProfile-EndDeviceControl]]
+==== EndDeviceControl
+
+Inheritance path = <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+
+:EndDeviceControl:
+
+Instructs an end device (or an end device group) to perform a specified action.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|drProgramLevel
+|0..1
+|<<EndDeviceControlsTestProfile-Integer,Integer>>
+|
+Level of a demand response program request, where 0=emergency. Note: Attribute is not defined on DemandResponseProgram as it is not its inherent property (it serves to control it).
+
+|drProgramMandatory
+|0..1
+|<<EndDeviceControlsTestProfile-Boolean,Boolean>>
+|
+Whether a demand response program request is mandatory. Note: Attribute is not defined on DemandResponseProgram as it is not its inherent property (it serves to control it).
+
+|issuerID
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Unique identifier of the business entity originating an end device control.
+
+|priceSignal
+|0..1
+|<<EndDeviceControlsTestProfile-Float,Float>>
+|
+(if applicable) Price signal used as parameter for this end device control.
+
+|primaryDeviceTiming
+|0..1
+|<<EndDeviceControlsTestProfile-EndDeviceTiming,EndDeviceTiming>>
+|
+Timing for the control actions performed on the device identified in the end device control.
+
+|scheduledInterval
+|1..1
+|<<EndDeviceControlsTestProfile-Anon-EndDeviceControls-EndDeviceControl-scheduledInterval-n1,DateTimeInterval>> (anon)
+|
+(if control has scheduled duration) Date and time interval the control has been scheduled to execute within.
+
+|EndDeviceAction
+|0..1
+|
+[cols="1"]
+!====
+! Choices
+!<<EndDeviceControlsTestProfile-PanDemandResponse,PanDemandResponse>>!<<EndDeviceControlsTestProfile-PanDisplay,PanDisplay>>!<<EndDeviceControlsTestProfile-PanPricing,PanPricing>>
+!====
+|
+End device action issued by this end device control.
+
+|EndDeviceControlType (@ref)
+|1..1
+|<<EndDeviceControlsTestProfile-EndDeviceControlType,EndDeviceControlType>>
+|
+Type of this end device control.
+
+|EndDevices
+|0..*
+|<<EndDeviceControlsTestProfile-EndDevice,EndDevice>>
+|
+All end devices receiving commands from this end device control.
+
+|UsagePoints
+|0..*
+|<<EndDeviceControlsTestProfile-UsagePoint,UsagePoint>>
+|
+All usage points receiving commands from this end device control.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|see <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+|===
+
+:!EndDeviceControl:
+
+[[EndDeviceControlsTestProfile-EndDeviceControlType]]
+==== EndDeviceControlType
+
+Inheritance path = <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+
+:EndDeviceControlType:
+
+Detailed description for a control produced by an end device. Values in attributes allow for creation of recommended codes to be used for identifying end device controls as follows: {lt}type{gt}.{lt}domain{gt}.{lt}subDomain{gt}.{lt}eventOrAction{gt}.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|type
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Type of physical device from which the control was created. A value of zero (0) can be used when the source is unknown.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|see <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+|===
+
+:!EndDeviceControlType:
+
+
+=== Abstract Classes
+
+[[EndDeviceControlsTestProfile-Asset]]
+==== Asset
+
+Inheritance path = <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+
+:Asset:
+
+Tangible resource of the utility, including power system equipment, various end devices, cabinets, buildings, etc. For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|see <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+|===
+
+:!Asset:
+
+[[EndDeviceControlsTestProfile-AssetContainer]]
+==== AssetContainer
+
+Inheritance path = <<EndDeviceControlsTestProfile-Asset,Asset>> => <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+
+:AssetContainer:
+
+Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|see <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+|===
+
+:!AssetContainer:
+
+[[EndDeviceControlsTestProfile-EndDevice]]
+==== EndDevice
+
+Inheritance path = <<EndDeviceControlsTestProfile-AssetContainer,AssetContainer>> => <<EndDeviceControlsTestProfile-Asset,Asset>> => <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+
+:EndDevice:
+
+Asset container that performs one or more end device functions. One type of end device is a meter which can perform metering, load management, connect/disconnect, accounting functions, etc. Some end devices, such as ones monitoring and controlling air conditioners, refrigerators, pool pumps may be connected to a meter. All end devices may have communication capability defined by the associated communication function(s). An end device may be owned by a consumer, a service provider, utility or otherwise.
+
+There may be a related end device function that identifies a sensor or control point within a metering application or communications systems (e.g., water, gas, electricity).
+
+Some devices may use an optical port that conforms to the ANSI C12.18 standard for communications.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|installCode
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Installation code.
+
+|isPan
+|0..1
+|<<EndDeviceControlsTestProfile-Boolean,Boolean>>
+|
+If true, this is a premises area network (PAN) device.
+
+|Names
+|0..*
+|<<EndDeviceControlsTestProfile-Name,Name>>
+|
+All names of this identified object.
+
+|UsagePoint
+|1..1
+|<<EndDeviceControlsTestProfile-UsagePoint,UsagePoint>>
+|
+Usage point to which this end device belongs.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|see <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+|===
+
+:!EndDevice:
+
+[[EndDeviceControlsTestProfile-EndDeviceAction]]
+==== EndDeviceAction
+
+
+:EndDeviceAction:
+
+Action/command performed by an end device on a device other than the end device.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|command
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Command text.
+
+|===
+
+:!EndDeviceAction:
+
+[[EndDeviceControlsTestProfile-IdentifiedObject]]
+==== IdentifiedObject
+
+
+:IdentifiedObject:
+
+This is a root class to provide common identification for all classes needing identification and naming attributes.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+|===
+
+:!IdentifiedObject:
+
+[[EndDeviceControlsTestProfile-Name]]
+==== Name
+
+
+:Name:
+
+The Name class provides the means to define any number of human readable names for an object. A name is {lt}b{gt}not{lt}/b{gt} to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|name
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Any free text that name the object.
+
+|===
+
+:!Name:
+
+[[EndDeviceControlsTestProfile-Name2]]
+==== Name2
+
+
+:Name2:
+
+The Name class provides the means to define any number of human readable names for an object. A name is {lt}b{gt}not{lt}/b{gt} to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.
+
+
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|name
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Any free text that name the object.
+
+|===
+
+:!Name2:
+
+[[EndDeviceControlsTestProfile-PanDemandResponse]]
+==== PanDemandResponse
+
+
+:PanDemandResponse:
+
+PAN control used to issue action/command to PAN devices during a demand response/load control event.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|appliance
+|0..1
+|<<EndDeviceControlsTestProfile-ControlledAppliance,ControlledAppliance>>
+|
+Appliance being controlled.
+
+|cancelDateTime
+|0..1
+|<<EndDeviceControlsTestProfile-DateTime,DateTime>>
+|
+Timestamp when a canceling of the event is scheduled to start.
+
+|command
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Command text.
+
+|coolingSetpoint
+|0..1
+|<<EndDeviceControlsTestProfile-Temperature,Temperature>>
+|
+Requested cooling set point. Temperature set point is typically defined and calculated based on local temperature.
+
+|durationIndefinite
+|0..1
+|<<EndDeviceControlsTestProfile-Boolean,Boolean>>
+|
+True if the action of this control is indefinite.
+
+|dutyCycle
+|0..1
+|<<EndDeviceControlsTestProfile-PerCent,PerCent>>
+|
+Maximum "on" state duty cycle as a percentage of time. For example, if the value is 80, the device would be in an "on" state for 80% of the time for the duration of the action.
+
+|===
+
+:!PanDemandResponse:
+
+[[EndDeviceControlsTestProfile-PanDisplay]]
+==== PanDisplay
+
+
+:PanDisplay:
+
+PAN action/command used to issue the displaying of text messages on PAN devices.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|command
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Command text.
+
+|confirmationRequired
+|0..1
+|<<EndDeviceControlsTestProfile-Boolean,Boolean>>
+|
+If true, the requesting entity (e.g. retail electric provider) requires confirmation of the successful display of the text message.
+
+|startDateTime
+|0..1
+|<<EndDeviceControlsTestProfile-DateTime,DateTime>>
+|
+Start date and time for action of this control.
+
+|transmissionMode
+|0..1
+|<<EndDeviceControlsTestProfile-TransmissionModeKind,TransmissionModeKind>>
+|
+Transmission mode to be used for this PAN display control.
+
+|===
+
+:!PanDisplay:
+
+[[EndDeviceControlsTestProfile-PanPricing]]
+==== PanPricing
+
+
+:PanPricing:
+
+PAN action/command used to issue pricing information to a PAN device.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|command
+|0..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|
+Command text.
+
+|startDateTime
+|0..1
+|<<EndDeviceControlsTestProfile-DateTime,DateTime>>
+|
+Start date and time for action of this control.
+
+|===
+
+:!PanPricing:
+
+[[EndDeviceControlsTestProfile-UsagePoint]]
+==== UsagePoint
+
+Inheritance path = <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+
+:UsagePoint:
+
+Logical or physical point in the network to which readings or events may be attributed. Used at the place where a physical or virtual meter may be located; however, it is not required that a meter be present.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|Names
+|0..*
+|<<EndDeviceControlsTestProfile-Name2,Name2>>
+|
+All names of this identified object.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<EndDeviceControlsTestProfile-String,String>>
+|see <<EndDeviceControlsTestProfile-IdentifiedObject,IdentifiedObject>>
+|===
+
+:!UsagePoint:
+
+
+=== Compound Types
+
+[[EndDeviceControlsTestProfile-ControlledAppliance]]
+==== ControlledAppliance
+
+
+:ControlledAppliance:
+
+Appliance controlled with a PAN device control.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|isElectricVehicle
+|0..1
+|<<EndDeviceControlsTestProfile-Boolean,Boolean>>
+|
+True if the appliance is an electric vehicle.
+
+|===
+
+:!ControlledAppliance:
+
+[[EndDeviceControlsTestProfile-DateTimeInterval]]
+==== DateTimeInterval
+
+
+:DateTimeInterval:
+
+Interval between two date and time points, where the interval includes the start time but excludes end time.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|end
+|0..1
+|<<EndDeviceControlsTestProfile-DateTime,DateTime>>
+|
+End date and time of this interval. The end date and time where the interval is defined up to, but excluded.
+
+|start
+|0..1
+|<<EndDeviceControlsTestProfile-DateTime,DateTime>>
+|
+Start date and time of this interval. The start date and time is included in the defined interval.
+
+|===
+
+:!DateTimeInterval:
+
+[[EndDeviceControlsTestProfile-EndDeviceTiming]]
+==== EndDeviceTiming
+
+
+:EndDeviceTiming:
+
+Timing for the control actions of end devices.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%a,45%a"]
+|===
+|name |mult |type |description
+|durationIndefinite
+|0..1
+|<<EndDeviceControlsTestProfile-Boolean,Boolean>>
+|
+True if 'duration' is indefinite.
+
+|interval
+|0..1
+|<<EndDeviceControlsTestProfile-DateTimeInterval,DateTimeInterval>>
+|
+Start and end time of an interval during which end device control actions are to be executed.
+
+|===
+
+:!EndDeviceTiming:
+
+
+=== Enumerations
+
+[[EndDeviceControlsTestProfile-TransmissionModeKind]]
+==== TransmissionModeKind
+
+Transmission mode for end device display controls, applicable to premises area network (PAN) devices.
+
+
+[%header,width="100%",cols="25%,75%a"]
+|===
+|name |description
+
+|[[EndDeviceControlsTestProfile-TransmissionModeKind-anonymous]]anonymous
+|
+Message transmission mode whereby messages or commands are broadcast to unspecified devices listening for such communications.
+
+
+|[[EndDeviceControlsTestProfile-TransmissionModeKind-both]]both
+|
+Message transmission mode whereby messages or commands are sent by both 'normal' and 'anonymous' methods.
+
+
+|[[EndDeviceControlsTestProfile-TransmissionModeKind-normal]]normal
+|
+Message transmission mode whereby messages or commands are sent to specific devices.
+
+|===
+
+=== Anonymous Inline Compound Types
+
+[[EndDeviceControlsTestProfile-Anon-EndDeviceControls-EndDeviceControl-scheduledInterval-n1]]
+==== DateTimeInterval (anonymous)
+
+:scheduledInterval:
+
+(if control has scheduled duration) Date and time interval the control has been scheduled to execute within.
+
+
+:!scheduledInterval:
+
+
+=== Datatypes
+
+[[EndDeviceControlsTestProfile-PerCent]]
+==== PerCent
+
+Percentage on a defined base. For example, specify as 100 to indicate at the defined base.
+
+
+XSD type: float
+
+[[EndDeviceControlsTestProfile-Temperature]]
+==== Temperature
+
+Value of temperature in degrees Celsius.
+
+
+XSD type: float
+
+
+=== Primitive Types
+
+[[EndDeviceControlsTestProfile-Boolean]]
+==== Boolean
+
+A type with the value space "true" and "false".
+
+
+XSD type: boolean
+
+[[EndDeviceControlsTestProfile-DateTime]]
+==== DateTime
+
+Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601. UTC time zone is specified as "yyyy-mm-ddThh:mm:ss.sssZ". A local timezone relative UTC is specified as "yyyy-mm-ddThh:mm:ss.sss-hh:mm". The second component (shown here as "ss.sss") could have any number of digits in its fractional part to allow any kind of precision beyond seconds.
+
+
+XSD type: dateTime
+
+[[EndDeviceControlsTestProfile-Float]]
+==== Float
+
+A floating point number. The range is unspecified and not limited.
+
+
+XSD type: float
+
+[[EndDeviceControlsTestProfile-Integer]]
+==== Integer
+
+An integer number. The range is unspecified and not limited.
+
+
+XSD type: integer
+
+[[EndDeviceControlsTestProfile-String]]
+==== String
+
+A string consisting of a sequence of characters. The character encoding is UTF-8. The string length is unspecified and unlimited.
+
+
+XSD type: string
+
+

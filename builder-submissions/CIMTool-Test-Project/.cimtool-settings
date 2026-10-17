@@ -12,7 +12,11 @@ project:
       tool:merge_shadow_extensions
               "true" ;
       tool:merged_schema_path
-              "" .
+              "" ;
+      tool:plantuml_current_profile_preview_style
+              "puml-xsd-l2r" ;
+      tool:self_heal_on_import
+              "true" .
 
 <http://cimtoole.langdale.com.au/2009/project/Profiles/EndDeviceControlsTestProfile.owl>
       tool:profile_envelope
@@ -25,6 +29,12 @@ project:
               "Profile" ;
       tool:profile_namespace
               "http://iec.ch/TC57/2007/profile#" .
+
+<http://cimtoole.langdale.com.au/2009/project/Profiles/GetUsagePointGroups.owl>
+      tool:profile_envelope
+              "Profile" ;
+      tool:profile_namespace
+              "http://www.ucaiug.org/profile#" .
 
 <http://cimtoole.langdale.com.au/2009/project/Schema/iec61970cim17v40_iec61968cim13v13b_iec62325cim03v17b_CIM100.1.1.1.xmi>
       tool:schema_namespace

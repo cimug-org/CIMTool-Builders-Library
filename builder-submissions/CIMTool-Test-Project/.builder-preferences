@@ -1,0 +1,10 @@
+@prefix msg:     <http://langdale.com.au/2005/Message#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix uml:     <http://langdale.com.au/2005/UML#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix project:  <http://cimtoole.langdale.com.au/2009/project/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix prefs:   <http://cimtoole.langdale.com.au/2009/builder-prefs#> .
+

@@ -6,11 +6,11 @@ This builder currently ships with CIMTool.
 
 The **[json-schema-draft-07.xsl](json-schema-draft-07.xsl)** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is [draft-07](https://json-schema.org/draft-07/json-schema-release-notes.html).
 
-The following is an example of a generated JSON schema:
+The following is an example of a JSON schema generated from the GetUsagePointGroups profile in the [CIMTool-Test-Project](../../builder-submissions/CIMTool-Test-Project/Profiles/GetUsagePointGroups.xml):
 
 ```json
 {
-     "$comment": "Copyright 2022 UCAIug SPDX-License-Identifier: Apache-2.0",
+     "$comment": "Copyright 2026 UCAIug SPDX-License-Identifier: Apache-2.0",
      "$id": "http://ucaiug.org/2022/GetUsagePointGroups.schema.json",
      "$schema": "http://json-schema.org/draft-07/schema#",
      "title": "GetUsagePointGroups",
@@ -46,6 +46,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "DemandResponseProgram"
+                  },
                   "mRID": {
                       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended. For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID",
@@ -64,7 +68,10 @@ The following is an example of a generated JSON schema:
                           "$ref": "#/definitions/Name"
                       }
                   }
-              }
+              },
+              "required": [
+                  "@type"
+              ]
           },
           "Name": {
               "title": "Name",
@@ -73,6 +80,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "Name"
+                  },
                   "name": {
                       "description": "Any free text that name the object.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#Name.name",
@@ -85,7 +96,7 @@ The following is an example of a generated JSON schema:
                   }
               },
               "required": [
-                  "name"
+                  "@type", "name"
               ]
           },
           "NameType": {
@@ -95,6 +106,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "NameType"
+                  },
                   "description": {
                       "description": "Description of the name type.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#NameType.description",
@@ -112,7 +127,7 @@ The following is an example of a generated JSON schema:
                   }
               },
               "required": [
-                  "name"
+                  "@type", "name"
               ]
           },
           "NameTypeAuthority": {
@@ -122,6 +137,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "NameTypeAuthority"
+                  },
                   "description": {
                       "description": "Description of the name type authority.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#NameTypeAuthority.description",
@@ -134,7 +153,7 @@ The following is an example of a generated JSON schema:
                   }
               },
               "required": [
-                  "name"
+                  "@type", "name"
               ]
           },
           "UsagePoint": {
@@ -144,6 +163,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "UsagePoint"
+                  },
                   "mRID": {
                       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended. For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID",
@@ -157,7 +180,10 @@ The following is an example of a generated JSON schema:
                           "$ref": "#/definitions/Name"
                       }
                   }
-              }
+              },
+              "required": [
+                  "@type"
+              ]
           },
           "UsagePointGroup": {
               "title": "UsagePointGroup",
@@ -166,6 +192,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "UsagePointGroup"
+                  },
                   "mRID": {
                       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended. For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID",
@@ -179,7 +209,10 @@ The following is an example of a generated JSON schema:
                           "$ref": "#/definitions/Name"
                       }
                   }
-              }
+              },
+              "required": [
+                  "@type"
+              ]
           },
           "GetUsagePointGroups": {
                "$ref": "#"

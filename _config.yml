@@ -20,7 +20,7 @@ defaults:
         path: /media/logo/cimtool-builders-social-1280x640.png
         width: 1280
         height: 640
-        alt: "CIMTool Builders Library: The UCAIug's CIMTool community repository of publicly available XSLT builders"
+        alt: "CIMTool Builders Library: The UCAIug's community repository of publicly available CIMTool builders"
   # Primer prints the site title above a page whose title differs from it.
   # README.md's first heading is the logo (HTML), which Pages does not read as
   # a title, so give the page its title here.

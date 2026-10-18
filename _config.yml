@@ -5,7 +5,7 @@ theme: jekyll-theme-primer
 title: CIMTool Builders Library
 tagline: The UCAIug's community repository of publicly available CIMTool builders
 description: >-
-  The UCAIug's CIMTool community repository of publicly available XSLT
+  The UCAIug's community repository of publicly available CIMTool
   builders.
 url: https://cimtool-builders.ucaiug.io
 baseurl: ""

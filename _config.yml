@@ -3,6 +3,7 @@
 # so that assets/css/style.scss can build on it (CIM Model Management branding).
 theme: jekyll-theme-primer
 title: CIMTool Builders Library
+tagline: The UCAIug's community repository of publicly available CIMTool builders
 description: >-
   The UCAIug's CIMTool community repository of publicly available XSLT
   builders.

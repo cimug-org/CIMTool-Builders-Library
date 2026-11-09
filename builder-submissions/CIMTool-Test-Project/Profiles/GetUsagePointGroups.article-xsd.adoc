@@ -12,6 +12,7 @@
 :sectnumlevels: 4
 :xrefstyle: short
 :table-stripes: even
+ifndef::profilesdir[:profilesdir: {docdir}/Profiles]
 //==================================================================
 //
 
@@ -29,7 +30,7 @@
 Profile namespace: http://ucaiug.org/2022/GetUsagePointGroups#
 
 .GetUsagePointGroups Profile
-plantuml::./Profiles/GetUsagePointGroups.xsd-l2r.puml[format=svg, align=center]
+plantuml::{profilesdir}/GetUsagePointGroups.xsd-l2r.puml[format=svg, align=center]
 
 
 === Concrete Classes

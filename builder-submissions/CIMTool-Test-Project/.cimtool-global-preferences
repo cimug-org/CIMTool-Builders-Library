@@ -49,11 +49,11 @@
       prefs:plantuml_hide_primitives
               "true" ;
       prefs:plantuml_nodesep_horizontal_spacing
-              "20" ;
+              "25" ;
       prefs:plantuml_primitives_color
               "#E6E6FF" ;
       prefs:plantuml_ranksep_vertical_spacing
-              "30" ;
+              "35" ;
       prefs:plantuml_refs_color
               "#FFDBDB" ;
       prefs:plantuml_set_anonymous_classes_color_to_white

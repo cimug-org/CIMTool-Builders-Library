@@ -1,0 +1,80 @@
+#
+# This is a namespace prefixes to namespace mappings file. By 
+# convention a namespace prefixes mapping file must be named the same as the 
+# schema file used for the project under the ..\Schema directory but 
+# with the *.namespace-prefixes file extension. For example:
+#
+# C:\
+# ├── CDPSM-CIM17
+# │   ├── .settings 
+# │   ├── Documentation
+# │   │   ├── Images      
+# │   │   ├── Includes     
+# │   │   ├── Styles     
+# │   │   └── Themes     
+# │   ├── Incremental
+# │   ├── Instances
+# │   ├── Profiles
+# │   └── Schema
+# │       ├── CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.qea   
+# │       └── CIM17-2_CGMES31v01_PROF-20v02_NC23v66_MS10v01_DES10v01.namespace-prefixes
+# ├── .asciidoctorconfig.adoc 
+# ├── .cimtool-settings        
+# ├── .copyright-multi-line  
+# ├── .copyright-single-line  
+# ├── .project  
+# └── ...
+#
+# If this file exists in the same folder as the schema file when 
+# performing a schema import or creating a new CIMTool project,  
+# CIMTool will automatically import it at the same time. 
+# 
+# These mapping files are intended to be used with EA project files
+# such as .eap, .qea, and .feap files. They are optionally utilized  
+# by certain builders such as the AsciiDoc variants to map/assign
+# unique prefixes to the specific namespaces used by the model.
+# When mapped the AsciiDoc generated will prefix extensions in the
+# document with the corresponding prefix associated with the extension.
+# This helps communicate to end users which prefix an attribute, for
+# example, is defined in.
+#
+# Important notes on the <prefix>=<namespace> mappings below:
+#
+# PREFIXES & NAMESPACES:
+# Both W3C namespaces and prefixes are case-sensitive. Both namespace 
+# prefixes and the namespace URIs themselves are compared character 
+# by character when determining if two names belong to the same 
+# namespace, according to the W3C's Namespaces in XML 1.1. This means 
+# that http://www.example.org/wine and http://www.Example.org/wine are  
+# treated as different namespaces. 
+#
+# Therefore, when adding mappings care should be taken to account 
+# for the above considerations.
+#
+# Network Codes prefixes
+nc=http://entsoe.eu/ns/nc#
+adms=http://www.w3.org/ns/adms#
+euvoc=http://publications.europa.eu/ontology/euvoc#
+dc=http://purl.org/dc/elements/1.1/#
+dcat=http://www.w3.org/ns/dcat#
+dct=http://purl.org/dc/terms/#
+dm=http://iec.ch/TC57/61970-552/DifferenceModel/1#
+md=http://iec.ch/TC57/61970-552/ModelDescription/1#
+owl=http://www.w3.org/2002/07/owl#
+prof=http://www.w3.org/ns/dx/prof/#
+profcim=http://iec.ch/TC57/ns/CIM/prof-cim#
+prov=http://www.w3.org/ns/prov#
+rdf=http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdfs=http://www.w3.org/2000/01/rdf-schema#
+skos=http://www.w3.org/2004/02/skos/core#
+sh=http://www.w3.org/ns/shacl#
+xsd=http://www.w3.org/2001/XMLSchema#
+#
+# European metadata prefix
+eumd=http://entsoe.eu/ns/Metadata-European#
+#
+# European extensions prefix
+eu=http://iec.ch/TC57/CIM100-European#
+#
+# Informative packages prefixes
+ciminf=http://iec.ch/TC57/CIM100/Informative#

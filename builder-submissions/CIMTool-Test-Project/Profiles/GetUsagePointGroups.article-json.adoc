@@ -12,6 +12,7 @@
 :sectnumlevels: 4
 :xrefstyle: short
 :table-stripes: even
+ifndef::profilesdir[:profilesdir: {docdir}/Profiles]
 //==================================================================
 //
 
@@ -29,7 +30,7 @@
 Profile namespace: http://ucaiug.org/2022/GetUsagePointGroups#
 
 .GetUsagePointGroups Profile
-plantuml::./Profiles/GetUsagePointGroups.json-l2r.puml[format=svg, align=center]
+plantuml::{profilesdir}/GetUsagePointGroups.json-l2r.puml[format=svg, align=center]
 
 
 === Concrete Classes
@@ -157,7 +158,7 @@ The Name class provides the means to define any number of human readable names f
 |1..1
 |<<GetUsagePointGroups-String,String>>
 |
-Any free text that name the object.
+Any free text that used as a name or alternative identifier of the object.
 
 |NameType
 |0..1

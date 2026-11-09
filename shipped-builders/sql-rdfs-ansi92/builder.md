@@ -63,6 +63,7 @@ This builder is XSLT 3.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | The generated script now begins with the project's multi-line copyright notice as SQL comments ([#272](https://github.com/cimug-org/CIMTool/issues/272)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Added to CIMTool ([#217](https://github.com/cimug-org/CIMTool/issues/217)). |
 
 ## Author

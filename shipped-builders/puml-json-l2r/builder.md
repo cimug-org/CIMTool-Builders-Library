@@ -20,7 +20,7 @@ This builder is XSLT 3.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
-| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | A class with more than one parent class is now drawn with an inheritance arrow to each parent ([#334](https://github.com/cimug-org/CIMTool/issues/334)). |
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 09-Nov-2026 | A class with more than one parent class is now drawn with an inheritance arrow to each parent ([#334](https://github.com/cimug-org/CIMTool/issues/334)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Added to CIMTool. |
 
 ## Author

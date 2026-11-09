@@ -192,7 +192,7 @@ This builder is XSLT 2.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
-| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | The generated script now begins with the project's multi-line copyright notice as SQL comments ([#272](https://github.com/cimug-org/CIMTool/issues/272)). |
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 09-Nov-2026 | The generated script now begins with the project's multi-line copyright notice as SQL comments ([#272](https://github.com/cimug-org/CIMTool/issues/272)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Upgraded to XSLT 2.0. ```<<Compound>>``` types are now generated as separate tables, and the script adds inheritance, cascade delete and foreign key index sections with an expanded set of SQL types ([#217](https://github.com/cimug-org/CIMTool/issues/217), [#241](https://github.com/cimug-org/CIMTool/issues/241)). |
 | [2.1.0](https://cimtool.ucaiug.io/release-notes/) | 09-Aug-2024 | Updated the CIMTool web address in the generated script header. |
 | [1.10.0](https://cimtool.ucaiug.io/release-notes/) | 26-Aug-2022 | Earliest release in the CIMTool GitHub repository. The builder shipped with earlier releases of CIMTool. |

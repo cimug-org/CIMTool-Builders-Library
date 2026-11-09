@@ -80,7 +80,7 @@ This builder is XSLT 3.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
-| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | Registered as the new ```ASCIIDOC``` builder type, so whitespace authored on the "Documentation" tab is kept in the generated file ([#288](https://github.com/cimug-org/CIMTool/issues/288)). Diagrams are now included through the ```{profilesdir}``` attribute ([#291](https://github.com/cimug-org/CIMTool/issues/291)), and CIMTool's internal stereotypes are left out of attribute and association names ([#335](https://github.com/cimug-org/CIMTool/issues/335)). |
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 09-Nov-2026 | Registered as the new ```ASCIIDOC``` builder type, so whitespace authored on the "Documentation" tab is kept in the generated file ([#288](https://github.com/cimug-org/CIMTool/issues/288)). Diagrams are now included through the ```{profilesdir}``` attribute ([#291](https://github.com/cimug-org/CIMTool/issues/291)), and CIMTool's internal stereotypes are left out of attribute and association names ([#335](https://github.com/cimug-org/CIMTool/issues/335)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Added to CIMTool ([#24](https://github.com/cimug-org/CIMTool/issues/24)). |
 
 ## Author

@@ -54,7 +54,7 @@ This builder is XSLT 3.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
-| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | A class with more than one parent class is now generated with ```is_a``` naming its first parent that is not a shadow extension and the other parents listed under ```mixins``` ([#318](https://github.com/cimug-org/CIMTool/issues/318)). |
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 09-Nov-2026 | A class with more than one parent class is now generated with ```is_a``` naming its first parent that is not a shadow extension and the other parents listed under ```mixins``` ([#318](https://github.com/cimug-org/CIMTool/issues/318)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Compound types are now generated as LinkML classes that are not marked abstract, compound attributes are generated as slots, and ```comments:``` lines are indented correctly. |
 | [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | Classes, types, slots and enumerations now carry an ```ea_guid``` annotation with the Sparx EA identifier ([#141](https://github.com/cimug-org/CIMTool/issues/141)). |
 | [2.1.0](https://cimtool.ucaiug.io/release-notes/) | 09-Aug-2024 | Added to CIMTool ([#118](https://github.com/cimug-org/CIMTool/issues/118)). |

@@ -86,7 +86,7 @@
               basePropertyClass="http://iec.ch/TC57/CIM-generic#Name"
               minOccurs="1"
               maxOccurs="1">
-         <Comment>Any free text that name the object.</Comment>
+         <Comment>Any free text that used as a name or alternative identifier of the object.</Comment>
       </Simple>
       <Instance baseClass="http://iec.ch/TC57/CIM-generic#NameType"
                 type="NameType"
@@ -324,7 +324,6 @@
             ea_guid="EAPK_20A2C6D8_4765_466f_AD75_5E1B3CAF4E8D"
             basePackage="http://iec.ch/TC57/CIM-generic#Package_Base">
       <Comment>Content of the base CIM published as IEC 61970-301.</Comment>
-      <Stereotype label="import">http://langdale.com.au/2005/UML#import</Stereotype>
       <ParentPackage name="IEC61970"
                      basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61970"/>
    </Package>
@@ -350,11 +349,15 @@
             basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61968">
       <Comment>The IEC 61968 subpackages of the CIM are developed, standardized and maintained by the UCA community including its working groups and task forces.</Comment>
       <Comment>Currently, normative parts of the model support the needs of information exchange defined in IEC 61968-3, IEC 61968-4, IEC 61968-5, IEC 61968-6, IEC 61968-8, IEC 61968-9 and in IEC 61968-13.</Comment>
+      <ParentPackage name="TC57CIM"
+                     basePackage="http://iec.ch/TC57/CIM-generic#Package_TC57CIM"/>
    </Package>
    <Package name="IEC61970"
             ea_guid="EAPK_21D32832_FF64_4213_B81C_55ACE35EEBFF"
             basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61970">
       <Comment>Top package for IEC 61970.</Comment>
+      <ParentPackage name="TC57CIM"
+                     basePackage="http://iec.ch/TC57/CIM-generic#Package_TC57CIM"/>
    </Package>
    <Package name="Metering"
             ea_guid="EAPK_D6DF2C49_9FF2_428e_97B0_B5F4709BE7BE"
@@ -363,4 +366,13 @@
       <ParentPackage name="IEC61968"
                      basePackage="http://iec.ch/TC57/CIM-generic#Package_IEC61968"/>
    </Package>
+   <Package name="TC57CIM"
+            ea_guid="EAPK_39AA7E64_A03A_4934_AF09_E74943F7E6C0"
+            basePackage="http://iec.ch/TC57/CIM-generic#Package_TC57CIM">
+      <Comment>Top package for IEC TC57 CIM.</Comment>
+      <ParentPackage name="Global"
+                     basePackage="http://langdale.com.au/2005/UML#global_package"/>
+   </Package>
+   <Package name="Global"
+            basePackage="http://langdale.com.au/2005/UML#global_package"/>
 </Catalog>

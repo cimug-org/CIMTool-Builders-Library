@@ -88,7 +88,7 @@
                      type="xs:string"
                      sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.name">
             <xs:annotation>
-               <xs:documentation>Any free text that name the object.</xs:documentation>
+               <xs:documentation>Any free text that used as a name or alternative identifier of the object.</xs:documentation>
             </xs:annotation>
          </xs:element>
          <xs:element name="NameType"

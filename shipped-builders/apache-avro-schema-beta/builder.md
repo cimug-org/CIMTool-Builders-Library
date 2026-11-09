@@ -151,6 +151,7 @@ This builder is XSLT 2.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | A class with more than one parent class now includes the fields of every parent ([#318](https://github.com/cimug-org/CIMTool/issues/318)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Added to CIMTool as a beta. |
 
 ## Author

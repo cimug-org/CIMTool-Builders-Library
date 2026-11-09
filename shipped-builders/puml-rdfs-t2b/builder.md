@@ -20,6 +20,7 @@ This builder is XSLT 3.0 compliant.
 
 | CIMTool Release | Release Date | Changes |
 |---|---|---|
+| [2.3.1](https://cimtool.ucaiug.io/release-notes/) | 08-Nov-2026 | A class with more than one parent class is now drawn with an inheritance arrow to each parent ([#334](https://github.com/cimug-org/CIMTool/issues/334)). |
 | [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Upgraded to XSLT 3.0. Renamed from ```puml-t2b.xsl``` ([#176](https://github.com/cimug-org/CIMTool/issues/176)). Diagrams now apply CIMTool's PlantUML preferences for colours, dark mode, shadowing, spacing and hiding CIMDatatypes, compounds, enumerations or primitives ([#172](https://github.com/cimug-org/CIMTool/issues/172)), and now include CIMDatatype, primitive and compound classes. |
 | [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | Added to CIMTool as ```puml-t2b.xsl``` ([#143](https://github.com/cimug-org/CIMTool/issues/143)). |
 

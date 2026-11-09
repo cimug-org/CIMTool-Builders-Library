@@ -6,11 +6,11 @@ This builder currently ships with CIMTool.
 
 The **[json-schema-draft-07.xsl](json-schema-draft-07.xsl)** builder generates a JSON schema compliant with the draft **IEC 62361-104** standard (CIM Profiles to JSON schema Mapping). The version of the JSON schema specification that the schema conforms to is [draft-07](https://json-schema.org/draft-07/json-schema-release-notes.html).
 
-The following is an example of a generated JSON schema:
+The following is an example of a JSON schema generated from the GetUsagePointGroups profile in the [CIMTool-Test-Project](../../builder-submissions/CIMTool-Test-Project/Profiles/GetUsagePointGroups.xml):
 
-```JSON
+```json
 {
-     "$comment": "Copyright 2022 UCAIug SPDX-License-Identifier: Apache-2.0",
+     "$comment": "Copyright 2026 UCAIug SPDX-License-Identifier: Apache-2.0",
      "$id": "http://ucaiug.org/2022/GetUsagePointGroups.schema.json",
      "$schema": "http://json-schema.org/draft-07/schema#",
      "title": "GetUsagePointGroups",
@@ -46,6 +46,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "DemandResponseProgram"
+                  },
                   "mRID": {
                       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended. For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID",
@@ -64,7 +68,10 @@ The following is an example of a generated JSON schema:
                           "$ref": "#/definitions/Name"
                       }
                   }
-              }
+              },
+              "required": [
+                  "@type"
+              ]
           },
           "Name": {
               "title": "Name",
@@ -73,6 +80,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "Name"
+                  },
                   "name": {
                       "description": "Any free text that name the object.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#Name.name",
@@ -85,7 +96,7 @@ The following is an example of a generated JSON schema:
                   }
               },
               "required": [
-                  "name"
+                  "@type", "name"
               ]
           },
           "NameType": {
@@ -95,6 +106,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "NameType"
+                  },
                   "description": {
                       "description": "Description of the name type.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#NameType.description",
@@ -112,7 +127,7 @@ The following is an example of a generated JSON schema:
                   }
               },
               "required": [
-                  "name"
+                  "@type", "name"
               ]
           },
           "NameTypeAuthority": {
@@ -122,6 +137,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "NameTypeAuthority"
+                  },
                   "description": {
                       "description": "Description of the name type authority.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#NameTypeAuthority.description",
@@ -134,7 +153,7 @@ The following is an example of a generated JSON schema:
                   }
               },
               "required": [
-                  "name"
+                  "@type", "name"
               ]
           },
           "UsagePoint": {
@@ -144,6 +163,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "UsagePoint"
+                  },
                   "mRID": {
                       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended. For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID",
@@ -157,7 +180,10 @@ The following is an example of a generated JSON schema:
                           "$ref": "#/definitions/Name"
                       }
                   }
-              }
+              },
+              "required": [
+                  "@type"
+              ]
           },
           "UsagePointGroup": {
               "title": "UsagePointGroup",
@@ -166,6 +192,10 @@ The following is an example of a generated JSON schema:
               "type": "object",
               "additionalProperties": false,
               "properties": {
+                  "@type": {
+                      "type": "string",
+                      "const": "UsagePointGroup"
+                  },
                   "mRID": {
                       "description": "Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended. For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.",
                       "modelReference": "http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID",
@@ -179,7 +209,10 @@ The following is an example of a generated JSON schema:
                           "$ref": "#/definitions/Name"
                       }
                   }
-              }
+              },
+              "required": [
+                  "@type"
+              ]
           },
           "GetUsagePointGroups": {
                "$ref": "#"
@@ -192,6 +225,15 @@ The following is an example of a generated JSON schema:
 
 This builder is XSLT 2.0 compliant.
 
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Changed the declared XSLT version from 3.0 to 2.0. Every object now has a required ```@type``` property, a choice is generated as one property holding a ```oneOf``` list in place of the earlier required-choice constraints, compound attributes are supported and root definitions are named after the profile class. Enumerations with the ```<<CodeList>>``` stereotype now emit their codes in place of their names ([#250](https://github.com/cimug-org/CIMTool/issues/250)). |
+| [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | Upgraded to XSLT 3.0. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Compound types now include a ```modelReference``` to their CIM class. |
+| [1.10.0](https://cimtool.ucaiug.io/release-notes/) | 26-Aug-2022 | Added to CIMTool. |
+
 ## Author
 
 Todd Viegut [@tviegut] on behalf of UCAIug.
@@ -202,20 +244,13 @@ Todd Viegut [@tviegut] on behalf of UCAIug.
 
 ## Builder NTE Configuration
 
-Given this builder ships with CIMTool the below table highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
+Given this builder ships with CIMTool the below screenshot highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
 
 The recommended best practice is to rename the builder file  (from ```json-schema-draft-07.xsl``` to ```custom-json-schema-draft-07.xsl``` for example) before importing. On import this will be interpreted as a new builder and you will be allowed to enter values in the Type and Extension fields.
 
 >*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from within the "Maintain XSLT Transform Builders" screen.*
 
-A blank Includes File Name row indicates that no XSLT include file is required for this builder.
-
-| Field | Value |
-|---|---|
-| Builder XSLT Name: | `json-schema-draft-07.xsl` |
-| Includes File Name: |  |
-| Transform Builder Type: | `TEXT` |
-| File Extension of Generated Files: | `draft-07.schema.json` |
+![image](import-builder.png)
 
 ## License
 

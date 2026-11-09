@@ -1,0 +1,34 @@
+# GitHub Pages site (cimtool-builders.ucaiug.io), built from README.md on main.
+# Primer is the theme GitHub Pages uses when none is named; it is named here
+# so that assets/css/style.scss can build on it (CIM Model Management branding).
+theme: jekyll-theme-primer
+title: CIMTool Builders Library
+tagline: The UCAIug's community repository of publicly available CIMTool builders
+description: >-
+  The UCAIug's community repository of publicly available CIMTool
+  builders.
+url: https://cimtool-builders.ucaiug.io
+baseurl: ""
+
+defaults:
+  # Link-preview (Open Graph / X card) image for every page, emitted by {% seo %}
+  # in _layouts/default.html. The same PNG is the repo's Social preview.
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /media/logo/cimtool-builders-social-1280x640.png
+        width: 1280
+        height: 640
+        alt: "CIMTool Builders Library: The UCAIug's community repository of publicly available CIMTool builders"
+  # Primer prints the site title above a page whose title differs from it.
+  # README.md's first heading is the logo (HTML), which Pages does not read as
+  # a title, so give the page its title here.
+  - scope:
+      path: "README.md"
+    values:
+      title: CIMTool Builders Library
+
+# Kept out of the published site.
+exclude:
+  - media/logo/README.md

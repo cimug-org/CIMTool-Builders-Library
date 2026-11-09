@@ -12,7 +12,7 @@ The generated **RDFS2020** schemas include the following:
 
 1. The ```xml:lang``` attribute now appears on ```rds:label```-s to indicate the locale language associated with the text:
 
-    ```xml 
+    ```xml
     <rdfs:label xml:lang="en">ACDCConverterDCTerminal</rdfs:label>
     ```
 
@@ -90,6 +90,16 @@ The generated **RDFS2020** schemas include the following:
 
 This builder is XSLT 3.0 compliant.
 
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Compound classes, compound attributes and primitive types are now generated, and simple attributes take ```cims:dataType``` from their CIM datatype ([#171](https://github.com/cimug-org/CIMTool/issues/171), [#207](https://github.com/cimug-org/CIMTool/issues/207)). Each non-shadow superclass now gets its own ```rdfs:subClassOf```, associations take ```rdfs:domain``` from the owning class and ```rdfs:range``` from the target class, constant enumerated attributes get ```cims:isFixed```, and the aggregation and composition stereotypes are written as UML URIs. |
+| [2.2.0](https://cimtool.ucaiug.io/release-notes/) | 01-Oct-2024 | URIs outside the profile namespace are now written in full, multiplicities are always written as a range (for example ```M:1..1```), and ```rdfs:domain``` is taken from the property's class instead of being parsed from the property URI. Enumeration classes now get the ```enumeration``` stereotype and CIMDatatype classes the ```CIMDatatype``` stereotype, and the ```byreference```, aggregation and composition stereotypes are no longer written ([#154](https://github.com/cimug-org/CIMTool/issues/154)). |
+| [2.1.0](https://cimtool.ucaiug.io/release-notes/) | 09-Aug-2024 | Comments on inverse associations are now typed ```xsd:string``` instead of ```rdf:parseType="Literal"```. |
+| [2.0.1](https://cimtool.ucaiug.io/release-notes/) | 12-May-2024 | Changed the ```xsd``` namespace declared in the generated RDFS from ```http://www.w3.org/2001/XMLSchema#``` to ```http://www.w3.org/2001/XMLSchema```. |
+| [1.12.0](https://cimtool.ucaiug.io/release-notes/) | 21-Feb-2024 | Added to CIMTool ([#78](https://github.com/cimug-org/CIMTool/issues/78)). |
+
 ## Author
 
 Todd Viegut [@tviegut] on behalf of UCAIug.
@@ -100,20 +110,13 @@ Todd Viegut [@tviegut] on behalf of UCAIug.
 
 ## Builder NTE Configuration
 
-Given this builder ships with CIMTool the below table highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
+Given this builder ships with CIMTool the below screenshot highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
 
 The recommended best practice is to rename the builder file  (from ```rdfs-2020.xsl``` to ```custom-rdfs-2020.xsl``` for example) before importing. On import this will be interpreted as a new builder and you will be allowed to enter values in the Type and Extension fields.
 
 >*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from within the "Maintain XSLT Transform Builders" screen.*
 
-A blank Includes File Name row indicates that no XSLT include file is required for this builder.
-
-| Field | Value |
-|---|---|
-| Builder XSLT Name: | `rdfs-2020.xsl` |
-| Includes File Name: |  |
-| Transform Builder Type: | `TRANSFORM` |
-| File Extension of Generated Files: | `rdfs-2020.rdfs` |
+![image](import-builder.png)
 
 ## License
 

@@ -78,8 +78,8 @@
 	         a wider-than-necessary UNIQUE prevents valid duplication attempts;
 	         a missing UNIQUE permits silent semantic corruption.
 
-	    The parallel Java JPA & C# EF builder (csharp-entity-framework.xsl) 
-	    applies the identical detection logic and emits the matching surrogate 
+	    The parallel Java JPA and C# EF builders (jpa-rdfs.xsl and csharp-ef-rdfs.xsl)
+	    apply the identical detection logic and emit the matching surrogate 
 	    [Key] and heuristic [Index(..., IsUnique=true)] annotations. Both builders 
 	    share the same cimtool:has-mrid-ancestor concept to guarantee consistent 
 	    output.

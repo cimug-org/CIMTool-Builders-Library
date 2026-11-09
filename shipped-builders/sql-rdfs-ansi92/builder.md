@@ -4,22 +4,66 @@ This builder currently ships with CIMTool.
 
 ## Builder Description
 
-> **Important:** This builder is specifically intended for use with profiles designed to generate RDFS as their primary schema artifact. For such profiles, defined using the formal CIM profiling approach for RDFS schemas, this builder generates a complementary SQL DDL script that is structurally aligned with the RDFS schema. It is designed to be used alongside the companion **[jpa-rdfs.xsl](../jpa-rdfs/builder.md)** and **[csharp-ef-rdfs.xsl](../csharp-ef-rdfs/builder.md)** builders.
+The **[sql-rdfs-ansi92.xsl](sql-rdfs-ansi92.xsl)** builder generates an ANSI SQL-92 compliant DDL script for RDFS profiles such as CGMES. It produces the same schema as the [sql.xsl](../sql/builder.md) builder (a table per class, separate tables for ```<<Compound>>``` types, enumeration reference tables, and foreign key, inheritance and cascade delete constraints), but gives classes outside the IdentifiedObject hierarchy (for example ```CurveData```) a surrogate ```"id"``` primary key in place of ```"mRID"```, together with a unique constraint over their required columns.
 
-The **[sql-rdfs-ansi92.xsl](sql-rdfs-ansi92.xsl)** builder generates an ANSI SQL-compliant DDL script (`*.rdfs-ansi92.sql`) that creates the database tables, columns, foreign key relationships, and indexes corresponding to the classes, attributes, and associations defined in a **CIMTool** profile.
+Refer to the comments at the top of the generated script for details of the design and its motivations. The [jpa-rdfs.xsl](../jpa-rdfs/builder.md) and [csharp-ef-rdfs.xsl](../csharp-ef-rdfs/builder.md) builders generate matching Java and C# code.
 
-A key distinction from the companion **[sql.xsl](../sql/builder.md)** builder is the RDFS-schema-aware primary key strategy. In the CIM, `IdentifiedObject` is the universal root class for all persistent, independently-addressable objects and carries the `mRID` (master resource identifier) attribute. For all profile classes in the `IdentifiedObject` hierarchy, this builder uses `mRID` as a natural `VARCHAR(100) PRIMARY KEY`. For the small but important subset of CIM classes that do not inherit from `IdentifiedObject` — such as `CurveData`, `RegularTimePoint`, and `TapChangerTablePoint` — a surrogate `id VARCHAR(100) PRIMARY KEY` column is emitted together with a heuristic `UNIQUE` constraint spanning all required (`NOT NULL`) non-surrogate columns. `EnumeratedType` classes receive a `name VARCHAR(100) PRIMARY KEY` column. `CompoundType` classes receive the same surrogate `id VARCHAR(100) PRIMARY KEY` pattern.
+The following extracts were generated from the same CGMES CoreEquipment profile. With the [sql.xsl](../sql/builder.md) builder, ```CurveData``` (which does not inherit from IdentifiedObject) is given an ```"mRID"``` primary key:
 
-This builder is designed to be used in conjunction with the companion **[jpa-rdfs.xsl](../jpa-rdfs/builder.md)** and **[csharp-ef-rdfs.xsl](../csharp-ef-rdfs/builder.md)** builders, which apply the identical primary key detection logic to generate structurally aligned JPA and Entity Framework Core persistence layers respectively.
-
-<!-- TODO: Insert representative sample output from the builder here -->
+```sql
+-- Multi-purpose data points for defining a curve. The use of this generic
+-- class is discouraged if a more specific class can be used to specify the
+-- X and Y axis values along with their specific data types.
+CREATE TABLE "CurveData"
+(
+    "mRID" VARCHAR(100) PRIMARY KEY,
+    -- The data value of the X-axis variable, depending on the X-axis units.
+    "xvalue" DOUBLE PRECISION NOT NULL,
+    -- The data value of the first Y-axis variable, depending on the Y-axis units.
+    "y1value" DOUBLE PRECISION NOT NULL,
+    -- The data value of the second Y-axis variable (if present), depending on
+    -- the Y-axis units.
+    "y2value" DOUBLE PRECISION,
+    -- The curve of this curve data point.
+    -- FK column reference to table representing the "Curve" class
+    "Curve" VARCHAR(100) NOT NULL
+);
 ```
-(sample output placeholder)
+
+With **sql-rdfs-ansi92.xsl** the same class is given a surrogate ```"id"``` primary key and a unique constraint:
+
+```sql
+-- Multi-purpose data points for defining a curve. The use of this generic
+-- class is discouraged if a more specific class can be used to specify the
+-- X and Y axis values along with their specific data types.
+CREATE TABLE "CurveData"
+(
+    "id" VARCHAR(100) PRIMARY KEY,
+    -- The data value of the X-axis variable, depending on the X-axis units.
+    "xvalue" DOUBLE PRECISION NOT NULL,
+    -- The data value of the first Y-axis variable, depending on the Y-axis units.
+    "y1value" DOUBLE PRECISION NOT NULL,
+    -- The data value of the second Y-axis variable (if present), depending on
+    -- the Y-axis units.
+    "y2value" DOUBLE PRECISION,
+    -- The curve of this curve data point.
+    -- FK column reference to table representing the "Curve" class
+    "Curve" VARCHAR(100) NOT NULL
+);
+...
+-- Heuristic uniqueness constraint for non-IdentifiedObject table "CurveData"
+ALTER TABLE "CurveData" ADD UNIQUE ("xvalue", "y1value", "Curve");
 ```
 
 ## XSLT Version
 
 This builder is XSLT 3.0 compliant.
+
+## Release History
+
+| CIMTool Release | Release Date | Changes |
+|---|---|---|
+| [2.3.0](https://cimtool.ucaiug.io/release-notes/) | 08-Jun-2026 | Added to CIMTool ([#217](https://github.com/cimug-org/CIMTool/issues/217)). |
 
 ## Author
 
@@ -27,24 +71,17 @@ Todd Viegut [@tviegut] on behalf of UCAIug.
 
 ## Submission Date
 
-14-May-2026
+01-Apr-2026
 
 ## Builder NTE Configuration
 
-Given this builder ships with CIMTool the below table highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
+Given this builder ships with CIMTool the below screenshot highlights the existing NTE (Name/Type/Extension) settings for the builder.  We strongly recommend that you do not import customized versions of this shipped builder over the original in your local CIMTool installation. Doing so will force regeneration of any existing builder-generated artifacts for projects in your workspace that have this builder enabled.
 
 The recommended best practice is to rename the builder file  (from ```sql-rdfs-ansi92.xsl``` to ```custom-sql-rdfs-ansi92.xsl``` for example) before importing. On import this will be interpreted as a new builder and you will be allowed to enter values in the Type and Extension fields.
 
 >*NOTE: </br>CIMTool requires that file extensions be unique and will prevent you from entering an extension already assigned to a builder. This is because an artifact's name is derived by concatenating the base name of the CIMTool ```.owl``` profile with the file extension assigned to the builder. Therefore, a unique file extension must be assigned to each builder when imported. The file extension for a builder can be modified later from within the "Maintain XSLT Transform Builders" screen.*
 
-A blank Includes File Name row indicates that no XSLT include file is required for this builder.
-
-| Field | Value |
-|---|---|
-| Builder XSLT Name: | `sql-rdfs-ansi92.xsl` |
-| Includes File Name: |  |
-| Transform Builder Type: | `TEXT` |
-| File Extension of Generated Files: | `rdfs-ansi92.sql` |
+![image](import-builder.png)
 
 ## License
 
